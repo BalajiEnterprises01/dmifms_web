@@ -18,11 +18,19 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const serviceOptions = [
-  "Housekeeping", "Front Office / Help Desk", "Horticulture",
-  "Waste Management", "Pest Control", "Facade Cleaning",
-  "Pantry Management", "Office Assistance", "MEP Maintenance",
-  "Payroll Management", "Contract Staffing", "Security Services",
-  "Total Facility Management (TFM)", "Other",
+  "Housekeeping",
+  "Front Office / Help Desk",
+  "Horticulture",
+  "Waste Management",
+  "Pest Control",
+  "Facade Cleaning",
+  "Pantry Management",
+  "Office Assistance",
+  "MEP Maintenance",
+  "Payroll Management",
+  "Contract Staffing",
+  "Total Facility Management (TFM)",
+  "Other",
 ];
 
 export default function ContactForm() {
@@ -63,14 +71,16 @@ export default function ContactForm() {
         <div className="w-16 h-16 rounded-full bg-[#10B981]/15 flex items-center justify-center mb-4">
           <CheckCircle2 className="w-8 h-8 text-[#10B981]" />
         </div>
-        <h3 className="font-extrabold text-xl text-[#0F172A] mb-2">Message Sent!</h3>
+        <h3 className="font-extrabold text-xl text-[#0F172A] mb-2">
+          Message Sent!
+        </h3>
         <p className="text-slate-500 text-sm mb-6 max-w-sm leading-relaxed">
-          Thank you for reaching out. Our team will get back to you within 24 business hours.
+          Thank you for reaching out. Our team will get back to you within 24
+          business hours.
         </p>
         <button
           onClick={() => setSubmitted(false)}
-          className="px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-[#1E3A8A] to-[#2563EB] text-white hover:opacity-90 transition-opacity"
-        >
+          className="px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-[#1E3A8A] to-[#2563EB] text-white hover:opacity-90 transition-opacity">
           Send Another Message
         </button>
       </div>
@@ -79,7 +89,9 @@ export default function ContactForm() {
 
   const inputClass = (error?: boolean) =>
     `w-full px-4 py-3 rounded-xl border text-sm font-medium text-[#0F172A] bg-white transition-all duration-200 outline-none focus:ring-2 focus:ring-[#1E3A8A]/20 placeholder:text-slate-300 ${
-      error ? "border-red-300 focus:border-red-400" : "border-slate-200 focus:border-[#1E3A8A]/40"
+      error
+        ? "border-red-300 focus:border-red-400"
+        : "border-slate-200 focus:border-[#1E3A8A]/40"
     }`;
 
   return (
@@ -94,7 +106,9 @@ export default function ContactForm() {
             placeholder="Rahul Sharma"
             className={inputClass(!!errors.name)}
           />
-          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+          )}
         </div>
         <div>
           <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">
@@ -105,7 +119,11 @@ export default function ContactForm() {
             placeholder="ABC Pvt Ltd"
             className={inputClass(!!errors.company)}
           />
-          {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company.message}</p>}
+          {errors.company && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.company.message}
+            </p>
+          )}
         </div>
       </div>
 
@@ -120,7 +138,9 @@ export default function ContactForm() {
             placeholder="rahul@company.com"
             className={inputClass(!!errors.email)}
           />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+          )}
         </div>
         <div>
           <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">
@@ -129,10 +149,12 @@ export default function ContactForm() {
           <input
             {...register("phone")}
             type="tel"
-            placeholder="+91 98765 43210"
+            placeholder="+91 99765 43110"
             className={inputClass(!!errors.phone)}
           />
-          {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+          {errors.phone && (
+            <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>
+          )}
         </div>
       </div>
 
@@ -140,13 +162,19 @@ export default function ContactForm() {
         <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">
           Service Interested In *
         </label>
-        <select {...register("service")} className={inputClass(!!errors.service)}>
+        <select
+          {...register("service")}
+          className={inputClass(!!errors.service)}>
           <option value="">Select a service...</option>
           {serviceOptions.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
           ))}
         </select>
-        {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>}
+        {errors.service && (
+          <p className="text-red-500 text-xs mt-1">{errors.service.message}</p>
+        )}
       </div>
 
       <div>
@@ -159,14 +187,15 @@ export default function ContactForm() {
           placeholder="Tell us about your facility, requirements, and any specific needs..."
           className={`${inputClass(!!errors.message)} resize-none`}
         />
-        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+        {errors.message && (
+          <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+        )}
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-[#1E3A8A] to-[#2563EB] text-white hover:opacity-90 disabled:opacity-60 transition-all duration-200 shadow-lg shadow-blue-900/20"
-      >
+        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-[#1E3A8A] to-[#2563EB] text-white hover:opacity-90 disabled:opacity-60 transition-all duration-200 shadow-lg shadow-blue-900/20">
         {loading ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />

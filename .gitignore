@@ -1,41 +1,82 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+*.tsbuildinfo
 
-# testing
-/coverage
+# Env files (NEVER commit real env files)
+.env
+.env.*
+!.env.example
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
+# Secrets & keys
 *.pem
+*.key
+*.p12
+*.pfx
+*.cert
+secrets/
 
-# debug
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# Database
+*.sqlite
+*.db
+dump.sql
+*.dump
 
-# vercel
-.vercel
+# Test coverage
+coverage/
+.nyc_output/
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.turbo/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/settings.json
+.idea/
+*.iml
+
+# Docker
+.dockerignore
+
+# Lock files (commit these — they ensure reproducible installs)
+# package-lock.json  ← DO commit this
+# yarn.lock          ← DO commit this
+
+# Prisma
+prisma/*.db
+
+# Generated
+**/*.generated.ts
+**/generated/
+
+.claude
+.github
+docs
+agent_docs
+CLAUDE.md
+.claudeignore
+Makefile
+SECURITY.md
