@@ -47,15 +47,6 @@
   {
     "id": 6,
     "step": "06",
-    "title": "Security",
-    "description": "Security policy briefing and access protocol setup completed for the site and all personnel.",
-    "icon": "shield-check",
-    "color": "#7C3AED",
-    "status": true
-  },
-  {
-    "id": 7,
-    "step": "07",
     "title": "Reviews",
     "description": "Progress reviews conducted with client stakeholders to align on readiness and address concerns.",
     "icon": "users",
@@ -63,8 +54,8 @@
     "status": true
   },
   {
-    "id": 8,
-    "step": "08",
+    "id": 7,
+    "step": "07",
     "title": "Go-Live",
     "description": "Formal handover to Operations team. Full service delivery commences as per agreed scope.",
     "icon": "rocket",
@@ -72,8 +63,8 @@
     "status": true
   },
   {
-    "id": 9,
-    "step": "09",
+    "id": 8,
+    "step": "08",
     "title": "Stabilization",
     "description": "30–45 day post Go-Live monitoring, performance review, and sign-off for complete stabilization.",
     "icon": "check-circle-2",

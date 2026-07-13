@@ -26,7 +26,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Additional Services | DMIFMS",
-  description: "Security, Hospitality, and Support services by DM23 IFMS.",
+  description: "Hospitality and Support services by DM23 IFMS.",
 };
 
 const iconMap: Record<string, React.ElementType> = {
@@ -47,16 +47,6 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const categoryCopy: Record<string, { intro: string; points: string[] }> = {
-  security: {
-    intro:
-      "Layered protection for sites that need disciplined access control, visible deterrence, and quick incident response.",
-    points: [
-      "Manned guarding and perimeter watch",
-      "Access control and visitor registration",
-      "CCTV monitoring and patrol coordination",
-      "Emergency response and escalation support",
-    ],
-  },
   hospitality: {
     intro:
       "Guest-facing support designed to keep stays, meals, and shared spaces clean, organized, and welcoming.",
@@ -152,7 +142,7 @@ export default function AdditionalServicesPage() {
                 </span>
               </h2>
               <p className="text-lg text-slate-500">
-                From specialized security to warm hospitality, we provide
+                From warm hospitality to reliable back-office support, we provide
                 end-to-end services to elevate your facility&apos;s operations.
               </p>
             </ScrollReveal>
@@ -162,7 +152,7 @@ export default function AdditionalServicesPage() {
             {data.categories.map((cat, ci) => {
               const CatIcon = iconMap[cat.icon] ?? Shield;
               const isEven = ci % 2 !== 0;
-              const copy = categoryCopy[cat.id] ?? categoryCopy.security;
+              const copy = categoryCopy[cat.id] ?? categoryCopy.hospitality;
 
               return (
                 <div
