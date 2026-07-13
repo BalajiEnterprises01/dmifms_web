@@ -250,26 +250,5 @@
     ],
     "status": true,
     "order": 12
-  },
-  {
-    "id": "security-services",
-    "title": "Security Services",
-    "slug": "security-services",
-    "category": "business",
-    "categoryLabel": "Business Services",
-    "description": "Trained security personnel for guarding, patrolling, and electronic surveillance to protect your facility and assets.",
-    "shortDescription": "Trained security guards, patrolling, and electronic surveillance.",
-    "icon": "shield",
-    "image": "/images/services/security.svg",
-    "features": [
-      "Manned guarding",
-      "Patrolling",
-      "CCTV surveillance",
-      "Access control",
-      "Visitor management",
-      "Emergency response"
-    ],
-    "status": true,
-    "order": 13
   }
 ]

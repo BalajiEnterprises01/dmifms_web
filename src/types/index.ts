@@ -315,3 +315,15 @@ export interface AnimationProps {
   direction?: "up" | "down" | "left" | "right" | "fade";
   once?: boolean;
 }
+
+// ─── Leads (contact form submissions) ───────────────────────────────────────
+export interface ContactLead {
+  id: string;
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+  createdAt: string;
+}

@@ -49,7 +49,7 @@ export default function TermsPage() {
           </section>
           <section>
             <h2 className="text-xl font-bold text-[#0A192F] mb-2">Contact</h2>
-            <p>For questions about these terms, email info@dm23ifms.com.</p>
+            <p>For questions about these terms, email dm23@dm23.co.in.</p>
           </section>
         </div>
       </div>
