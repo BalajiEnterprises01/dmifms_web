@@ -72,9 +72,22 @@ Admin edit (client)   →  fetch /api/...  →  route handler  →  jsonCMS (wri
 - **Uploads:** keep the type allowlist + 5MB cap in `api/upload` when changing it.
 - Async UI states: handle loading + error + success (forms use RHF + sonner).
 
+## Contact Form / Leads
+`POST /api/contact` (public) → Zod-validates → saves the lead to `data/leads.json` via jsonCMS →
+then fans out to two optional sinks: email via `lib/mailer.ts` (nodemailer) and a Zapier Catch Hook
+via `lib/zapier.ts` (which appends a row to the Microsoft Excel sheet). Both run under
+`Promise.allSettled` — a failure in either is logged but does NOT fail the request, because the lead
+is already stored. If `SMTP_*` or `ZAPIER_WEBHOOK_URL` are unset, that sink is skipped and the lead
+is still saved.
+Leads are read at `GET /api/leads` and deleted at `DELETE /api/leads/[id]` — **admin-only, they
+contain PII.** Never add `leads` to `ALLOWED_SECTIONS` (that route's GET is public). Admin UI:
+`/admin/leads`.
+
 ## Known Gaps / Tech-Debt (fix deliberately, don't paper over)
-- **Contact form does not send email** — `api/contact` only `console.log`s. nodemailer is installed but unwired.
 - **Admin auth is weak:** token is `base64(ADMIN_SECRET)` in an httpOnly cookie — not JWT, no expiry check, no RBAC. Hardcoded fallback creds in `api/auth/route.ts`.
+- **`/api/contact` is public and unthrottled** — no rate limit or spam protection (captcha/honeypot).
+- **JSON writes are read-modify-write** — concurrent submissions could race. Fine at current volume; needs a real store if traffic grows.
+- **JSON file store requires a persistent disk** — it will NOT work on serverless (Vercel) where the FS is read-only. Deploy to a VPS/Node host.
 - **No tests, no typecheck script.**
 
 ## → For domain-specific guidance: read agent_docs/00-start-here.md

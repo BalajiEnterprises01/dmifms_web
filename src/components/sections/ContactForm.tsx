@@ -36,6 +36,7 @@ const serviceOptions = [
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -46,20 +47,20 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
+    setSubmitError(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (res.ok) {
-        setSubmitted(true);
-        reset();
-      }
-    } catch {
-      // silently fail — form still shows success
+      if (!res.ok) throw new Error("Request failed");
       setSubmitted(true);
       reset();
+    } catch {
+      setSubmitError(
+        "Sorry, we could not send your message. Please try again or email us directly.",
+      );
     } finally {
       setLoading(false);
     }
@@ -191,6 +192,14 @@ export default function ContactForm() {
           <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
         )}
       </div>
+
+      {submitError && (
+        <p
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {submitError}
+        </p>
+      )}
 
       <button
         type="submit"
