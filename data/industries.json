@@ -9,8 +9,7 @@
     "services": [
       "Housekeeping",
       "Front Office",
-      "Pantry Management",
-      "Security"
+      "Pantry Management"
     ],
     "status": true,
     "order": 1
@@ -25,7 +24,6 @@
     "services": [
       "Housekeeping",
       "MEP Maintenance",
-      "Security",
       "Cafeteria"
     ],
     "status": true,
@@ -40,7 +38,6 @@
     "image": "/images/industries/banking.jpg",
     "services": [
       "Housekeeping",
-      "Security",
       "Front Office",
       "Payroll"
     ],
@@ -73,8 +70,7 @@
     "services": [
       "Housekeeping",
       "Production Support",
-      "Waste Management",
-      "Security"
+      "Waste Management"
     ],
     "status": true,
     "order": 5
@@ -89,7 +85,6 @@
     "services": [
       "Housekeeping",
       "Horticulture",
-      "Security",
       "Pest Control"
     ],
     "status": true,
@@ -120,7 +115,6 @@
     "image": "/images/industries/malls.jpg",
     "services": [
       "Housekeeping",
-      "Security",
       "Waste Management",
       "Pest Control"
     ],
@@ -137,7 +131,6 @@
     "services": [
       "Housekeeping",
       "MEP Maintenance",
-      "Security",
       "Staffing"
     ],
     "status": true,
@@ -152,7 +145,6 @@
     "image": "/images/industries/government.jpg",
     "services": [
       "Housekeeping",
-      "Security",
       "Office Assistance",
       "Payroll"
     ],

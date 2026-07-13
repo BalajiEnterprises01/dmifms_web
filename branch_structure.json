@@ -1,0 +1,15 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "docs/update-claude-md",
+    "main"
+  ],
+  "parent": {
+    "docs/update-claude-md": "main",
+    "main": null
+  },
+  "order": [
+    "main",
+    "docs/update-claude-md"
+  ]
+}
