@@ -12,11 +12,13 @@ import {
   LogOut,
   ChevronRight,
   CheckCircle,
+  Inbox,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
+  { label: "Enquiries", href: "/admin/leads", icon: Inbox },
   { label: "Home Hero", href: "/admin/hero", icon: Sparkles },
   { label: "Page Heroes", href: "/admin/page-heroes", icon: Sparkles },
   { label: "Services", href: "/admin/services", icon: Building2 },

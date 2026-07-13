@@ -119,23 +119,23 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="w-full lg:w-auto p-8 rounded-[2rem] bg-white/5 border border-white/10 relative overflow-hidden group">
+          <div className="w-full lg:w-auto  p-6 bg-white/5 border border-white/10 relative overflow-hidden group">
             <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <h3 className="text-xl font-bold text-white mb-2 relative z-10">
-              Stay Updated
-            </h3>
-            <p className="text-sm text-slate-400 mb-6 relative z-10">
-              Get the latest insights on facility management.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 relative z-10">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-5 py-3.5 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] transition-all min-w-[250px]"
-              />
-              <button className="px-6 py-3.5 rounded-xl font-bold text-sm bg-white text-[#111] hover:bg-[#FFD700] transition-colors shrink-0">
-                Subscribe
-              </button>
+
+            <div className="relative z-10">
+              <h3 className="text-lg font-bold text-white mb-1.5 leading-snug">
+                Ready to elevate your facility?
+              </h3>
+              <p className="text-[13px] text-slate-400 mb-5 leading-relaxed">
+                Share your requirements — we&apos;ll send a tailored proposal.
+              </p>
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-bold text-[13px] bg-[#FFD700] text-[#111] hover:bg-white transition-colors duration-300 group/cta">
+                Get a Free Quote
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1" />
+              </Link>
             </div>
           </div>
         </div>

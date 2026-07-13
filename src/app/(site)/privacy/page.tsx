@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-bold text-[#0A192F] mb-2">Contact</h2>
             <p>
-              For privacy-related questions, contact us at info@dm23ifms.com.
+              For privacy-related questions, contact us at dm23@dm23.co.in.
             </p>
           </section>
         </div>
