@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | DM23 IFMS",
   },
   description:
-    "DM23 IFMS — India's fast-growing facility management company. Driven Minds. Delivered Excellence. Housekeeping, Staffing, Waste Management, Security & more.",
+    "DM23 IFMS — India's fast-growing facility management company. Driven Minds. Delivered Excellence. Housekeeping, Staffing, Waste Management & more.",
   keywords: [
     "facility management",
     "integrated facility management",
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
     "TFM",
     "total facility management",
     "pest control",
-    "security services",
   ],
   authors: [{ name: "DM23 IFMS Pvt Ltd" }],
   creator: "DM23 IFMS Pvt Ltd",
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "DM23 IFMS Pvt Ltd",
     title: "DM23 IFMS Pvt Ltd | Integrated Facility Management Solutions",
     description:
-      "India's fast-growing facility management company. Housekeeping, Staffing, Waste Management, Security & more across 10+ industries.",
+      "India's fast-growing facility management company. Housekeeping, Staffing, Waste Management & more across 10+ industries.",
     images: [{ url: "/images/hero-bg.jpg", width: 1200, height: 630, alt: "DM23 IFMS" }],
   },
   twitter: {
@@ -77,7 +76,7 @@ const jsonLd = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-00000-00000",
+    telephone: "+91-9686441441",
     contactType: "customer service",
     areaServed: "IN",
     availableLanguage: "English",

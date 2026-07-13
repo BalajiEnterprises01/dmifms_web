@@ -27,16 +27,9 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -48,20 +41,13 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  const isSolid = scrolled || mobileOpen;
-
   return (
     <>
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isSolid
-            ? "bg-white shadow-md border-b border-slate-100 py-1"
-            : "bg-black/20 backdrop-blur-sm border-b border-white/10 py-1",
-        )}>
+        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-slate-100 py-1">
         <div className="container-max section-padding">
           <div className="flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
@@ -97,12 +83,7 @@ export default function Navbar() {
                     onMouseEnter={() => setActiveDropdown(link.label)}
                     onMouseLeave={() => setActiveDropdown(null)}>
                     <button
-                      className={cn(
-                        "flex items-center gap-1.5 py-2 text-sm font-semibold transition-colors",
-                        isSolid
-                          ? "text-slate-700 hover:text-brand-blue"
-                          : "text-white hover:text-brand-blue",
-                      )}>
+                      className="flex items-center gap-1.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-blue transition-colors">
                       {link.label}
                       <ChevronDown
                         className={cn(
@@ -141,12 +122,8 @@ export default function Navbar() {
                     className={cn(
                       "py-2 text-sm font-semibold transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left",
                       isActive(link.href)
-                        ? isSolid
-                          ? "text-brand-blue after:scale-x-100 after:bg-brand-blue"
-                          : "text-white after:scale-x-100 after:bg-white"
-                        : isSolid
-                          ? "text-slate-700 hover:text-brand-blue after:bg-brand-blue"
-                          : "text-white hover:text-brand-blue after:bg-brand-blue",
+                        ? "text-brand-blue after:scale-x-100 after:bg-brand-blue"
+                        : "text-slate-700 hover:text-brand-blue after:bg-brand-blue",
                     )}>
                     {link.label}
                   </Link>
@@ -158,22 +135,14 @@ export default function Navbar() {
             <div className="flex items-center gap-5">
               <Link
                 href="/contact"
-                className={cn(
-                  "hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold transition-all duration-300 rounded",
-                  isSolid
-                    ? "bg-brand-navy text-white hover:bg-brand-blue"
-                    : "bg-white text-brand-navy hover:bg-slate-100",
-                )}>
+                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold bg-brand-navy text-white hover:bg-brand-blue transition-all duration-300 rounded">
                 Get a Quote
               </Link>
 
               {/* Mobile menu toggle */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className={cn(
-                  "lg:hidden p-2 transition-colors",
-                  isSolid ? "text-slate-900" : "text-white",
-                )}>
+                className="lg:hidden p-2 text-slate-900 transition-colors">
                 {mobileOpen ? (
                   <X className="w-6 h-6" />
                 ) : (
