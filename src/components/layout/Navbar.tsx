@@ -1,42 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
+import { primaryNav, siteLinks } from "@/lib/site-nav";
+import { EASE_LUXE, EASE_SOFT } from "@/lib/animations";
+import { useIntroDone } from "@/components/motion/IntroLoader";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
-  { label: "About Us", href: "/about" },
-  {
-    label: "More",
-    href: "#",
-    children: [
-      { label: "Process", href: "/process" },
-      { label: "Staffing Solutions", href: "/staffing" },
-      { label: "Waste Management", href: "/waste-management" },
-      { label: "Additional Services", href: "/additional-services" },
-    ],
-  },
-  { label: "Contact", href: "/contact" },
-];
-
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const introDone = useIntroDone();
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Tuck the header away while reading down the page; bring it back on any
+  // upward scroll.
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(y > 24);
+    setHidden(y > 160 && y > prev);
+  });
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMobileOpen(false);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setActiveDropdown(null);
+    setMenuOpen(false);
+    setDropdownOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -44,197 +48,167 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-slate-100 py-1">
-        <div className="container-max section-padding">
-          <div className="flex items-center justify-between h-14 lg:h-16">
-            {/* Logo */}
-            <Link
-              href="/"
-              aria-label="DMIFMS"
-              className="flex items-center flex-shrink-0">
-              <Image
-                src="/images/logo/mobile_logo.png"
-                alt="DMIFMS"
-                width={40}
-                height={40}
-                className="h-20 w-20 lg:hidden"
-                priority
-              />
-              <Image
-                src="/images/logo/desktop_logo.png"
-                alt="DMIFMS"
-                width={170}
-                height={40}
-                className="hidden h-32 w-auto  lg:block"
-                priority
-              />
-            </Link>
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 bg-paper transition-shadow duration-500",
+          scrolled && !menuOpen && "shadow-[0_1px_0_0_var(--site-sand)]",
+        )}
+        initial={{ y: "-100%" }}
+        animate={{ y: introDone && (!hidden || menuOpen) ? "0%" : "-100%" }}
+        transition={{ duration: 0.8, ease: EASE_LUXE }}>
+        <div className="mx-auto grid h-20 max-w-screen-2xl grid-cols-[1fr_auto] items-center gap-x-4 px-5 md:h-24 md:px-12 lg:grid-cols-[1fr_auto_1fr]">
+          <Link href="/" aria-label="DM23 IFMS — home" className="group justify-self-start">
+            {/* Tightly cropped lockup — the square desktop_logo.png is mostly
+                padding, which is why the old header logo read so small. */}
+            <Image
+              src="/images/logo/header_logo.png"
+              alt="DM23 IFMS Pvt Ltd"
+              width={730}
+              height={254}
+              priority
+              className="h-10 w-auto transition-transform duration-500 ease-soft group-hover:scale-[1.03] min-[360px]:h-12 md:h-15"
+            />
+          </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-6">
-              {navLinks.map((link) =>
-                link.children ? (
-                  <div
-                    key={link.label}
-                    className="relative"
-                    onMouseEnter={() => setActiveDropdown(link.label)}
-                    onMouseLeave={() => setActiveDropdown(null)}>
-                    <button
-                      className="flex items-center gap-1.5 py-2 text-sm font-semibold text-slate-700 hover:text-brand-blue transition-colors">
-                      {link.label}
-                      <ChevronDown
-                        className={cn(
-                          "w-3.5 h-3.5 transition-transform duration-200",
-                          activeDropdown === link.label ? "rotate-180" : "",
-                        )}
-                      />
-                    </button>
-
-                    <AnimatePresence>
-                      {activeDropdown === link.label && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-4 min-w-[220px]">
-                          <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden py-2">
-                            {link.children.map((child) => (
-                              <Link
-                                key={child.href}
-                                href={child.href}
-                                className="block px-5 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-colors font-medium">
-                                {child.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    href={link.href}
+          <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+            {primaryNav.map((link) =>
+              link.children ? (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}>
+                  <button
+                    type="button"
+                    aria-expanded={dropdownOpen}
+                    onClick={() => setDropdownOpen((v) => !v)}
                     className={cn(
-                      "py-2 text-sm font-semibold transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left",
-                      isActive(link.href)
-                        ? "text-brand-blue after:scale-x-100 after:bg-brand-blue"
-                        : "text-slate-700 hover:text-brand-blue after:bg-brand-blue",
+                      "nav-link py-3",
+                      link.children.some((c) => isActive(c.href)) && "nav-link-active",
                     )}>
                     {link.label}
-                  </Link>
-                ),
-              )}
-            </nav>
+                  </button>
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ duration: 0.35, ease: EASE_SOFT }}
+                        className="absolute top-full left-1/2 w-64 -translate-x-1/2 pt-3">
+                        <ul className="border border-ink/10 bg-paper py-3 shadow-xl shadow-night/10">
+                          {link.children.map((child) => (
+                            <li key={child.href}>
+                              <Link
+                                href={child.href}
+                                className={cn(
+                                  "flex items-center justify-between px-5 py-2.5 text-[13px] font-medium text-clay transition-colors hover:text-ink",
+                                  isActive(child.href) && "text-ink",
+                                )}>
+                                {child.label}
+                                <span aria-hidden className="text-tan">↗</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn("nav-link py-3", isActive(link.href) && "nav-link-active")}>
+                  {link.label}
+                </Link>
+              ),
+            )}
+          </nav>
 
-            {/* Right side */}
-            <div className="flex items-center gap-5">
-              <Link
-                href="/contact"
-                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold bg-brand-navy text-white hover:bg-brand-blue transition-all duration-300 rounded">
-                Get a Quote
-              </Link>
-
-              {/* Mobile menu toggle */}
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-slate-900 transition-colors">
-                {mobileOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
-            </div>
+          <div className="flex items-center justify-self-end gap-4 md:gap-5">
+            {/* Visible at every width: the old header hid this below md, so
+                phones never showed a quote CTA. */}
+            <Link
+              href="/contact"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-brand px-4 text-[11px] font-bold tracking-[0.12em] whitespace-nowrap text-paper uppercase transition-colors duration-500 hover:bg-brand-deep sm:px-6 sm:text-xs sm:tracking-[0.14em]">
+              Get a quote
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="flex h-10 items-center gap-3 text-[11px] font-semibold tracking-[0.16em] text-ink uppercase lg:hidden">
+              <span className="hidden sm:inline">{menuOpen ? "Close" : "Menu"}</span>
+              <span className="relative block h-3 w-7">
+                <span
+                  className={cn(
+                    "absolute left-0 top-0 h-px w-full bg-ink transition-transform duration-500 ease-luxe",
+                    menuOpen && "translate-y-1.5 rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-0 h-px w-full bg-ink transition-transform duration-500 ease-luxe",
+                    menuOpen && "-translate-y-1.25 -rotate-45",
+                  )}
+                />
+              </span>
+            </button>
           </div>
         </div>
+      </motion.header>
 
-        {/* Mobile Menu (Inside header so it naturally flows down) */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 right-0 z-40 lg:hidden bg-white shadow-2xl border-b border-slate-100 max-h-[calc(100vh-60px)] overflow-y-auto">
-              <nav className="p-4 space-y-2">
-                {navLinks.map((link) =>
-                  link.children ? (
-                    <div
-                      key={link.label}
-                      className="border-b border-slate-50 last:border-0 pb-2">
-                      <button
-                        onClick={() =>
-                          setActiveDropdown(
-                            activeDropdown === link.label ? null : link.label,
-                          )
-                        }
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-[15px] font-bold text-slate-800 hover:bg-slate-50 transition-colors">
-                        {link.label}
-                        <ChevronDown
-                          className={cn(
-                            "w-5 h-5 text-slate-400 transition-transform duration-300",
-                            activeDropdown === link.label
-                              ? "rotate-180 text-brand-blue"
-                              : "",
-                          )}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {activeDropdown === link.label && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden">
-                            <div className="pl-4 pr-2 py-2 mt-1 space-y-1 bg-slate-50/50 rounded-xl border border-slate-100/50 mx-2">
-                              {link.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  className="block px-4 py-2.5 rounded-lg text-sm text-slate-600 hover:text-brand-blue hover:bg-white font-medium transition-all shadow-sm shadow-transparent hover:shadow-sm">
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <div
-                      key={link.href}
-                      className="border-b border-slate-50 last:border-0 pb-2">
-                      <Link
-                        href={link.href}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-menu"
+            data-lenis-prevent
+            initial={{ y: "-100%" }}
+            animate={{ y: "0%" }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.8, ease: EASE_LUXE }}
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-paper px-5 pt-28 pb-10 md:px-12 md:pt-32 lg:hidden">
+            <nav aria-label="Mobile" className="flex-1">
+              <ul>
+                {siteLinks.map((link, i) => (
+                  <li key={link.href} className="border-b border-ink/10">
+                    <Link
+                      href={link.href}
+                      className="flex items-baseline justify-between gap-4 overflow-hidden py-4">
+                      <motion.span
+                        initial={{ y: "110%" }}
+                        animate={{ y: "0%" }}
+                        transition={{ duration: 0.9, delay: 0.25 + i * 0.05, ease: EASE_SOFT }}
                         className={cn(
-                          "block px-4 py-3 rounded-xl text-[15px] font-bold transition-all",
-                          isActive(link.href)
-                            ? "text-brand-blue bg-blue-50/50"
-                            : "text-slate-800 hover:bg-slate-50",
+                          "block text-3xl font-normal tracking-tight uppercase sm:text-4xl",
+                          isActive(link.href) ? "text-ink" : "text-ink/60",
                         )}>
                         {link.label}
-                      </Link>
-                    </div>
-                  ),
-                )}
-                <div className="pt-4 mt-2 border-t border-slate-100">
-                  <Link
-                    href="/contact"
-                    className="flex items-center justify-center w-full px-4 py-3.5 rounded-xl text-[15px] font-bold bg-brand-navy hover:bg-brand-blue text-white shadow-lg shadow-brand-navy/20 transition-all active:scale-[0.98]">
-                    Get a Free Quote
-                  </Link>
-                </div>
-              </nav>
+                      </motion.span>
+                      <span className="text-xs font-medium text-tan tabular-nums">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="mt-10">
+              <Link
+                href="/contact"
+                className="flex w-full items-center justify-center rounded-full bg-brand px-6 py-4 text-xs font-semibold tracking-[0.16em] text-paper uppercase">
+                Get a quote
+              </Link>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

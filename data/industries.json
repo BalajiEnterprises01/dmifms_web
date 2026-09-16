@@ -120,35 +120,5 @@
     ],
     "status": true,
     "order": 8
-  },
-  {
-    "id": 9,
-    "name": "Telecom & Networking",
-    "slug": "telecom-networking",
-    "icon": "wifi",
-    "description": "Facility management for telecom offices, network hubs, and tower infrastructure.",
-    "image": "/images/industries/telecom.jpg",
-    "services": [
-      "Housekeeping",
-      "MEP Maintenance",
-      "Staffing"
-    ],
-    "status": true,
-    "order": 9
-  },
-  {
-    "id": 10,
-    "name": "Government",
-    "slug": "government",
-    "icon": "landmark",
-    "description": "Reliable and compliant facility management services for government offices and institutions.",
-    "image": "/images/industries/government.jpg",
-    "services": [
-      "Housekeeping",
-      "Office Assistance",
-      "Payroll"
-    ],
-    "status": true,
-    "order": 10
   }
 ]

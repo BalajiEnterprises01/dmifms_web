@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ChevronRight } from "lucide-react";
+import Counter from "@/components/motion/Counter";
+import ImageReveal from "@/components/motion/ImageReveal";
+import { MaskLine, Reveal, Rule } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 
 interface Breadcrumb {
@@ -8,18 +9,81 @@ interface Breadcrumb {
   href?: string;
 }
 
+export interface PageHeroStat {
+  value: string;
+  label: string;
+  suffix?: string;
+}
+
 interface PageHeroProps {
   badge?: string;
   title: string;
   titleAccent?: string;
   description?: string;
+  /** Trail after "Home". The last crumb without an href is the current page. */
   breadcrumbs?: Breadcrumb[];
   className?: string;
+  /** Height of the image band and the spacing around it. */
   size?: "sm" | "md" | "lg";
+  /** Photo shown as a full-width band under the heading. */
   bgImage?: string;
+  /** Kept for compatibility; the editorial hero is always left-aligned. */
   centered?: boolean;
+  /** Alt text for the image band (defaults to the title). */
+  imageAlt?: string;
+  /** Figures shown in a row under the hero. */
+  stats?: PageHeroStat[];
 }
 
+const IMAGE_HEIGHT: Record<NonNullable<PageHeroProps["size"]>, string> = {
+  sm: "h-[32svh] md:h-[44svh]",
+  md: "h-[40svh] md:h-[56svh]",
+  lg: "h-[46svh] md:h-[68svh]",
+};
+
+/** Illustrations (svg) and the old popsy.co default never render as a photo band. */
+const isPhoto = (src: string | undefined): src is string =>
+  !!src && !src.includes("popsy.co") && !/\.svg(\?|#|$)/i.test(src);
+
+const formatCount = (n: number) => Math.round(n).toLocaleString("en-IN");
+
+/**
+ * Splits "5,000+" into a count and its symbol suffix. Returns null unless the
+ * number reads back exactly as written (so "2023", "09", "5K+" or "24/7"
+ * stay as static text instead of being reformatted by the counter).
+ */
+function splitStat(value: string): { count: number; rest: string } | null {
+  const match = /^(\d[\d,]*)([^\w\s]*)$/.exec(value.trim());
+  if (!match) return null;
+  const count = Number(match[1].replace(/,/g, ""));
+  if (!Number.isFinite(count) || formatCount(count) !== match[1]) return null;
+  return { count, rest: match[2] };
+}
+
+interface StatFigureProps {
+  value: string;
+  suffix?: string;
+  className?: string;
+}
+
+/** Large light figure; counts up when the value is a plain number. */
+export function StatFigure({ value, suffix = "", className }: StatFigureProps) {
+  const split = splitStat(value);
+  const tail = `${split ? split.rest : ""}${suffix}`;
+
+  return (
+    <span
+      className={cn(
+        "flex items-start text-[clamp(2.75rem,5vw,4.5rem)] leading-none font-light tracking-[-0.05em] text-ink tabular-nums",
+        className,
+      )}>
+      {split ? <Counter value={split.count} /> : value}
+      {tail && <span className="mt-1 ml-1 text-[0.4em] tracking-normal text-clay">{tail}</span>}
+    </span>
+  );
+}
+
+/** Inner-page hero: display heading, badge, description, optional photo band and figures. */
 export default function PageHero({
   badge,
   title,
@@ -28,130 +92,102 @@ export default function PageHero({
   breadcrumbs,
   className,
   size = "md",
-  bgImage = "https://illustrations.popsy.co/blue/team-collaboration.svg",
-  centered = true,
+  bgImage,
+  imageAlt,
+  stats,
 }: PageHeroProps) {
+  const image = isPhoto(bgImage) ? bgImage : undefined;
+
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-brand-dark text-white flex items-center justify-center text-center",
-        size === "sm"
-          ? "pt-28 pb-14 min-h-[40vh]"
-          : size === "lg"
-            ? "pt-36 pb-24 min-h-[70vh]"
-            : "pt-32 pb-20 min-h-[50vh]",
+        "site-container pt-32 md:pt-40",
+        size === "sm" ? "pb-8 md:pb-12" : "pb-12 md:pb-16",
         className,
       )}>
-      {/* ── Background ── */}
-      <div className="absolute inset-0">
-        <Image
-          src={bgImage}
-          alt={title}
-          fill
-          className="object-cover object-center blur-2xl scale-110 opacity-30"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#050D1E]/70" />
-
-        {/* Subtle dot texture */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-brand-blue/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-brand-dark to-transparent" />
-      </div>
-
-      {/* ── Content ── */}
-      <div
-        className={cn(
-          "relative z-10 w-full container-max section-padding flex flex-col items-center",
-          centered && "text-center",
-        )}>
-        {/* Breadcrumbs */}
-        {breadcrumbs && (
-          <nav
-            className={cn(
-              "flex items-center gap-2 mb-8 text-sm text-slate-300 font-medium bg-white/5 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10",
-              centered && "justify-center",
-            )}>
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            {breadcrumbs.map((crumb, i) => (
-              <span key={i} className="flex items-center gap-2">
-                <ChevronRight className="w-4 h-4 text-slate-500" />
-                {crumb.href ? (
-                  <Link
-                    href={crumb.href}
-                    className="hover:text-white transition-colors">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="text-white">{crumb.label}</span>
-                )}
-              </span>
-            ))}
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <Reveal y={12} className="mb-8 md:mb-10">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">
+              <li>
+                <Link href="/" className="-my-3 inline-block py-3 transition-colors duration-500 hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              {breadcrumbs.map((crumb, i) => (
+                <li key={`${crumb.label}-${i}`} className="flex items-center gap-x-2">
+                  <span aria-hidden className="text-tan">
+                    /
+                  </span>
+                  {crumb.href ? (
+                    <Link href={crumb.href} className="-my-3 inline-block py-3 transition-colors duration-500 hover:text-ink">
+                      {crumb.label}
+                    </Link>
+                  ) : (
+                    <span aria-current="page" className="text-ink">
+                      {crumb.label}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
           </nav>
-        )}
+        </Reveal>
+      )}
 
-        {/* Badge */}
-        {badge && (
-          <div className={cn("mb-6", centered && "flex justify-center")}>
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-xs font-bold tracking-widest uppercase text-white/90 backdrop-blur-md shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
-              {badge}
-            </div>
-          </div>
-        )}
-
-        {/* Heading */}
-        <h1
-          className={cn(
-            "font-black text-white leading-[1.1] tracking-tight drop-shadow-lg",
-            size === "sm"
-              ? "text-4xl md:text-5xl"
-              : size === "lg"
-                ? "text-6xl md:text-7xl lg:text-8xl"
-                : "text-5xl md:text-6xl",
-            centered && "max-w-4xl mx-auto",
-          )}>
-          {title}
-          {titleAccent && (
-            <>
-              {" "}
-              <span
-                className="block mt-2 drop-shadow-lg"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #60A5FA 0%, #93C5FD 50%, #E0F2FE 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}>
-                {titleAccent}
-              </span>
-            </>
-          )}
+      <div className="grid grid-cols-12 items-start gap-x-6 gap-y-6">
+        <h1 className="col-span-12 text-[clamp(2.4rem,5.6vw,6rem)] leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase lg:col-span-9">
+          <MaskLine delay={0.05}>{title}</MaskLine>
+          {titleAccent && <MaskLine delay={0.15}>{titleAccent}</MaskLine>}
         </h1>
-
-        {/* Description */}
-        {description && (
-          <p
-            className={cn(
-              "mt-8 text-slate-300 leading-relaxed font-medium drop-shadow-md",
-              size === "sm"
-                ? "text-base max-w-2xl"
-                : "text-lg md:text-xl max-w-3xl",
-              centered && "mx-auto",
-            )}>
-            {description}
-          </p>
+        {badge && (
+          <Reveal
+            delay={0.35}
+            className="col-span-12 lg:col-span-3 lg:justify-self-end lg:pt-3 lg:text-right">
+            <p className="text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">{badge}</p>
+          </Reveal>
         )}
       </div>
+
+      {description && (
+        <div className="mt-8 grid grid-cols-12 gap-x-6 md:mt-12">
+          <Reveal
+            delay={0.45}
+            className="col-span-12 md:col-span-8 md:col-start-4 lg:col-span-5 lg:col-start-4">
+            <p className="max-w-xl text-[15px] leading-[1.7] text-clay">{description}</p>
+          </Reveal>
+        </div>
+      )}
+
+      {image && (
+        <ImageReveal
+          src={image}
+          alt={imageAlt ?? [title, titleAccent].filter(Boolean).join(" ")}
+          sizes="100vw"
+          play
+          parallax
+          priority
+          delay={0.25}
+          className={cn("mt-10 md:mt-14", IMAGE_HEIGHT[size])}
+          curtainClassName="bg-paper"
+        />
+      )}
+
+      {stats && stats.length > 0 && (
+        <div className="mt-12 md:mt-16">
+          <Rule />
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 pt-8 md:grid-cols-3 md:pt-10 lg:grid-cols-4">
+            {stats.map((stat, i) => (
+              <li key={stat.label}>
+                <Reveal delay={i * 0.08}>
+                  <StatFigure value={stat.value} suffix={stat.suffix} />
+                  <p className="mt-4 text-[13px] leading-snug text-clay">{stat.label}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

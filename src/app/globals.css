@@ -42,6 +42,23 @@
   --color-brand-dark: #020617;
   --color-brand-text: #0f172a;
 
+  /* ── Public site palette (warm editorial) — values live in :root ── */
+  --color-paper: var(--site-paper);
+  --color-sand: var(--site-sand);
+  --color-tan: var(--site-tan);
+  --color-clay: var(--site-clay);
+  --color-ink: var(--site-ink);
+  --color-night: var(--site-night);
+  --color-sweep: var(--site-sweep);
+  --color-brand: var(--site-brand);
+  --color-brand-deep: var(--site-brand-deep);
+  --color-gold: var(--site-gold);
+  --color-gold-soft: var(--site-gold-soft);
+
+  /* ── Motion ── */
+  --ease-luxe: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
   /* ── Fonts ── */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
@@ -57,6 +74,22 @@
 
 :root {
   --radius: 0.75rem;
+
+  /* Public site palette. --site-sweep is paper minus ink, so under
+     mix-blend-difference it renders as ink on paper (intro loader). */
+  --site-paper: #f4f3ef;
+  --site-sand: #e6e2db;
+  --site-tan: #b9a690;
+  --site-clay: #86715c;
+  --site-ink: #3f2e22;
+  --site-sweep: #b5c5cd;
+  /* Brand fills, sampled from the DM23 logo: navy lettering and gold swoosh.
+     Buttons and dark surfaces use these so they match the logo. */
+  --site-brand: #0a2f5c;
+  --site-brand-deep: #051d3b;
+  --site-night: #06162b;
+  --site-gold: #b8923f;
+  --site-gold-soft: #d6b877;
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.09 0.02 255);
@@ -122,8 +155,10 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+  /* No scroll-behavior: smooth — Lenis drives smooth scrolling on the public
+     site, and the native setting fights its per-frame scrollTo calls. */
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
   }
 }
 
@@ -197,6 +232,138 @@
   }
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* ── Public site ── */
+  /* Page gutter + max width shared by every public section. */
+  .site-container {
+    margin-inline: auto;
+    max-width: 96rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .site-container {
+      padding-inline: 3rem;
+    }
+  }
+  /* Full-bleed horizontal track whose first card lines up with .site-container. */
+  .site-track {
+    padding-inline: 1.25rem;
+    scroll-padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .site-track {
+      padding-inline: max(3rem, calc((100% - 96rem) / 2 + 3rem));
+      scroll-padding-inline: max(3rem, calc((100% - 96rem) / 2 + 3rem));
+    }
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Inline text link: a solid underline that wipes away and back on hover.
+     Sized for legibility — 12px bold caps with a 1.5px rule and a 44px-tall
+     tap target on touch screens. */
+  .link-wipe {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--site-ink);
+  }
+  .link-wipe::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.5rem;
+    height: 1.5px;
+    background: currentColor;
+    transform-origin: left;
+    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .link-wipe:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  /* Solid pill for primary actions. Arrow nudges right on hover. */
+  .btn-primary,
+  .btn-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0 1.75rem;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  .btn-primary {
+    background: var(--site-brand);
+    color: var(--site-paper);
+  }
+  .btn-primary:hover {
+    background: var(--site-brand-deep);
+  }
+  /* Same pill for dark backgrounds (footer). */
+  .btn-light {
+    background: var(--site-gold);
+    color: var(--site-night);
+  }
+  .btn-light:hover {
+    background: var(--site-gold-soft);
+  }
+  .btn-primary > [aria-hidden],
+  .btn-light > [aria-hidden] {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover > [aria-hidden],
+  .btn-light:hover > [aria-hidden] {
+    transform: translate(3px, -3px);
+  }
+  /* Header link: small caps with an underline that grows from the left. */
+  .nav-link {
+    position: relative;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--site-clay);
+    transition: color 0.4s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.5rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .nav-link:hover,
+  .nav-link-active {
+    color: var(--site-ink);
+  }
+  .nav-link:hover::after,
+  .nav-link-active::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
 

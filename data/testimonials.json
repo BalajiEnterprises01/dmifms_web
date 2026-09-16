@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "quote": "DM23 IFMS transformed our facility operations. Their SOP-driven approach cut our maintenance costs by 30%.",
+    "author": "Facility Manager",
+    "company": "Leading IT Park, Bangalore",
+    "image": "/images/industries/it.jpg"
+  },
+  {
+    "id": 2,
+    "quote": "Exceptional professionalism and compliance standards. The team is well-trained and always responsive.",
+    "author": "Head of Admin",
+    "company": "Pharma Manufacturing Unit",
+    "image": "/images/industries/pharma.jpg"
+  },
+  {
+    "id": 3,
+    "quote": "We've worked with several FM vendors — DM23 stands out for their consistency and EHS practices.",
+    "author": "Operations Director",
+    "company": "Multi-site Corporate Group",
+    "image": "/images/industries/corporate.jpg"
+  }
+]

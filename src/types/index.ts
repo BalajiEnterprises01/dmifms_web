@@ -302,6 +302,15 @@ export interface ContactData {
   status: boolean;
 }
 
+// ─── Testimonials ───────────────────────────────────────────────────────────
+export interface Testimonial {
+  id: number;
+  quote: string;
+  author: string;
+  company: string;
+  image: string;
+}
+
 // ─── Common ─────────────────────────────────────────────────────────────────
 export interface NavLink {
   label: string;

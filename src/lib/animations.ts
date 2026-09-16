@@ -1,5 +1,12 @@
 import { Variants } from "framer-motion";
 
+type CubicBezier = [number, number, number, number];
+
+/** Slow-in / slow-out curve for curtains, wipes and slides (public site). */
+export const EASE_LUXE: CubicBezier = [0.76, 0, 0.24, 1];
+/** Long, soft deceleration for fades and rises (public site). */
+export const EASE_SOFT: CubicBezier = [0.22, 1, 0.36, 1];
+
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60, scale: 0.98 },
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },

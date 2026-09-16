@@ -1,49 +1,15 @@
 import Link from "next/link";
-import {
-  Shield,
-  Utensils,
-  Headset,
-  ShieldCheck,
-  Footprints,
-  Hotel,
-  ChefHat,
-  Coffee,
-  Sandwich,
-  Users,
-  Wallet,
-  Mail,
-  Briefcase,
-  ArrowRight,
-  Layers,
-  ArrowUpRight,
-  CheckCircle2,
-} from "lucide-react";
+import type { Metadata } from "next";
 import { readJSON } from "@/lib/jsonCMS";
-import { AdditionalServicesData } from "@/types";
-import ScrollReveal from "@/components/common/ScrollReveal";
+import type { AdditionalServicesData } from "@/types";
+import PageHero from "@/components/layout/PageHero";
 import CTASection from "@/components/sections/CTASection";
-import { Metadata } from "next";
+import SectionIntro from "@/components/common/SectionIntro";
+import { MaskLine, Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
   title: "Additional Services | DMIFMS",
   description: "Hospitality and Support services by DM23 IFMS.",
-};
-
-const iconMap: Record<string, React.ElementType> = {
-  shield: Shield,
-  utensils: Utensils,
-  headset: Headset,
-  "shield-check": ShieldCheck,
-  footprints: Footprints,
-  cctv: Shield,
-  hotel: Hotel,
-  "chef-hat": ChefHat,
-  coffee: Coffee,
-  sandwich: Sandwich,
-  users: Users,
-  wallet: Wallet,
-  mail: Mail,
-  briefcase: Briefcase,
 };
 
 const categoryCopy: Record<string, { intro: string; points: string[] }> = {
@@ -69,186 +35,114 @@ const categoryCopy: Record<string, { intro: string; points: string[] }> = {
   },
 };
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
 export default function AdditionalServicesPage() {
   const data = readJSON<AdditionalServicesData>("additional-services");
 
   return (
     <>
-      {/* 🌌 COMMAND CENTER HERO */}
-      <section className="relative pt-32 pb-40 overflow-hidden bg-[#020617]">
-        {/* Dynamic Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-blue/20 rounded-full blur-[120px] mix-blend-screen opacity-50" />
-          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#EAB308]/10 rounded-full blur-[100px] mix-blend-screen opacity-30" />
+      <PageHero
+        badge={data.hero.badge}
+        title={data.hero.title}
+        titleAccent={data.hero.titleAccent}
+        description={data.hero.description}
+        breadcrumbs={[{ label: "Additional Services" }]}
+        bgImage="/images/services/office-assistance.jpg"
+      />
 
-          {/* Tech Grid */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-              backgroundSize: "30px 30px",
-            }}
-          />
-        </div>
-
-        <div className="container-max relative z-10 px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollReveal>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
-              <Layers className="w-5 h-5 text-[#EAB308]" />
-              <span className="text-sm font-semibold tracking-wide text-white uppercase">
-                {data.hero.badge}
-              </span>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-8">
-              {data.hero.title} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-sky to-[#EAB308]">
-                {data.hero.titleAccent}
-              </span>
-            </h1>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-              {data.hero.description}
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.3}>
-            <Link
-              href="#services"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-[#020617] font-bold text-lg hover:bg-[#EAB308] hover:text-white transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(234,179,8,0.3)]">
-              Explore Solutions
-              <ArrowRight className="w-5 h-5" />
+      <section id="services" className="site-container scroll-mt-24 py-20 md:py-32">
+        <SectionIntro
+          label={data.title}
+          aside={
+            <Link href="#categories" className="link-wipe">
+              Explore Solutions <span aria-hidden>↓</span>
             </Link>
-          </ScrollReveal>
-        </div>
+          }>
+          From warm hospitality to reliable back-office support, we provide end-to-end services to
+          elevate your facility&apos;s operations.
+        </SectionIntro>
+
+        <h3 className="mt-16 text-[clamp(2.4rem,5.6vw,6rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase md:mt-24">
+          <MaskLine>Tailored Solutions</MaskLine>
+          <MaskLine delay={0.08}>for Every Need</MaskLine>
+        </h3>
       </section>
 
-      {/* 🏢 MASONRY / STACKED CATEGORIES SECTION */}
-      <section
-        id="services"
-        className="py-24 bg-slate-50 relative -mt-20 rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-        <div className="container-max px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-20 pt-8">
-            <ScrollReveal>
-              <h2 className="text-3xl md:text-5xl font-extrabold text-brand-text mb-6">
-                Tailored Solutions for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-brand-blue">
-                  Every Need
+      <div id="categories" className="site-container scroll-mt-24 pb-20 md:pb-32">
+        {data.categories.map((cat, ci) => {
+          const copy = categoryCopy[cat.id] ?? categoryCopy.hospitality;
+
+          return (
+            <section
+              key={cat.id}
+              aria-labelledby={`category-${cat.id}`}
+              className="grid grid-cols-12 gap-x-6 gap-y-10 border-t border-ink/15 py-14 md:py-20">
+              <div className="col-span-12 flex items-baseline justify-between gap-6">
+                <span className="text-[11px] text-tan tabular-nums">{pad(ci + 1)}</span>
+                <span className="text-[11px] font-semibold tracking-[0.16em] text-ink uppercase">
+                  {pad(cat.services.length)} services
                 </span>
+              </div>
+
+              <h2
+                id={`category-${cat.id}`}
+                className="col-span-12 -mt-4 text-[clamp(2.4rem,5.6vw,6rem)] leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase">
+                <MaskLine>({cat.title})</MaskLine>
               </h2>
-              <p className="text-lg text-slate-500">
-                From warm hospitality to reliable back-office support, we provide
-                end-to-end services to elevate your facility&apos;s operations.
-              </p>
-            </ScrollReveal>
-          </div>
 
-          <div className="space-y-16 lg:space-y-24">
-            {data.categories.map((cat, ci) => {
-              const CatIcon = iconMap[cat.icon] ?? Shield;
-              const isEven = ci % 2 !== 0;
-              const copy = categoryCopy[cat.id] ?? categoryCopy.hospitality;
+              <div className="col-span-12 self-start lg:sticky lg:top-32 lg:col-span-5">
+                <Reveal>
+                  <p className="max-w-md text-[15px] leading-[1.7] text-ink">
+                    Professional {cat.title.toLowerCase()} services designed to seamlessly integrate
+                    with your core operations.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.08}>
+                  <p className="mt-5 max-w-md text-[15px] leading-[1.7] text-clay">{copy.intro}</p>
+                </Reveal>
+                <Reveal delay={0.16}>
+                  <ul className="mt-8 max-w-md border-b border-ink/10">
+                    {copy.points.map((point, p) => (
+                      <li
+                        key={point}
+                        className="flex gap-4 border-t border-ink/10 py-3 text-sm leading-snug text-ink">
+                        <span className="pt-px text-[10px] text-tan tabular-nums">{pad(p + 1)}</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
 
-              return (
-                <div
-                  key={cat.id}
-                  className={`flex flex-col ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"} gap-12 lg:gap-20 items-center`}>
-                  {/* Category Header Card */}
-                  <div className="w-full lg:w-1/3">
-                    <ScrollReveal direction={isEven ? "left" : "right"}>
-                      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden group">
-                        {/* Background Decoration */}
-                        <div
-                          className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-700 ease-out"
-                          style={{ backgroundColor: cat.color }}
-                        />
-
-                        <div className="relative z-10">
-                          <div
-                            className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 shadow-inner"
-                            style={{
-                              backgroundColor: `${cat.color}15`,
-                              color: cat.color,
-                            }}>
-                            <CatIcon className="w-8 h-8" />
-                          </div>
-                          <h3 className="text-3xl font-extrabold text-brand-text mb-4">
-                            {cat.title}
-                          </h3>
-                          <div
-                            className="w-12 h-1.5 rounded-full mb-6"
-                            style={{ backgroundColor: cat.color }}
-                          />
-                          <p className="text-slate-500 font-medium">
-                            Professional {cat.title.toLowerCase()} services
-                            designed to seamlessly integrate with your core
-                            operations.
-                          </p>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  </div>
-
-                  {/* Services Grid */}
-                  <div className="w-full lg:w-2/3">
-                    <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
-                      {cat.services.map((service, si) => {
-                        const Icon = iconMap[service.icon] ?? CheckCircle2;
-                        return (
-                          <ScrollReveal
-                            key={service.id}
-                            direction="up"
-                            delay={si * 0.1}>
-                            <div className="group flex items-start gap-4 p-5 md:p-6 rounded-2xl bg-white border border-slate-100 hover:border-slate-300 hover:shadow-lg transition-all duration-300 cursor-default">
-                              <div
-                                className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-                                style={{
-                                  backgroundColor: `${cat.color}10`,
-                                  color: cat.color,
-                                }}>
-                                <Icon className="w-6 h-6" />
-                              </div>
-                              <div className="flex-1 pt-1">
-                                <h4 className="font-bold text-brand-text text-lg group-hover:text-brand-blue transition-colors">
-                                  {service.title}
-                                </h4>
-                                <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-                                  {copy.intro}
-                                </p>
-                                <div className="mt-3 space-y-1.5">
-                                  {copy.points.slice(0, 2).map((point) => (
-                                    <div
-                                      key={point}
-                                      className="flex items-start gap-2 text-xs text-slate-400 leading-relaxed">
-                                      <CheckCircle2 className="w-3.5 h-3.5 text-[#EAB308] mt-0.5 shrink-0" />
-                                      <span>{point}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                                <Link
-                                  href="/contact"
-                                  className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-blue hover:gap-2 transition-all">
-                                  Learn more{" "}
-                                  <ArrowUpRight className="w-3 h-3" />
-                                </Link>
-                              </div>
-                            </div>
-                          </ScrollReveal>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+              <ol className="col-span-12 border-b border-ink/10 lg:col-span-7">
+                {cat.services.map((service, si) => (
+                  <li key={service.id}>
+                    <Link href="/contact" className="group block border-t border-ink/10">
+                      <Reveal
+                        delay={Math.min(si, 4) * 0.06}
+                        y={24}
+                        className="grid grid-cols-12 items-baseline gap-x-6 gap-y-3 py-6 md:py-8">
+                        <span className="col-span-2 text-[11px] text-tan tabular-nums">
+                          ({pad(si + 1)})
+                        </span>
+                        <h3 className="col-span-10 text-2xl leading-[1.08] font-normal tracking-[-0.025em] break-words text-ink uppercase transition-colors duration-500 group-hover:text-clay md:col-span-7 md:text-[2rem]">
+                          {service.title}
+                        </h3>
+                        <span className="col-span-10 col-start-3 md:col-span-3 md:col-start-auto md:justify-self-end">
+                          <span className="link-wipe">
+                            Learn more <span aria-hidden>↗</span>
+                          </span>
+                        </span>
+                      </Reveal>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          );
+        })}
+      </div>
 
       <CTASection />
     </>

@@ -1,40 +1,44 @@
 import Link from "next/link";
-import { ArrowLeft, Home } from "lucide-react";
+import { MaskLine, Reveal, Rule } from "@/components/motion/Reveal";
 
+/** Rendered outside the site layout, so it sets its own paper background. */
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#070E1C] relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#1E3A8A]/25 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#2563EB]/15 rounded-full blur-[80px]" />
-      </div>
+    <div className="flex min-h-screen w-full flex-1 flex-col bg-paper text-ink">
+      <div className="site-container flex w-full flex-1 flex-col justify-center py-20 md:py-32">
+        <Reveal y={12}>
+          <p className="text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">(Error)</p>
+        </Reveal>
 
-      <div className="relative z-10 text-center px-6">
-        <div className="text-8xl md:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 leading-none mb-6 select-none">
-          404
-        </div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">
-          Page Not Found
-        </h1>
-        <p className="text-slate-400 text-base mb-10 max-w-sm mx-auto leading-relaxed">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
+        <p
+          aria-hidden
+          className="mt-6 text-[clamp(7rem,26vw,22rem)] leading-[0.85] font-light tracking-[-0.06em] text-ink tabular-nums">
+          <MaskLine>404</MaskLine>
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-[#1E3A8A] to-[#2563EB] text-white hover:opacity-90 transition-opacity shadow-lg"
-          >
-            <Home className="w-4 h-4" />
-            Go Home
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/20 hover:bg-white/10 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Contact Us
-          </Link>
+
+        <Rule className="mt-10 md:mt-14" />
+
+        <div className="grid grid-cols-12 items-start gap-x-6 gap-y-6 pt-8 md:pt-10">
+          <h1 className="col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:col-span-4 md:text-[2rem]">
+            (Page Not Found)
+          </h1>
+          <Reveal delay={0.08} className="col-span-12 md:col-span-5">
+            <p className="max-w-md text-[15px] leading-[1.7] text-clay">
+              The page you&apos;re looking for doesn&apos;t exist or has been moved.
+            </p>
+          </Reveal>
+          <Reveal
+            delay={0.16}
+            className="col-span-12 flex flex-wrap items-center gap-x-8 gap-y-4 md:col-span-3 md:justify-end">
+            <Link
+              href="/"
+              className="rounded-full bg-brand px-6 py-3 text-[11px] font-semibold tracking-[0.16em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep">
+              Go Home
+            </Link>
+            <Link href="/contact" className="link-wipe">
+              Contact Us <span aria-hidden>↗</span>
+            </Link>
+          </Reveal>
         </div>
       </div>
     </div>
