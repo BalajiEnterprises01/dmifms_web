@@ -6,7 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import type { Service } from "@/types";
 import SectionIntro from "@/components/common/SectionIntro";
-import BracketButton from "@/components/motion/BracketButton";
+import SliderButton from "@/components/motion/SliderButton";
 import { EASE_LUXE, EASE_SOFT } from "@/lib/animations";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -85,12 +85,12 @@ export default function ServicesShowcase({ services, intro }: ServicesShowcasePr
                 {service.categoryLabel}
               </motion.p>
             </AnimatePresence>
-            <div className="-mt-3 flex items-center">
-              <BracketButton direction="prev" label="Previous service" onClick={() => go(-1)} />
+            <div className="flex items-center gap-3">
+              <SliderButton direction="prev" label="Previous service" onClick={() => go(-1)} />
               <span className="w-16 text-center text-[11px] font-medium text-clay tabular-nums">
                 <span className="text-ink">{pad(index + 1)}</span> / {pad(total)}
               </span>
-              <BracketButton direction="next" label="Next service" onClick={() => go(1)} />
+              <SliderButton direction="next" label="Next service" onClick={() => go(1)} />
             </div>
           </div>
 

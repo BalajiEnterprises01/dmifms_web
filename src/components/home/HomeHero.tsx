@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import type { HeroData } from "@/types";
 import { useIntroDone } from "@/components/motion/IntroLoader";
 import { MaskLine } from "@/components/motion/Reveal";
-import BracketButton from "@/components/motion/BracketButton";
+import SliderButton from "@/components/motion/SliderButton";
 import { EASE_LUXE, EASE_SOFT } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
@@ -126,7 +126,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
           <span className="text-[11px] font-medium tracking-[0.16em] text-clay tabular-nums">
             <span className="text-ink">{pad(index + 1)}</span> / {pad(slides.length)}
           </span>
-          <span className="relative h-px w-16 overflow-hidden bg-ink/15 md:w-24">
+          <span className="relative h-0.5 w-20 overflow-hidden rounded-full bg-ink/15 md:w-32">
             <motion.span
               key={index}
               className="absolute inset-0 origin-left bg-gold"
@@ -137,9 +137,9 @@ export default function HomeHero({ data }: { data: HeroData }) {
           </span>
         </div>
 
-        <div className="col-span-6 -mt-3 flex justify-end md:order-last md:col-span-2">
-          <BracketButton direction="prev" label="Previous slide" onClick={() => goTo(index - 1)} />
-          <BracketButton direction="next" label="Next slide" onClick={() => goTo(index + 1)} />
+        <div className="col-span-6 flex justify-end gap-3 md:order-last md:col-span-2">
+          <SliderButton direction="prev" label="Previous slide" onClick={() => goTo(index - 1)} />
+          <SliderButton direction="next" label="Next slide" onClick={() => goTo(index + 1)} />
         </div>
 
         <AnimatePresence mode="wait">

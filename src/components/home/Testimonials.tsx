@@ -5,7 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Testimonial } from "@/types";
 import SectionIntro from "@/components/common/SectionIntro";
-import BracketButton from "@/components/motion/BracketButton";
+import SliderButton from "@/components/motion/SliderButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE_SOFT } from "@/lib/animations";
 
@@ -43,12 +43,12 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
               <span className="text-clay">{current.company}</span>
             </motion.p>
           </AnimatePresence>
-          <div className="-ml-2 flex items-center">
-            <BracketButton direction="prev" label="Previous testimonial" onClick={() => go(-1)} />
+          <div className="flex items-center gap-3">
+            <SliderButton direction="prev" label="Previous testimonial" onClick={() => go(-1)} />
             <span className="w-16 text-center text-[11px] font-medium text-clay tabular-nums">
               <span className="text-ink">{pad(index + 1)}</span> / {pad(total)}
             </span>
-            <BracketButton direction="next" label="Next testimonial" onClick={() => go(1)} />
+            <SliderButton direction="next" label="Next testimonial" onClick={() => go(1)} />
           </div>
         </Reveal>
 

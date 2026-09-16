@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Industry } from "@/types";
 import SectionIntro from "@/components/common/SectionIntro";
-import BracketButton from "@/components/motion/BracketButton";
+import SliderButton from "@/components/motion/SliderButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 
@@ -55,9 +55,9 @@ export default function IndustriesSlider({ industries, intro }: IndustriesSlider
         <SectionIntro
           label="Industries we serve"
           aside={
-            <div className="flex">
-              <BracketButton direction="prev" label="Previous industries" onClick={() => step(-1)} disabled={atStart} />
-              <BracketButton direction="next" label="Next industries" onClick={() => step(1)} disabled={atEnd} />
+            <div className="flex gap-3">
+              <SliderButton direction="prev" label="Previous industries" onClick={() => step(-1)} disabled={atStart} />
+              <SliderButton direction="next" label="Next industries" onClick={() => step(1)} disabled={atEnd} />
             </div>
           }>
           {intro}
