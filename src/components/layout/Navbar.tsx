@@ -56,14 +56,14 @@ export default function Navbar() {
         animate={{ y: introDone && (!hidden || menuOpen) ? "0%" : "-100%" }}
         transition={{ duration: 0.8, ease: EASE_LUXE }}>
         <div className="mx-auto grid h-20 max-w-screen-2xl grid-cols-[1fr_auto] items-center gap-x-4 px-5 md:h-24 md:px-12 lg:grid-cols-[1fr_auto_1fr]">
-          <Link href="/" aria-label="DM23 IFMS — home" className="group justify-self-start">
-            {/* Tightly cropped lockup — the square desktop_logo.png is mostly
-                padding, which is why the old header logo read so small. */}
+          <Link href="/" aria-label="DM23 IFMS home" className="group justify-self-start">
+            {/* Client logo (2026-09-21), taken from the transparent artwork in
+                their brochure and cropped tight. */}
             <Image
-              src="/images/logo/header_logo.png"
+              src="/images/logo/dm23_logo.png"
               alt="DM23 IFMS Pvt Ltd"
-              width={730}
-              height={254}
+              width={1343}
+              height={420}
               priority
               className="h-10 w-auto transition-transform duration-500 ease-soft group-hover:scale-[1.03] min-[360px]:h-12 md:h-15"
             />

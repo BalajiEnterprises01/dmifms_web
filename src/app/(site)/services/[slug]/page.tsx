@@ -71,6 +71,7 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
         description={service.shortDescription}
         breadcrumbs={[{ label: "Services", href: backHref }, { label: service.title }]}
         bgImage={service.image}
+        fullImage
       />
 
       <section className="site-container py-20 md:py-32">

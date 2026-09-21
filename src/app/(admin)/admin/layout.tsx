@@ -1,4 +1,4 @@
-// Pass-through — login page uses this layout without sidebar
+// Pass-through: login page uses this layout without sidebar
 export default function AdminLayout({
   children,
 }: {

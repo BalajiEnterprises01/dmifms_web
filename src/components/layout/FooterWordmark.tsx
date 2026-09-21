@@ -6,7 +6,7 @@ import { EASE_SOFT } from "@/lib/animations";
 
 /** Oversized brand wordmark whose letters rise in sequence. */
 export default function FooterWordmark({ text }: { text: string }) {
-  // Observe the clipping line itself — the letters start below the clip,
+  // Observe the clipping line itself; the letters start below the clip,
   // where IntersectionObserver reports them as not visible.
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
@@ -15,7 +15,7 @@ export default function FooterWordmark({ text }: { text: string }) {
     <p
       ref={ref}
       aria-label={text}
-      className="flex overflow-hidden text-[clamp(3.5rem,15.5vw,15.5rem)] leading-[0.85] font-normal tracking-[-0.05em] whitespace-nowrap text-paper select-none">
+      className="flex justify-center overflow-hidden pb-[0.06em] font-display text-[clamp(4.5rem,18vw,18rem)] leading-[0.9] font-normal tracking-[-0.02em] whitespace-nowrap text-paper select-none">
       {Array.from(text).map((char, i) => (
         <motion.span
           key={i}

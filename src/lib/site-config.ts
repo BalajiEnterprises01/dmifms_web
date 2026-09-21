@@ -5,8 +5,8 @@ const fallbackSocial = {
 };
 
 const fallbackContact = {
-  email: "dm23@dm23.co.in",
-  phone: "+91 9686441441",
+  email: "info@dm23.co.in",
+  phone: "+91 9148 27 47 43",
 };
 
 export function getSiteContact() {

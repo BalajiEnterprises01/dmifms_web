@@ -12,7 +12,7 @@ import StatFigures from "@/components/pages/StatFigures";
 export const metadata: Metadata = {
   title: "Staffing Solutions",
   description:
-    "End-to-end staffing solutions — recruitment, onboarding, payroll, and MIS reporting.",
+    "End-to-end staffing solutions: recruitment, onboarding, payroll, and MIS reporting.",
 };
 
 const benefits = [

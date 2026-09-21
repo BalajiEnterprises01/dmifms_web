@@ -1,9 +1,9 @@
 {
-  "badge": "India's Fast-Growing FM Company",
+  "badge": "Your Trusted Partner in Facility Management",
   "title": "Driven Minds.",
   "titleAccent": "Delivered Excellence",
-  "subtitle": "Integrated Facility Management Solutions",
-  "description": "We deliver consistent quality through trained people, robust processes, and professional methods — as standalone services or integrated Total Facility Management.",
+  "subtitle": "Comprehensive Facility Services",
+  "description": "We deliver consistent quality through trained people, robust processes, and professional methods, offered as standalone services or as integrated Total Facility Management.",
   "slides": [
     {
       "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2670&auto=format&fit=crop",
@@ -22,7 +22,7 @@
       "cta_href": "/services"
     },
     {
-      "image": "/images/services/waste-management.jpg",
+      "image": "/images/services/waste-management-hd.jpg",
       "title": "Sustainable Waste Management",
       "subtitle": "Cleaner sites, greener footprint",
       "description": "Source segregation, organic composting, and tech-driven SOPs that turn waste handling into measurable sustainability outcomes.",

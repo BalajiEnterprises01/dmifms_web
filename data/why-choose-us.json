@@ -1,32 +1,38 @@
 [
   {
     "id": 1,
-    "title": "Process-driven SOPs",
-    "description": "Standardized methods and checks ensure consistency and quality across all sites.",
-    "icon": "clipboard-list"
+    "title": "Integrated IFMS Expertise",
+    "description": "End-to-end facility management solutions under one trusted partner.",
+    "icon": "layers"
   },
   {
     "id": 2,
-    "title": "Skilled Workforce",
-    "description": "Trained teams with clear roles, KPIs, and safety practices for reliable delivery.",
+    "title": "Skilled & Reliable Workforce",
+    "description": "Professionally trained teams ensuring quality, discipline, and operational efficiency.",
     "icon": "users"
   },
   {
     "id": 3,
-    "title": "Integrated TFM",
-    "description": "End-to-end service integration for efficiency and total facility control.",
-    "icon": "layers"
+    "title": "Technology-Driven Operations",
+    "description": "Real-time MIS reporting, SOP-based execution, and transparent performance tracking.",
+    "icon": "bar-chart-3"
   },
   {
     "id": 4,
-    "title": "Compliance & EHS",
-    "description": "Strong focus on statutory compliance and environmental health & safety standards.",
+    "title": "Compliance & Safety Focused",
+    "description": "Strong adherence to EHS standards, payroll, and statutory compliance.",
     "icon": "shield-check"
   },
   {
     "id": 5,
-    "title": "Data & Reporting",
-    "description": "MIS and performance dashboards for complete transparency and accountability.",
-    "icon": "bar-chart-3"
+    "title": "Sustainable & Scalable Approach",
+    "description": "Eco-friendly operations with scalable service capabilities across multiple locations.",
+    "icon": "leaf"
+  },
+  {
+    "id": 6,
+    "title": "Custom Solutions",
+    "description": "Flexible service packages tailored to your specific facility needs and budget.",
+    "icon": "clipboard-list"
   }
 ]

@@ -49,8 +49,10 @@ export default function ImageReveal({
 
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
+      {/* Parallax needs 8% overscan top and bottom to drift into; without it
+          the photo fits the frame exactly, so nothing is cropped. */}
       <motion.div
-        className="absolute -inset-y-[8%] inset-x-0"
+        className={parallax ? "absolute -inset-y-[8%] inset-x-0" : "absolute inset-0"}
         style={parallax ? { y: drift } : undefined}>
         <motion.div
           className="relative h-full w-full"

@@ -3,12 +3,21 @@
     "badge": "Methodology & Execution",
     "title": "Precision in",
     "titleAccent": "Every Step.",
-    "description": "A proven nine-step transition methodology ensuring smooth deployment, absolute compliance, and long-term stabilization at every client site.",
+    "description": "A proven eight-step transition methodology ensuring smooth deployment, absolute compliance, and long-term stabilization at every client site.",
     "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=2670&auto=format&fit=crop",
     "stats": [
-      { "value": "09", "label": "Core Steps" },
-      { "value": "100%", "label": "Compliance" },
-      { "value": "Zero", "label": "Downtime" }
+      {
+        "value": "08",
+        "label": "Core Steps"
+      },
+      {
+        "value": "100%",
+        "label": "Compliance"
+      },
+      {
+        "value": "Zero",
+        "label": "Downtime"
+      }
     ]
   },
   "status": true

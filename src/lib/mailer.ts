@@ -46,7 +46,7 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-/** Email clients need table layouts and inline styles — no flexbox/grid, no external CSS. */
+/** Email clients need table layouts and inline styles: no flexbox/grid, no external CSS. */
 function buildHtml(lead: ContactLead, hasLogo: boolean): string {
   const received = new Date(lead.createdAt).toLocaleString("en-IN", {
     dateStyle: "medium",
@@ -181,7 +181,7 @@ function buildHtml(lead: ContactLead, hasLogo: boolean): string {
               </p>
               <p style="margin:0;font:400 12px/1.6 Arial,Helvetica,sans-serif;color:#94a3b8;">
                 Driven Minds. Delivered Excellence.<br />
-                This is an automated notification &mdash; reply directly to contact the enquirer.
+                This is an automated notification. Reply directly to contact the enquirer.
               </p>
             </td>
           </tr>
@@ -227,7 +227,7 @@ export async function sendLeadEmail(lead: ContactLead): Promise<void> {
     from: `"DM23 IFMS Website" <${SMTP_USER}>`,
     to: getRecipient(),
     replyTo: `"${lead.name}" <${lead.email}>`,
-    subject: `New enquiry: ${lead.service} — ${lead.company}`,
+    subject: `New enquiry: ${lead.service} from ${lead.company}`,
     text,
     html: buildHtml(lead, hasLogo),
     attachments: hasLogo

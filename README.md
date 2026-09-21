@@ -12,7 +12,7 @@ files (no database) and served via the Next.js App Router.
 - **framer-motion** / `lottie-react` / `react-countup` animation
 - **react-hook-form** + **Zod v4** validation
 - **sonner** + **react-hot-toast** toasts, **next-themes**
-- **nodemailer** (contact email — not yet wired), `sharp` image optimization
+- **nodemailer** (contact email, not yet wired), `sharp` image optimization
 
 ## Quick Start
 ```bash
@@ -40,7 +40,7 @@ No test runner or DB migrations exist (this app has no database).
 | `NEXT_PUBLIC_SITE_EMAIL` / `NEXT_PUBLIC_SITE_PHONE` | Public contact details |
 | `NEXT_PUBLIC_LINKEDIN_URL` / `NEXT_PUBLIC_X_URL` / `NEXT_PUBLIC_FACEBOOK_URL` | Social links |
 
-`.env.example` currently lists only the `NEXT_PUBLIC_*` vars — set the `ADMIN_*`
+`.env.example` currently lists only the `NEXT_PUBLIC_*` vars; set the `ADMIN_*`
 vars too. Never commit real secrets. Fallback values in code are dev-only.
 
 ## How Content Works
@@ -66,12 +66,12 @@ agent_docs/          Deep domain docs (00–21 + HOW-TO-WORK)
 ## API Endpoints
 | Method | Route | Auth | Purpose |
 | ------ | ----- | ---- | ------- |
-| POST | `/api/auth` | — | Admin login (sets cookie) |
-| POST | `/api/auth/logout` | — | Clear admin cookie |
+| POST | `/api/auth` | none | Admin login (sets cookie) |
+| POST | `/api/auth/logout` | none | Clear admin cookie |
 | GET / PUT | `/api/content/[section]` | PUT: admin | Read / update a content section |
 | GET / POST | `/api/services` | POST: admin | List / create services |
 | GET / PUT / DELETE | `/api/services/[id]` | write: admin | Manage one service |
-| POST | `/api/contact` | — | Contact form submit (currently logs only) |
+| POST | `/api/contact` | none | Contact form submit (currently logs only) |
 | POST | `/api/upload` | admin | Image upload → `public/images/<folder>` |
 
 Admin-guarded routes require a valid `dm23_admin_token` cookie
@@ -103,4 +103,4 @@ Admin-guarded routes require a valid `dm23_admin_token` cookie
 
 ## Security
 This is a low-trust admin (base64 cookie token, no JWT/RBAC) suited to a single-editor
-marketing site — review before exposing publicly. To report a vulnerability, see [SECURITY.md](SECURITY.md).
+marketing site. Review before exposing publicly. To report a vulnerability, see [SECURITY.md](SECURITY.md).

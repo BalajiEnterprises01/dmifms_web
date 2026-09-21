@@ -1,11 +1,11 @@
 {
   "badge": "Quality Assurance",
   "title": "Inspection & Supervision Hierarchy",
-  "description": "A structured quality hierarchy ensures accountability at every level — from strategic oversight to ground deployment.",
+  "description": "A structured quality hierarchy ensures accountability at every level, from strategic oversight to ground deployment.",
   "hierarchy": [
     { "id": 1, "level": "Director", "description": "Strategic oversight and governance", "icon": "crown" },
-    { "id": 2, "level": "Head — Operations", "description": "Operational leadership and resource planning", "icon": "briefcase" },
-    { "id": 3, "level": "Sr. Manager — Operations", "description": "Site-level management and performance tracking", "icon": "user-cog" },
+    { "id": 2, "level": "Head of Operations", "description": "Operational leadership and resource planning", "icon": "briefcase" },
+    { "id": 3, "level": "Sr. Manager, Operations", "description": "Site-level management and performance tracking", "icon": "user-cog" },
     { "id": 4, "level": "Client Relations Officer", "description": "Client communication and satisfaction management", "icon": "handshake" },
     { "id": 5, "level": "Unit Supervisor", "description": "Day-to-day supervision and quality checks", "icon": "clipboard-check" },
     { "id": 6, "level": "Deployments", "description": "Frontline staff delivering services on ground", "icon": "users" }

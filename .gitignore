@@ -61,7 +61,7 @@ Thumbs.db
 # Docker
 .dockerignore
 
-# Lock files (commit these — they ensure reproducible installs)
+# Lock files (commit these; they ensure reproducible installs)
 # package-lock.json  ← DO commit this
 # yarn.lock          ← DO commit this
 

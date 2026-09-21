@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Privacy policy for DM23 IFMS website visitors and enquiries.",
 };
 
-const EMAIL = "dm23@dm23.co.in";
+const EMAIL = "info@dm23.co.in";
 
 const sections: { title: string; body: React.ReactNode }[] = [
   {

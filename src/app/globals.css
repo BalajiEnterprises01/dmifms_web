@@ -42,14 +42,13 @@
   --color-brand-dark: #020617;
   --color-brand-text: #0f172a;
 
-  /* ── Public site palette (warm editorial) — values live in :root ── */
+  /* ── Public site palette (warm editorial): values live in :root ── */
   --color-paper: var(--site-paper);
   --color-sand: var(--site-sand);
   --color-tan: var(--site-tan);
   --color-clay: var(--site-clay);
   --color-ink: var(--site-ink);
   --color-night: var(--site-night);
-  --color-sweep: var(--site-sweep);
   --color-brand: var(--site-brand);
   --color-brand-deep: var(--site-brand-deep);
   --color-gold: var(--site-gold);
@@ -63,6 +62,8 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-inter);
+  /* Display serif, used only for the footer wordmark. */
+  --font-display: var(--font-instrument-serif);
 
   /* ── Radius ── */
   --radius-sm: 6px;
@@ -75,14 +76,12 @@
 :root {
   --radius: 0.75rem;
 
-  /* Public site palette. --site-sweep is paper minus ink, so under
-     mix-blend-difference it renders as ink on paper (intro loader). */
+  /* Public site palette. */
   --site-paper: #f4f3ef;
   --site-sand: #e6e2db;
   --site-tan: #b9a690;
   --site-clay: #86715c;
   --site-ink: #3f2e22;
-  --site-sweep: #b5c5cd;
   /* Brand fills, sampled from the DM23 logo: navy lettering and gold swoosh.
      Buttons and dark surfaces use these so they match the logo. */
   --site-brand: #0a2f5c;
@@ -155,7 +154,7 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
-  /* No scroll-behavior: smooth — Lenis drives smooth scrolling on the public
+  /* No scroll-behavior: smooth. Lenis drives smooth scrolling on the public
      site, and the native setting fights its per-frame scrollTo calls. */
   html {
     @apply font-sans;
@@ -264,7 +263,7 @@
     display: none;
   }
   /* Inline text link: a solid underline that wipes away and back on hover.
-     Sized for legibility — 12px bold caps with a 1.5px rule and a 44px-tall
+     Sized for legibility: 12px bold caps with a 1.5px rule and a 44px-tall
      tap target on touch screens. */
   .link-wipe {
     position: relative;

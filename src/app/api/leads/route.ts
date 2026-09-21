@@ -3,7 +3,7 @@ import { readJSON } from "@/lib/jsonCMS";
 import { isAdminAuthenticated } from "@/lib/auth";
 import type { ContactLead } from "@/types";
 
-// Leads contain personal data (name, email, phone) — admin only, never public.
+// Leads contain personal data (name, email, phone): admin only, never public.
 export async function GET() {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

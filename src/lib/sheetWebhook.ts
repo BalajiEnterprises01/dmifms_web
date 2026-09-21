@@ -23,7 +23,7 @@ function asSheetText(value: string): string {
 }
 
 /**
- * Push a lead to the sheet webhook. The payload is intentionally flat — the
+ * Push a lead to the sheet webhook. The payload is intentionally flat: the
  * automation tool maps these top-level keys straight to spreadsheet columns.
  */
 export async function sendLeadToSheet(lead: ContactLead): Promise<void> {

@@ -13,7 +13,7 @@ import StatFigures, { type StatFigure } from "@/components/pages/StatFigures";
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "DM23 IFMS serves 10+ industries — from corporate offices to healthcare facilities — with tailored facility management solutions.",
+    "DM23 IFMS serves 10+ industries, from corporate offices to healthcare facilities, with tailored facility management solutions.",
 };
 
 const heroStats: StatFigure[] = [

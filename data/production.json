@@ -1,7 +1,7 @@
 {
   "badge": "Production Support",
   "title": "Nine Core Services Delivered with Safety & Efficiency",
-  "description": "Comprehensive production support services for manufacturing and industrial facilities — ensuring safety, efficiency, and consistent quality.",
+  "description": "Comprehensive production support services for manufacturing and industrial facilities, ensuring safety, efficiency, and consistent quality.",
   "services": [
     { "id": 1, "title": "Line Operations", "icon": "workflow", "status": true },
     { "id": 2, "title": "Assembly Activities", "icon": "settings-2", "status": true },

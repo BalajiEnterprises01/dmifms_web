@@ -14,11 +14,14 @@ export default function Footer() {
     .filter((s) => s.status)
     .sort((a, b) => a.order - b.order);
 
+  // Only show social profiles that have been set in admin > Contact.
   const externalLinks = [
-    { label: "LinkedIn", href: ensureAbsoluteUrl(contact.social.linkedin) },
-    { label: "X (Twitter)", href: ensureAbsoluteUrl(contact.social.twitter) },
-    { label: "Facebook", href: ensureAbsoluteUrl(contact.social.facebook) },
-  ];
+    { label: "LinkedIn", url: contact.social.linkedin },
+    { label: "X (Twitter)", url: contact.social.twitter },
+    { label: "Facebook", url: contact.social.facebook },
+  ]
+    .filter((link) => link.url.trim())
+    .map((link) => ({ label: link.label, href: ensureAbsoluteUrl(link.url) }));
 
   const details = [
     { label: "Address", value: contact.address },
@@ -33,20 +36,20 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-night text-paper">
-      <div className="mx-auto max-w-screen-2xl px-5 pt-16 md:px-12 md:pt-24">
-        {/* Brand row. The navy/gold logo has no contrast on the dark footer,
-            so it sits on a paper plate. */}
-        <div className="flex flex-col gap-8 border-b border-paper/10 pb-12 md:flex-row md:items-center md:justify-between md:pb-16">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+      <div className="mx-auto max-w-screen-2xl px-5 pt-12 md:px-12 md:pt-16">
+        {/* Brand row: an all-white version of the logo (dm23_logo_white.png)
+            sits directly on the navy. */}
+        <div className="flex flex-col gap-6 border-b border-paper/10 pb-10 md:flex-row md:items-center md:justify-between md:pb-12">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-10">
             <Link
               href="/"
-              aria-label="DM23 IFMS — home"
-              className="inline-flex w-fit bg-paper px-6 py-5 transition-opacity hover:opacity-90">
+              aria-label="DM23 IFMS home"
+              className="inline-flex w-fit transition-opacity hover:opacity-80">
               <Image
-                src="/images/logo/header_logo.png"
+                src="/images/logo/dm23_logo_white.png"
                 alt="DM23 IFMS Pvt Ltd"
-                width={730}
-                height={254}
+                width={1343}
+                height={420}
                 className="h-14 w-auto md:h-16"
               />
             </Link>
@@ -62,7 +65,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 md:mt-16 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-4 lg:gap-8">
           {details.map((item) => (
             <div key={item.label}>
               <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">
@@ -83,9 +86,9 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 h-px w-full bg-paper/10 md:mt-24" />
+        <div className="mt-10 h-px w-full bg-paper/10 md:mt-12" />
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 py-12 md:py-16 lg:grid-cols-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 md:py-12 lg:grid-cols-12">
           <nav aria-label="Footer" className="lg:col-span-3">
             <p className="text-xs font-semibold tracking-[0.16em] text-gold uppercase">Company</p>
             <ul className="mt-5 flex flex-col gap-3">
@@ -146,11 +149,11 @@ export default function Footer() {
 
         <div className="h-px w-full bg-paper/10" />
 
-        <div className="pt-10 md:pt-14">
+        <div className="pt-8 md:pt-10">
           <FooterWordmark text="DM23 IFMS" />
         </div>
 
-        <div className="flex flex-col gap-2 py-8 text-xs text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 py-6 text-xs text-paper/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} DM23 IFMS Pvt Ltd. All rights reserved.</p>
           <p className="tracking-[0.16em] uppercase">Driven Minds. Delivered Excellence.</p>
         </div>

@@ -9,7 +9,7 @@ import QualitySection from "@/components/sections/QualitySection";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about DM23 IFMS — India's fast-growing facility management company with deep expertise in soft services.",
+    "Learn about DM23 IFMS, India's fast-growing facility management company with deep expertise in soft services.",
 };
 
 export default function AboutPage() {

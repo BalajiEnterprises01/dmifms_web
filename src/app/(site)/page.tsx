@@ -73,7 +73,7 @@ export default function HomePage() {
       heading: quality.title,
       lead: quality.description,
       points: quality.hierarchy.map((level) => level.level),
-      image: "/images/services/office-assistance.jpg",
+      image: "/images/services/office-assistance-hd.jpg",
     },
     {
       id: "process",

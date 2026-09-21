@@ -8,7 +8,7 @@ import CTASection from "@/components/sections/CTASection";
 export const metadata: Metadata = {
   title: "Our Process",
   description:
-    "DM23 IFMS 9-step implementation process — from pre-deployment to stabilization.",
+    "DM23 IFMS eight-step implementation process, from pre-deployment to stabilization.",
 };
 
 const FALLBACK_IMAGE =

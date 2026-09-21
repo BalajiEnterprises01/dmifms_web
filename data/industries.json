@@ -8,8 +8,8 @@
     "image": "/images/industries/corporate.jpg",
     "services": [
       "Housekeeping",
-      "Front Office",
-      "Pantry Management"
+      "Front Desk",
+      "MEP Maintenance"
     ],
     "status": true,
     "order": 1
@@ -22,9 +22,9 @@
     "description": "Specialized FM solutions for technology companies, data centers, and software campuses.",
     "image": "/images/industries/it.jpg",
     "services": [
-      "Housekeeping",
-      "MEP Maintenance",
-      "Cafeteria"
+      "Front Desk",
+      "Contract Staffing",
+      "Waste Management"
     ],
     "status": true,
     "order": 2
@@ -37,9 +37,9 @@
     "description": "Compliant and secure facility services for banks, NBFCs, and insurance offices.",
     "image": "/images/industries/banking.jpg",
     "services": [
+      "Front Desk",
       "Housekeeping",
-      "Front Office",
-      "Payroll"
+      "Payroll Management"
     ],
     "status": true,
     "order": 3
@@ -54,8 +54,7 @@
     "services": [
       "Housekeeping",
       "Waste Management",
-      "Pest Control",
-      "EHS"
+      "MEP Maintenance"
     ],
     "status": true,
     "order": 4
@@ -68,9 +67,9 @@
     "description": "Industrial facility management and production support for manufacturing units.",
     "image": "/images/industries/manufacturing.jpg",
     "services": [
-      "Housekeeping",
-      "Production Support",
-      "Waste Management"
+      "MEP Maintenance",
+      "Waste Management",
+      "Contract Staffing"
     ],
     "status": true,
     "order": 5
@@ -84,27 +83,11 @@
     "image": "/images/industries/education.jpg",
     "services": [
       "Housekeeping",
-      "Horticulture",
-      "Pest Control"
+      "Pantry Management",
+      "Payroll Management"
     ],
     "status": true,
     "order": 6
-  },
-  {
-    "id": 7,
-    "name": "Hospitality & Aviation",
-    "slug": "hospitality-aviation",
-    "icon": "plane",
-    "description": "Premium hospitality-grade facility services for hotels, resorts, and airport facilities.",
-    "image": "/images/industries/hospitality.jpg",
-    "services": [
-      "Housekeeping",
-      "Guest House Mgmt",
-      "Front Office",
-      "Catering"
-    ],
-    "status": true,
-    "order": 7
   },
   {
     "id": 8,
@@ -114,9 +97,9 @@
     "description": "High-footfall facility management ensuring cleanliness, safety, and visitor satisfaction.",
     "image": "/images/industries/malls.jpg",
     "services": [
-      "Housekeeping",
+      "Facade Cleaning",
       "Waste Management",
-      "Pest Control"
+      "Housekeeping"
     ],
     "status": true,
     "order": 8

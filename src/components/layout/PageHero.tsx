@@ -31,6 +31,11 @@ interface PageHeroProps {
   centered?: boolean;
   /** Alt text for the image band (defaults to the title). */
   imageAlt?: string;
+  /**
+   * Show the whole photo at its 3:2 shape instead of a cropped full-width
+   * band (service photos, where cropping cut off the subject).
+   */
+  fullImage?: boolean;
   /** Figures shown in a row under the hero. */
   stats?: PageHeroStat[];
 }
@@ -94,6 +99,7 @@ export default function PageHero({
   size = "md",
   bgImage,
   imageAlt,
+  fullImage = false,
   stats,
 }: PageHeroProps) {
   const image = isPhoto(bgImage) ? bgImage : undefined;
@@ -165,10 +171,10 @@ export default function PageHero({
           alt={imageAlt ?? [title, titleAccent].filter(Boolean).join(" ")}
           sizes="100vw"
           play
-          parallax
+          parallax={!fullImage}
           priority
           delay={0.25}
-          className={cn("mt-10 md:mt-14", IMAGE_HEIGHT[size])}
+          className={cn("mt-10 md:mt-14", fullImage ? "aspect-[3/2] bg-sand" : IMAGE_HEIGHT[size])}
           curtainClassName="bg-paper"
         />
       )}

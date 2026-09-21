@@ -24,7 +24,7 @@ export default function ProcessSection({ steps, href }: ProcessSectionProps) {
             </Link>
           ) : undefined
         }>
-        A proven 9-step transition methodology — from site assessment to full stabilization. We
+        A proven eight-step transition methodology, from site assessment to full stabilization. We
         leave nothing to chance.
       </SectionIntro>
 

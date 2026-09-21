@@ -48,7 +48,7 @@ export default function AdditionalServicesPage() {
         titleAccent={data.hero.titleAccent}
         description={data.hero.description}
         breadcrumbs={[{ label: "Additional Services" }]}
-        bgImage="/images/services/office-assistance.jpg"
+        bgImage="/images/services/office-assistance-hd.jpg"
       />
 
       <section id="services" className="site-container scroll-mt-24 py-20 md:py-32">

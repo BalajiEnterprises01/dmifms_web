@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  // 1. Persist the lead first — it must survive even if email delivery fails.
+  // 1. Persist the lead first; it must survive even if email delivery fails.
   try {
     const leads = readJSON<ContactLead[]>("leads");
     leads.unshift(lead);
@@ -58,14 +58,14 @@ export async function POST(request: NextRequest) {
       ? sendLeadEmail(lead).catch((error) => {
           console.error("Failed to send lead email:", error);
         })
-      : Promise.resolve(console.warn("SMTP not configured — no email sent.")),
+      : Promise.resolve(console.warn("SMTP not configured; no email sent.")),
 
     isSheetWebhookConfigured()
       ? sendLeadToSheet(lead).catch((error) => {
           console.error("Failed to push lead to sheet webhook:", error);
         })
       : Promise.resolve(
-          console.warn("SHEET_WEBHOOK_URL not set — no sheet row added."),
+          console.warn("SHEET_WEBHOOK_URL not set; no sheet row added."),
         ),
   ]);
 

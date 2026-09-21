@@ -46,7 +46,7 @@ interface MaskLineProps {
 }
 
 /**
- * Text that slides up from behind an invisible mask — the headline
+ * Text that slides up from behind an invisible mask: the headline
  * treatment used across the site. Wrap each visual line separately.
  */
 export function MaskLine({ children, className, delay = 0, play }: MaskLineProps) {

@@ -113,7 +113,7 @@ export default function AdminLoginPage() {
         </div>
 
         <p className="text-center text-xs text-slate-600 mt-6">
-          DM23 IFMS Admin Panel — Authorized access only
+          DM23 IFMS Admin Panel. Authorized access only.
         </p>
       </div>
     </div>

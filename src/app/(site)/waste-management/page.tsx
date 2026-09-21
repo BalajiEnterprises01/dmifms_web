@@ -11,11 +11,11 @@ import StatFigures from "@/components/pages/StatFigures";
 
 export const metadata: Metadata = {
   title: "Waste Management Excellence | DMIFMS",
-  description: "Sustainable waste management solutions — source segregation, organic composting, and tech-driven SOPs.",
+  description: "Sustainable waste management solutions: source segregation, organic composting, and tech-driven SOPs.",
 };
 
 // waste.json has no hero image; reuse the waste-management service photo.
-const HERO_IMAGE = "/images/services/waste-management.jpg";
+const HERO_IMAGE = "/images/services/waste-management-hd.jpg";
 
 const pillClass =
   "inline-flex rounded-full bg-brand px-6 py-3 text-[11px] font-semibold tracking-[0.16em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep";

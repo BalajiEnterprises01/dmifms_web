@@ -99,10 +99,9 @@ export default function ContactPage() {
         <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-12 md:mt-16">
           <ImageReveal
             src={data.hero.secondaryImage}
-            alt=""
-            parallax
+            alt="DM23 IFMS-managed office reception"
             sizes="(min-width: 768px) 42vw, 100vw"
-            className="col-span-12 aspect-[4/3] bg-sand md:col-span-5 md:aspect-[4/5]"
+            className="col-span-12 aspect-[3/2] self-start bg-sand md:col-span-5"
           />
 
           <div className="col-span-12 md:col-span-7 lg:col-span-6 lg:col-start-7">
