@@ -98,7 +98,7 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
                   aria-controls="services-list"
                   onClick={() => select(option.id)}
                   className={cn(
-                    "group relative py-3 text-[12px] font-semibold tracking-[0.16em] uppercase transition-colors duration-500",
+                    "group relative py-3 text-eyebrow font-semibold tracking-[0.16em] uppercase transition-colors duration-500",
                     selected ? "text-ink" : "text-clay hover:text-ink",
                   )}>
                   {option.label}
@@ -147,13 +147,13 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
                     <div className="col-span-12 flex items-start justify-between gap-5 md:col-span-7 lg:col-span-6">
                       <div className="min-w-0">
                         {showCategory && (
-                          <p className="mb-3 text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
+                          <p className="mb-3 text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">
                             {service.categoryLabel}
                           </p>
                         )}
                         {/* Wrap between words only; a phone-width title column
                             is too narrow for text-2xl ("HOUSEKEEPIN/G"). */}
-                        <h3 className="text-xl leading-[1.1] font-normal tracking-[-0.02em] text-ink uppercase transition-colors duration-500 group-hover:text-clay sm:text-2xl md:text-[1.875rem]">
+                        <h3 className="text-xl leading-[1.1] font-normal tracking-[-0.02em] text-ink uppercase transition-colors duration-500 group-hover:text-clay sm:text-2xl md:text-row">
                           {service.title}
                         </h3>
                       </div>
@@ -170,7 +170,7 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
 
                     <p
                       className={cn(
-                        "col-span-12 max-w-md text-base leading-[1.7] text-clay md:col-span-4",
+                        "col-span-12 max-w-md text-body leading-[1.7] text-clay md:col-span-4",
                         showCategory ? "md:pt-8" : "md:pt-1",
                       )}>
                       {service.shortDescription}

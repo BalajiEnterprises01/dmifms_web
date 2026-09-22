@@ -55,10 +55,10 @@ export default function TermsPage() {
           {sections.map((section) => (
             <li key={section.title}>
               <Reveal className="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-11">
-                <h2 className="col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:col-span-6 md:text-[1.875rem]">
+                <h2 className="col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:col-span-6 md:text-row">
                   ({section.title})
                 </h2>
-                <p className="col-span-12 max-w-md text-base leading-[1.7] text-clay md:col-span-5 md:col-start-8">
+                <p className="col-span-12 max-w-md text-body leading-[1.7] text-clay md:col-span-5 md:col-start-8">
                   {section.body}
                 </p>
               </Reveal>

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const HERO_IMAGE = "/images/services/waste-management-hd.jpg";
 
 const pillClass =
-  "inline-flex rounded-full bg-brand px-6 py-3 text-[12px] font-semibold tracking-[0.16em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep";
+  "inline-flex rounded-full bg-brand px-6 py-3 text-eyebrow font-semibold tracking-[0.16em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep";
 
 export default function WasteManagementPage() {
   const data = readJSON<WasteData>("waste");
@@ -52,10 +52,10 @@ export default function WasteManagementPage() {
             <li key={lever.id}>
               <Rule delay={i * 0.08} />
               <Reveal delay={i * 0.08} className="pt-6 pb-12 md:pt-8 md:pb-0">
-                <h3 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase lg:text-[1.875rem]">
+                <h3 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase lg:text-row">
                   {lever.title}
                 </h3>
-                <p className="mt-4 max-w-sm text-base leading-[1.7] text-clay">
+                <p className="mt-4 max-w-sm text-body leading-[1.7] text-clay">
                   {lever.description}
                 </p>
               </Reveal>
@@ -75,7 +75,7 @@ export default function WasteManagementPage() {
 
         <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-12 md:mt-16">
           <div className="col-span-12 self-start lg:sticky lg:top-32 lg:col-span-5">
-            <h3 className="text-[clamp(1.875rem,3.7vw,3.5rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase">
+            <h3 className="text-heading leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase">
               <MaskLine>Driving</MaskLine>
               <MaskLine delay={0.08}>Consistency &amp;</MaskLine>
               <MaskLine delay={0.16}>Compliance</MaskLine>

@@ -61,26 +61,26 @@ export default function IndustriesPage() {
                       imageRight ? "md:col-start-1" : "md:col-start-8",
                     )}>
                     <Reveal>
-                      <h3 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-[1.875rem]">
+                      <h3 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-row">
                         {industry.name}
                       </h3>
                     </Reveal>
 
                     <Reveal delay={0.08} className="mt-6 md:mt-auto md:pt-10">
-                      <p className="max-w-md text-base leading-[1.7] text-clay">
+                      <p className="max-w-md text-body leading-[1.7] text-clay">
                         {industry.description}
                       </p>
 
                       {industry.services.length > 0 && (
                         <div className="mt-8">
-                          <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
+                          <p className="text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">
                             Key services
                           </p>
                           <ul className="mt-4 grid grid-cols-1 gap-x-6 sm:grid-cols-2">
                             {industry.services.map((service) => (
                               <li
                                 key={service}
-                                className="border-t border-ink/10 py-3 text-[12px] font-semibold tracking-[0.14em] text-ink uppercase">
+                                className="border-t border-ink/10 py-3 text-eyebrow font-semibold tracking-[0.14em] text-ink uppercase">
                                 {service}
                               </li>
                             ))}

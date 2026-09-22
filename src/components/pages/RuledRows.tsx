@@ -37,7 +37,7 @@ export default function RuledRows({
             <Reveal className="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-11">
               <Heading
                 className={cn(
-                  "col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-[1.875rem]",
+                  "col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-row",
                   wide && "md:col-span-6",
                 )}>
                 {item.title}
@@ -45,7 +45,7 @@ export default function RuledRows({
               {item.description && (
                 <p
                   className={cn(
-                    "col-span-12 max-w-md text-base leading-[1.7] text-clay",
+                    "col-span-12 max-w-md text-body leading-[1.7] text-clay",
                     wide && "md:col-span-5 md:col-start-8",
                   )}>
                   {item.description}

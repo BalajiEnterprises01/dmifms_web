@@ -29,7 +29,7 @@ const assurances = [
   },
 ];
 
-const labelClass = "text-[12px] font-semibold tracking-[0.16em] text-clay uppercase";
+const labelClass = "text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase";
 
 /** map_embed may hold a bare https URL or a pasted <iframe> snippet. */
 function mapSource(embed: string | undefined): string | null {
@@ -146,10 +146,10 @@ export default function ContactPage() {
                 <li key={item.title}>
                   <Rule delay={i * 0.08} />
                   <Reveal className="grid grid-cols-12 gap-x-6 gap-y-2 py-6">
-                    <h3 className="col-span-12 text-base font-semibold text-ink sm:col-span-5">
+                    <h3 className="col-span-12 text-lg font-semibold text-ink sm:col-span-5">
                       {item.title}
                     </h3>
-                    <p className="col-span-12 text-base leading-[1.7] whitespace-pre-line text-clay sm:col-span-7">
+                    <p className="col-span-12 text-body leading-[1.7] whitespace-pre-line text-clay sm:col-span-7">
                       {item.description}
                     </p>
                   </Reveal>

@@ -37,12 +37,12 @@ export default function AboutSection({ data }: AboutSectionProps) {
 
         <div className="col-span-12 flex flex-col md:col-span-6 lg:col-span-6 lg:col-start-7">
           <Reveal>
-            <p className="text-[clamp(1.375rem,2.6vw,2.375rem)] leading-[1.18] tracking-[-0.025em] text-ink">
+            <p className="text-statement leading-[1.18] tracking-[-0.025em] text-ink">
               {data.title}
             </p>
           </Reveal>
           <Reveal delay={0.08} className="mt-8 md:mt-auto md:pt-10">
-            <p className="max-w-md text-base leading-[1.7] text-clay">{data.description}</p>
+            <p className="max-w-md text-body leading-[1.7] text-clay">{data.description}</p>
           </Reveal>
         </div>
       </div>
