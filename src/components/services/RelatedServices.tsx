@@ -10,8 +10,6 @@ interface RelatedServicesProps {
   exploreHref: string;
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 /** Other services in the same category: swipeable row on small screens, three columns on desktop. */
 export default function RelatedServices({ services, exploreHref }: RelatedServicesProps) {
   if (services.length === 0) return null;
@@ -45,13 +43,10 @@ export default function RelatedServices({ services, exploreHref }: RelatedServic
                     className="object-cover transition-transform duration-[1400ms] ease-soft group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-5 flex items-start justify-between gap-4">
-                  <h3 className="text-xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase transition-colors duration-500 group-hover:text-clay md:text-2xl">
-                    {service.title}
-                  </h3>
-                  <span className="pt-1 text-[11px] text-tan tabular-nums">({pad(i + 1)})</span>
-                </div>
-                <p className="mt-3 max-w-sm text-[15px] leading-[1.7] text-clay">{service.shortDescription}</p>
+                <h3 className="mt-5 text-xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase transition-colors duration-500 group-hover:text-clay md:text-2xl">
+                  {service.title}
+                </h3>
+                <p className="mt-3 max-w-sm text-base leading-[1.7] text-clay">{service.shortDescription}</p>
                 <span className="link-wipe mt-5">
                   Learn More <span aria-hidden>↗</span>
                 </span>

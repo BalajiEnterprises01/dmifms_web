@@ -121,7 +121,7 @@ function LogoFormation({ play }: { play: boolean }) {
       </div>
 
       <motion.p
-        className="mt-6 text-[10px] font-semibold tracking-[0.3em] text-clay uppercase md:mt-8 md:text-[11px]"
+        className="mt-6 text-[12px] font-semibold tracking-[0.3em] text-clay uppercase md:mt-8 md:text-[12px]"
         initial={{ opacity: 0, y: 10 }}
         animate={play ? { opacity: 1, y: 0 } : undefined}
         transition={{ delay: 2, duration: 0.7, ease: EASE_SOFT }}>

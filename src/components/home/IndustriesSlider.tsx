@@ -16,8 +16,6 @@ const SHAPES = [
   { box: "w-[66vw] sm:w-[40vw] md:w-[25vw] lg:w-[21vw]", ratio: "aspect-square", offset: "md:mt-44" },
 ];
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 interface IndustriesSliderProps {
   industries: Industry[];
   intro: string;
@@ -87,16 +85,13 @@ export default function IndustriesSlider({ industries, intro }: IndustriesSlider
                     className="object-cover transition-transform duration-[1400ms] ease-soft group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-4 flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xs font-semibold tracking-[0.12em] text-ink uppercase">
-                      {industry.name}
-                    </h3>
-                    <p className="mt-1.5 text-[13px] leading-snug text-clay">
-                      {industry.services.join(" · ")}
-                    </p>
-                  </div>
-                  <span className="pt-0.5 text-[11px] text-tan tabular-nums">{pad(i + 1)}</span>
+                <div className="mt-4">
+                  <h3 className="text-[13px] font-semibold tracking-[0.12em] text-ink uppercase">
+                    {industry.name}
+                  </h3>
+                  <p className="mt-1.5 text-[14px] leading-snug text-clay">
+                    {industry.services.join(" · ")}
+                  </p>
                 </div>
               </Reveal>
             </Link>

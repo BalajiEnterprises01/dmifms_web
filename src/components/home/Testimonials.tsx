@@ -37,7 +37,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
             <motion.p
               key={current.id}
               {...fade}
-              className="flex flex-wrap items-baseline gap-x-6 gap-y-2 text-xs font-semibold tracking-[0.16em] uppercase">
+              className="flex flex-wrap items-baseline gap-x-6 gap-y-2 text-[13px] font-semibold tracking-[0.16em] uppercase">
               <span className="text-ink">{current.author}</span>
               <span className="text-tan">·</span>
               <span className="text-clay">{current.company}</span>
@@ -45,7 +45,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
           </AnimatePresence>
           <div className="flex items-center gap-3">
             <SliderButton direction="prev" label="Previous testimonial" onClick={() => go(-1)} />
-            <span className="w-16 text-center text-[11px] font-medium text-clay tabular-nums">
+            <span className="w-16 text-center text-[12px] font-medium text-clay tabular-nums">
               <span className="text-ink">{pad(index + 1)}</span> / {pad(total)}
             </span>
             <SliderButton direction="next" label="Next testimonial" onClick={() => go(1)} />
@@ -55,17 +55,17 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
         <div className="col-span-12 lg:col-span-7">
           <AnimatePresence mode="wait">
             <motion.figure key={current.id} {...fade}>
-              <blockquote className="text-[clamp(1.5rem,2.8vw,2.625rem)] leading-[1.18] tracking-[-0.025em] text-ink">
+              <blockquote className="text-[clamp(1.375rem,2.6vw,2.375rem)] leading-[1.18] tracking-[-0.025em] text-ink">
                 “{current.quote}”
               </blockquote>
               <figcaption className="mt-8 grid max-w-md grid-cols-2 gap-6 border-t border-ink/10 pt-6">
                 <div>
-                  <p className="text-[10px] font-semibold tracking-[0.16em] text-tan uppercase">Role</p>
-                  <p className="mt-1.5 text-sm text-ink">{current.author}</p>
+                  <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">Role</p>
+                  <p className="mt-1.5 text-[15px] text-ink">{current.author}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold tracking-[0.16em] text-tan uppercase">Organisation</p>
-                  <p className="mt-1.5 text-sm text-ink">{current.company}</p>
+                  <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">Organisation</p>
+                  <p className="mt-1.5 text-[15px] text-ink">{current.company}</p>
                 </div>
               </figcaption>
             </motion.figure>

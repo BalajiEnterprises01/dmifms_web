@@ -17,6 +17,11 @@ interface ImageRevealProps {
   delay?: number;
   /** Drift the image inside its frame while scrolling. */
   parallax?: boolean;
+  /**
+   * For a page-top photo: zoom in and drift down slightly as the frame
+   * scrolls away. Nothing is cropped at rest, unlike `parallax`.
+   */
+  scrollZoom?: boolean;
   /** Background behind the frame, so the curtains match it. */
   curtainClassName?: string;
   /** Start the reveal now instead of when scrolled into view. */
@@ -37,6 +42,7 @@ export default function ImageReveal({
   priority,
   delay = 0,
   parallax = false,
+  scrollZoom = false,
   curtainClassName = "bg-paper",
   play,
 }: ImageRevealProps) {
@@ -47,13 +53,19 @@ export default function ImageReveal({
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const drift = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
 
+  // 0 while the frame's bottom edge is at or below the fold, 1 once it has
+  // scrolled off the top. The zoom's overflow (7.5% a side) covers the drift.
+  const { scrollYProgress: exit } = useScroll({ target: ref, offset: ["end end", "end start"] });
+  const exitScale = useTransform(exit, [0, 1], [1, 1.15]);
+  const exitDrift = useTransform(exit, [0, 1], ["0%", "6%"]);
+
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
       {/* Parallax needs 8% overscan top and bottom to drift into; without it
           the photo fits the frame exactly, so nothing is cropped. */}
       <motion.div
         className={parallax ? "absolute -inset-y-[8%] inset-x-0" : "absolute inset-0"}
-        style={parallax ? { y: drift } : undefined}>
+        style={parallax ? { y: drift } : scrollZoom ? { y: exitDrift, scale: exitScale } : undefined}>
         <motion.div
           className="relative h-full w-full"
           initial={{ scale: 1.18 }}

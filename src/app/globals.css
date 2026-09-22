@@ -79,8 +79,8 @@
   /* Public site palette. */
   --site-paper: #f4f3ef;
   --site-sand: #e6e2db;
-  --site-tan: #b9a690;
-  --site-clay: #86715c;
+  --site-tan: #8c7760;
+  --site-clay: #6b5744;
   --site-ink: #3f2e22;
   /* Brand fills, sampled from the DM23 logo: navy lettering and gold swoosh.
      Buttons and dark surfaces use these so they match the logo. */
@@ -263,7 +263,7 @@
     display: none;
   }
   /* Inline text link: a solid underline that wipes away and back on hover.
-     Sized for legibility: 12px bold caps with a 1.5px rule and a 44px-tall
+     Sized for legibility: 13px bold caps with a 1.5px rule and a 44px-tall
      tap target on touch screens. */
   .link-wipe {
     position: relative;
@@ -271,7 +271,7 @@
     align-items: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -303,7 +303,7 @@
     min-height: 3.25rem;
     padding: 0 1.75rem;
     border-radius: 9999px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -336,7 +336,7 @@
   /* Header link: small caps with an underline that grows from the left. */
   .nav-link {
     position: relative;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;

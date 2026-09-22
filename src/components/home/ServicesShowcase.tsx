@@ -81,13 +81,13 @@ export default function ServicesShowcase({ services, intro }: ServicesShowcasePr
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="pt-1 text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">
+                className="pt-1 text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
                 {service.categoryLabel}
               </motion.p>
             </AnimatePresence>
             <div className="flex items-center gap-3">
               <SliderButton direction="prev" label="Previous service" onClick={() => go(-1)} />
-              <span className="w-16 text-center text-[11px] font-medium text-clay tabular-nums">
+              <span className="w-16 text-center text-[12px] font-medium text-clay tabular-nums">
                 <span className="text-ink">{pad(index + 1)}</span> / {pad(total)}
               </span>
               <SliderButton direction="next" label="Next service" onClick={() => go(1)} />
@@ -102,20 +102,18 @@ export default function ServicesShowcase({ services, intro }: ServicesShowcasePr
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.55, ease: EASE_SOFT }}
               className="mt-10 lg:mt-auto">
-              <h3 className="text-[clamp(2rem,3.6vw,3.5rem)] leading-[0.98] font-normal tracking-[-0.035em] text-ink uppercase">
+              <h3 className="text-[clamp(1.875rem,3.3vw,3.25rem)] leading-[0.98] font-normal tracking-[-0.035em] text-ink uppercase">
                 {service.title}
               </h3>
-              <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-ink/10 pt-8 sm:grid-cols-3">
-                {service.features.map((feature, i) => (
-                  <div key={feature}>
-                    <dt className="text-[10px] font-semibold tracking-[0.16em] text-tan uppercase tabular-nums">
-                      ({pad(i + 1)})
-                    </dt>
-                    <dd className="mt-2 text-sm leading-snug text-ink">{feature}</dd>
-                  </div>
+              <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-ink/10 pt-8 sm:grid-cols-3">
+                {service.features.map((feature) => (
+                  <li key={feature} className="flex gap-3 text-base leading-snug text-ink">
+                    <span aria-hidden className="mt-[0.6em] h-px w-3 shrink-0 bg-gold" />
+                    {feature}
+                  </li>
                 ))}
-              </dl>
-              <p className="mt-10 max-w-lg text-[15px] leading-[1.7] text-clay">{service.description}</p>
+              </ul>
+              <p className="mt-10 max-w-lg text-base leading-[1.7] text-clay">{service.description}</p>
               <Link
                 href={`/services/${service.slug}`}
                 aria-label={`View ${service.title} service details`}

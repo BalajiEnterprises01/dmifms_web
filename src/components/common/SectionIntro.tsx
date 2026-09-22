@@ -16,11 +16,11 @@ export default function SectionIntro({ label, children, aside, className }: Sect
   return (
     <div className={cn("grid grid-cols-12 gap-x-6 gap-y-4", className)}>
       <Reveal className="col-span-12 md:col-span-3">
-        <h2 className="text-sm font-semibold text-ink">{label}</h2>
+        <h2 className="text-base font-semibold text-ink">{label}</h2>
       </Reveal>
       {children && (
         <Reveal delay={0.08} className="col-span-12 md:col-span-6 lg:col-span-5">
-          <div className="max-w-xl text-[15px] leading-[1.7] text-clay">{children}</div>
+          <div className="max-w-xl text-base leading-[1.7] text-clay">{children}</div>
         </Reveal>
       )}
       {aside && (

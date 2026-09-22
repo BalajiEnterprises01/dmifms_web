@@ -14,7 +14,7 @@ export default function CTASection() {
       <Rule className="mb-10 md:mb-14" />
       <SectionIntro label="Contact us">{contact.subtitle}</SectionIntro>
 
-      <h3 className="mt-12 text-[clamp(2.4rem,5.6vw,6rem)] leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase md:mt-16 lg:max-w-[80%]">
+      <h3 className="mt-12 text-[clamp(2.25rem,5.2vw,5.5rem)] leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase md:mt-16 lg:max-w-[80%]">
         <MaskLine>{contact.title}</MaskLine>
       </h3>
 
@@ -22,7 +22,7 @@ export default function CTASection() {
         <Reveal className="col-span-12 md:col-span-3">
           <Link
             href="/contact"
-            className="flex size-32 flex-col items-center justify-center gap-1 rounded-full bg-brand text-center text-xs font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep md:size-36">
+            className="flex size-32 flex-col items-center justify-center gap-1 rounded-full bg-brand text-center text-[13px] font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep md:size-36">
             Get a quote
             <span aria-hidden>↗</span>
           </Link>
@@ -31,13 +31,13 @@ export default function CTASection() {
         <Reveal delay={0.08} className="col-span-12 md:col-span-9">
           <ul className="flex flex-col gap-8 sm:flex-row sm:gap-16 md:justify-end">
             <li>
-              <p className="text-[11px] font-semibold tracking-[0.16em] text-tan uppercase">Phone</p>
+              <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">Phone</p>
               <a href={phoneHref} className="link-wipe mt-3">
                 {contact.phone} <span aria-hidden>↗</span>
               </a>
             </li>
             <li>
-              <p className="text-[11px] font-semibold tracking-[0.16em] text-tan uppercase">Email</p>
+              <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">Email</p>
               <a href={`mailto:${contact.email}`} className="link-wipe mt-3 tracking-[0.04em] normal-case">
                 {contact.email} <span aria-hidden>↗</span>
               </a>

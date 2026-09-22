@@ -49,9 +49,9 @@ export default function HomeHero({ data }: { data: HeroData }) {
   const slide = slides[index];
 
   return (
-    <section ref={sectionRef} className="site-container pt-28 pb-20 md:pt-36 md:pb-32">
-      <div className="grid grid-cols-12 items-start gap-x-6 gap-y-6">
-        <h1 className="col-span-12 text-[clamp(2.4rem,5.6vw,6rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase lg:col-span-9">
+    <section ref={sectionRef} className="flex min-h-svh flex-col pt-28 pb-6 md:pt-32 md:pb-8 [@media(max-height:760px)]:pt-24">
+      <div className="site-container grid w-full grid-cols-12 items-start gap-x-6 gap-y-6">
+        <h1 className="col-span-12 text-[clamp(2.25rem,min(5.2vw,10svh),5.5rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase lg:col-span-9">
           <MaskLine play={ready} delay={0.15}>
             {data.title}
           </MaskLine>
@@ -64,17 +64,17 @@ export default function HomeHero({ data }: { data: HeroData }) {
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : undefined}
           transition={{ duration: 1, delay: 0.7, ease: EASE_SOFT }}>
-          <p className="text-[11px] font-semibold tracking-[0.18em] text-ink uppercase">
+          <p className="text-[12px] font-semibold tracking-[0.18em] text-ink uppercase">
             {data.subtitle}
           </p>
-          <p className="mt-2 text-[11px] font-medium tracking-[0.18em] text-clay uppercase">
+          <p className="mt-2 text-[12px] font-medium tracking-[0.18em] text-clay uppercase">
             {data.badge}
           </p>
         </motion.div>
       </div>
 
-      {/* Image band */}
-      <div className="relative mt-10 h-[46svh] overflow-hidden bg-sand md:mt-14 md:h-[64svh]">
+      {/* Image band: edge to edge, taking the height the heading and caption leave. */}
+      <div className="relative mt-8 min-h-[28svh] flex-1 overflow-hidden bg-sand md:mt-10 md:min-h-[34svh] [@media(max-height:760px)]:mt-6 [@media(max-height:760px)]:min-h-[28svh]">
         <motion.div className="absolute inset-0" style={{ y: imageY, scale: imageScale }}>
           {slides.map((s, i) => (
             <div
@@ -91,7 +91,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
                 priority={i === 0}
                 sizes="100vw"
                 className={cn(
-                  "object-cover transition-transform duration-[7000ms] ease-out",
+                  "object-cover object-[50%_35%] transition-transform duration-[7000ms] ease-out",
                   i === index ? "scale-100" : "scale-110",
                 )}
               />
@@ -118,12 +118,12 @@ export default function HomeHero({ data }: { data: HeroData }) {
 
       {/* Caption row */}
       <motion.div
-        className="mt-6 grid grid-cols-12 items-start gap-x-6 gap-y-5 md:mt-8"
+        className="site-container mt-6 grid w-full grid-cols-12 items-start gap-x-6 gap-y-5 [@media(max-height:760px)]:mt-4"
         initial={{ opacity: 0, y: 16 }}
         animate={ready ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 1, delay: 1.1, ease: EASE_SOFT }}>
         <div className="col-span-6 flex items-center gap-4 pt-1 md:col-span-3">
-          <span className="text-[11px] font-medium tracking-[0.16em] text-clay tabular-nums">
+          <span className="text-[12px] font-medium tracking-[0.16em] text-clay tabular-nums">
             <span className="text-ink">{pad(index + 1)}</span> / {pad(slides.length)}
           </span>
           <span className="relative h-0.5 w-20 overflow-hidden rounded-full bg-ink/15 md:w-32">
@@ -151,7 +151,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.5, ease: EASE_SOFT }}>
             <div className="col-span-12 md:col-span-6">
-              <p className="text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">
+              <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
                 {slide.subtitle}
               </p>
               <p className="mt-2 text-xl leading-tight tracking-[-0.02em] text-ink uppercase md:text-2xl">
@@ -160,10 +160,12 @@ export default function HomeHero({ data }: { data: HeroData }) {
             </div>
             <div className="col-span-12 md:col-span-6">
               {slide.description && (
-                <p className="text-[15px] leading-[1.7] text-clay">{slide.description}</p>
+                <p className="hidden text-base leading-[1.7] text-clay md:block [@media(max-height:760px)]:hidden">
+                  {slide.description}
+                </p>
               )}
               {slide.cta_href && slide.cta_label && (
-                <Link href={slide.cta_href} className="btn-primary mt-6">
+                <Link href={slide.cta_href} className="btn-primary md:mt-6 [@media(max-height:760px)]:mt-0">
                   {slide.cta_label} <span aria-hidden>↗</span>
                 </Link>
               )}

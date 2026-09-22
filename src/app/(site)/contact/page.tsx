@@ -29,9 +29,7 @@ const assurances = [
   },
 ];
 
-const labelClass = "text-[11px] font-semibold tracking-[0.16em] text-clay uppercase";
-
-const pad = (n: number) => String(n).padStart(2, "0");
+const labelClass = "text-[12px] font-semibold tracking-[0.16em] text-clay uppercase";
 
 /** map_embed may hold a bare https URL or a pasted <iframe> snippet. */
 function mapSource(embed: string | undefined): string | null {
@@ -110,7 +108,7 @@ export default function ContactPage() {
               {details.map((item, i) => (
                 <Reveal key={item.label} delay={i * 0.08}>
                   <dt className={labelClass}>{item.label}</dt>
-                  <dd className="mt-4 max-w-xs text-[15px] leading-relaxed break-words text-ink">
+                  <dd className="mt-4 max-w-xs text-base leading-relaxed break-words text-ink">
                     {item.href ? (
                       <a href={item.href} className="-my-2.5 inline-block py-2.5 transition-colors duration-300 hover:text-clay">
                         {item.value}
@@ -143,24 +141,21 @@ export default function ContactPage() {
               )}
             </dl>
 
-            <ol className="mt-14 md:mt-20">
+            <ul className="mt-14 md:mt-20">
               {assurances.map((item, i) => (
                 <li key={item.title}>
                   <Rule delay={i * 0.08} />
                   <Reveal className="grid grid-cols-12 gap-x-6 gap-y-2 py-6">
-                    <span className="col-span-2 pt-0.5 text-[11px] font-semibold tracking-[0.16em] text-tan tabular-nums">
-                      ({pad(i + 1)})
-                    </span>
-                    <h3 className="col-span-10 text-sm font-semibold text-ink sm:col-span-4">
+                    <h3 className="col-span-12 text-base font-semibold text-ink sm:col-span-5">
                       {item.title}
                     </h3>
-                    <p className="col-span-10 col-start-3 text-[15px] leading-[1.7] whitespace-pre-line text-clay sm:col-span-6 sm:col-start-auto">
+                    <p className="col-span-12 text-base leading-[1.7] whitespace-pre-line text-clay sm:col-span-7">
                       {item.description}
                     </p>
                   </Reveal>
                 </li>
               ))}
-            </ol>
+            </ul>
             <Rule />
           </div>
         </div>

@@ -21,8 +21,6 @@ interface CategoryIndexProps {
   intro: string;
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 /**
  * Oversized category names. On hover-capable pointers a photo from the
  * category trails the cursor (spring-smoothed transform).
@@ -51,24 +49,21 @@ export default function CategoryIndex({ categories, intro }: CategoryIndexProps)
         onPointerMove={track}
         onPointerLeave={() => setActive(null)}
         className="relative mt-12 border-b border-ink/10 md:mt-16">
-        {categories.map((category, i) => (
+        {categories.map((category) => (
           <li key={category.id} onPointerEnter={() => setActive(category.id)}>
             <Link
               href={`/services?category=${category.id}`}
               className="group grid grid-cols-12 gap-x-6 gap-y-4 border-t border-ink/10 py-10 md:py-14">
-              <span className="col-span-2 pt-2 text-[11px] text-tan tabular-nums md:col-span-3 md:pt-4">
-                {pad(i + 1)}
-              </span>
-              <Reveal className="col-span-10 md:col-span-9 lg:col-span-6">
-                <h3 className="text-[clamp(2rem,4.8vw,4.75rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase transition-colors duration-500 group-hover:text-clay">
+              <Reveal className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-6 lg:col-start-4">
+                <h3 className="text-[clamp(1.875rem,4.4vw,4.375rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase transition-colors duration-500 group-hover:text-clay">
                   ({category.label})
                 </h3>
-                <p className="mt-6 max-w-xl text-[15px] leading-[1.7] text-clay">
+                <p className="mt-6 max-w-xl text-base leading-[1.7] text-clay">
                   {category.services.map((s) => s.title).join(" · ")}
                 </p>
               </Reveal>
-              <span className="col-span-3 hidden items-start justify-end pt-5 text-[11px] font-semibold tracking-[0.16em] text-ink uppercase lg:flex">
-                {pad(category.services.length)} services <span aria-hidden className="ml-2">↗</span>
+              <span className="col-span-3 hidden items-start justify-end pt-5 text-[12px] font-semibold tracking-[0.16em] text-ink uppercase lg:flex">
+                View services <span aria-hidden className="ml-2">↗</span>
               </span>
             </Link>
           </li>

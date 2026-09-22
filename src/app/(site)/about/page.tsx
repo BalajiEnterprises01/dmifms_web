@@ -28,7 +28,6 @@ export default function AboutPage() {
         description={hero.description}
         bgImage={hero.image}
         imageAlt="Team Collaboration"
-        stats={hero.stats}
         size="lg"
       />
       <AboutSection data={aboutData} />

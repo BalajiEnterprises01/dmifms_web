@@ -16,15 +16,12 @@ type Filter = ServiceCategory | "all";
 interface FilterOption {
   id: Filter;
   label: string;
-  count: number;
 }
 
 interface ServicesIndexProps {
   /** Active services, already sorted. */
   services: Service[];
 }
-
-const pad = (n: number) => String(n).padStart(2, "0");
 
 /**
  * Category filter over an editorial list of services. The filter lives in
@@ -40,12 +37,12 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
   // "All" first, then categories in first-seen order.
   const options = services.reduce<FilterOption[]>(
     (list, service) => {
-      const option = list.find((o) => o.id === service.category);
-      if (option) option.count += 1;
-      else list.push({ id: service.category, label: service.categoryLabel, count: 1 });
+      if (!list.some((o) => o.id === service.category)) {
+        list.push({ id: service.category, label: service.categoryLabel });
+      }
       return list;
     },
-    [{ id: "all", label: "All Services", count: services.length }],
+    [{ id: "all", label: "All Services" }],
   );
 
   const requested = searchParams.get("category");
@@ -101,13 +98,10 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
                   aria-controls="services-list"
                   onClick={() => select(option.id)}
                   className={cn(
-                    "group relative py-3 text-[11px] font-semibold tracking-[0.16em] uppercase transition-colors duration-500",
+                    "group relative py-3 text-[12px] font-semibold tracking-[0.16em] uppercase transition-colors duration-500",
                     selected ? "text-ink" : "text-clay hover:text-ink",
                   )}>
                   {option.label}
-                  <span className="ml-1 align-top text-[9px] font-medium tracking-normal text-tan tabular-nums">
-                    {pad(option.count)}
-                  </span>
                   <span
                     aria-hidden
                     className={cn(
@@ -150,24 +144,16 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
                     delay={Math.min(i, 5) * 0.06}
                     y={24}
                     className="grid grid-cols-12 items-start gap-x-6 gap-y-4 py-8 md:py-10">
-                    <span
-                      className={cn(
-                        "col-span-2 text-[11px] text-tan tabular-nums md:col-span-1",
-                        showCategory ? "pt-px" : "pt-1.5 md:pt-2.5",
-                      )}>
-                      ({pad(i + 1)})
-                    </span>
-
-                    <div className="col-span-10 flex items-start justify-between gap-5 md:col-span-6 lg:col-span-5">
+                    <div className="col-span-12 flex items-start justify-between gap-5 md:col-span-7 lg:col-span-6">
                       <div className="min-w-0">
                         {showCategory && (
-                          <p className="mb-3 text-[11px] font-semibold tracking-[0.16em] text-clay uppercase">
+                          <p className="mb-3 text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
                             {service.categoryLabel}
                           </p>
                         )}
                         {/* Wrap between words only; a phone-width title column
                             is too narrow for text-2xl ("HOUSEKEEPIN/G"). */}
-                        <h3 className="text-xl leading-[1.1] font-normal tracking-[-0.02em] text-ink uppercase transition-colors duration-500 group-hover:text-clay sm:text-2xl md:text-[2rem]">
+                        <h3 className="text-xl leading-[1.1] font-normal tracking-[-0.02em] text-ink uppercase transition-colors duration-500 group-hover:text-clay sm:text-2xl md:text-[1.875rem]">
                           {service.title}
                         </h3>
                       </div>
@@ -184,7 +170,7 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
 
                     <p
                       className={cn(
-                        "col-span-10 col-start-3 max-w-md text-[15px] leading-[1.7] text-clay md:col-span-4 md:col-start-auto",
+                        "col-span-12 max-w-md text-base leading-[1.7] text-clay md:col-span-4",
                         showCategory ? "md:pt-8" : "md:pt-1",
                       )}>
                       {service.shortDescription}

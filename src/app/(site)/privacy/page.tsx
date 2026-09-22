@@ -38,8 +38,6 @@ const sections: { title: string; body: React.ReactNode }[] = [
   },
 ];
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 export default function PrivacyPolicyPage() {
   return (
     <>
@@ -52,25 +50,22 @@ export default function PrivacyPolicyPage() {
       />
 
       <section className="site-container pt-8 pb-20 md:pt-12 md:pb-32">
-        <ol>
+        <ul>
           <Rule />
-          {sections.map((section, i) => (
+          {sections.map((section) => (
             <li key={section.title}>
               <Reveal className="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-11">
-                <span className="col-span-12 pt-1 text-[11px] text-tan tabular-nums md:col-span-3 md:pt-3">
-                  ({pad(i + 1)})
-                </span>
-                <h2 className="col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:col-span-4 md:text-[2rem]">
+                <h2 className="col-span-12 text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:col-span-6 md:text-[1.875rem]">
                   ({section.title})
                 </h2>
-                <p className="col-span-12 max-w-md text-[15px] leading-[1.7] text-clay md:col-span-5">
+                <p className="col-span-12 max-w-md text-base leading-[1.7] text-clay md:col-span-5 md:col-start-8">
                   {section.body}
                 </p>
               </Reveal>
               <Rule />
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
     </>
   );

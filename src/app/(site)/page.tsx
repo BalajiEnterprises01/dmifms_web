@@ -16,7 +16,6 @@ import type {
 } from "@/types";
 import HomeHero from "@/components/home/HomeHero";
 import WhySection from "@/components/home/WhySection";
-import NumbersSection from "@/components/home/NumbersSection";
 import ServicesShowcase from "@/components/home/ServicesShowcase";
 import CategoryIndex, { type CategoryGroup } from "@/components/home/CategoryIndex";
 import IndustriesSlider from "@/components/home/IndustriesSlider";
@@ -90,7 +89,6 @@ export default function HomePage() {
     <>
       <HomeHero data={hero} />
       <WhySection intro={about.title} items={differentiators} />
-      <NumbersSection stats={hero.stats} />
       <ServicesShowcase services={services} intro={servicesPage.hero.description} />
       <CategoryIndex categories={categories} intro={about.description} />
       <IndustriesSlider industries={industries} intro={industriesPage.hero.description} />
