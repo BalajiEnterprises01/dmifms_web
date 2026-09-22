@@ -46,7 +46,7 @@ export default function RelatedServices({ services, exploreHref }: RelatedServic
                 <h3 className="mt-5 text-xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase transition-colors duration-500 group-hover:text-clay md:text-2xl">
                   {service.title}
                 </h3>
-                <p className="mt-3 max-w-sm text-base leading-[1.7] text-clay">{service.shortDescription}</p>
+                <p className="mt-3 max-w-sm text-body leading-[1.7] text-clay">{service.shortDescription}</p>
                 <span className="link-wipe mt-5">
                   Learn More <span aria-hidden>↗</span>
                 </span>

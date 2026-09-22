@@ -3,6 +3,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Public site type scale: tune sizes here, not in components.
+   Display caps by screen height too, so page-top heroes fit one screen. */
+@theme {
+  --text-display: clamp(2.125rem, min(4.5vw, 9.5svh), 4.5rem);
+  --text-heading: clamp(1.75rem, 3.8vw, 3.75rem);
+  --text-heading-sm: clamp(1.625rem, 3vw, 3rem);
+  --text-statement: clamp(1.25rem, 2.2vw, 2rem);
+  --text-row: 1.75rem;
+  --text-eyebrow: 0.8125rem;
+  --text-body: 1.0625rem;
+}
+
 @theme inline {
   /* ── shadcn color tokens ── */
   --color-background: var(--background);
@@ -336,7 +348,7 @@
   /* Header link: small caps with an underline that grows from the left. */
   .nav-link {
     position: relative;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;

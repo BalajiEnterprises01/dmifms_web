@@ -39,13 +39,13 @@ function Line({ label, htmlFor, error, children, className }: LineProps) {
     <div className={cn("flex flex-col gap-3 py-3 md:flex-row md:items-end md:gap-6 md:py-4", className)}>
       <label
         htmlFor={htmlFor}
-        className="shrink-0 text-[clamp(1.625rem,3.9vw,3.75rem)] leading-[0.95] tracking-[-0.04em] text-ink uppercase">
+        className="shrink-0 text-heading leading-[0.95] tracking-[-0.04em] text-ink uppercase">
         {label}
       </label>
       <div className="min-w-0 flex-1 md:pb-1.5">
         {children}
         {error && (
-          <p id={`${htmlFor}-error`} className="mt-1.5 text-[13px] text-destructive">
+          <p id={`${htmlFor}-error`} className="mt-1.5 text-[14px] text-destructive">
             {error}
           </p>
         )}
@@ -105,10 +105,10 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="border-t border-ink/10 py-12 md:py-16">
-        <p className="text-[clamp(1.875rem,3.9vw,3.75rem)] leading-[0.95] tracking-[-0.04em] text-ink uppercase">
+        <p className="text-heading leading-[0.95] tracking-[-0.04em] text-ink uppercase">
           Message sent.
         </p>
-        <p className="mt-6 max-w-md text-base leading-[1.7] text-clay">
+        <p className="mt-6 max-w-md text-body leading-[1.7] text-clay">
           Thank you for reaching out. Our team will get back to you within 24 business hours.
         </p>
         <button type="button" onClick={() => setSubmitted(false)} className="link-wipe mt-8">
@@ -144,7 +144,7 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
               </option>
             ))}
           </select>
-          <span aria-hidden className="pointer-events-none absolute right-0 bottom-3 text-[13px] text-clay">
+          <span aria-hidden className="pointer-events-none absolute right-0 bottom-3 text-[14px] text-clay">
             ▾
           </span>
         </div>
@@ -175,13 +175,13 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
           disabled={loading}
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
-          className="flex size-32 shrink-0 items-center justify-center self-end rounded-full bg-brand p-4 text-center text-[13px] leading-tight font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep disabled:opacity-60 md:mb-4 md:size-36">
+          className="flex size-32 shrink-0 items-center justify-center self-end rounded-full bg-brand p-4 text-center text-[14px] leading-tight font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep disabled:opacity-60 md:mb-4 md:size-36">
           {loading ? "Sending…" : "Send request"}
         </motion.button>
       </div>
 
       {submitError && (
-        <p role="alert" className="mt-6 border-l-2 border-destructive pl-4 text-[15px] text-destructive">
+        <p role="alert" className="mt-6 border-l-2 border-destructive pl-4 text-base text-destructive">
           {submitError}
         </p>
       )}

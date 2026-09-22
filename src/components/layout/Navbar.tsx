@@ -101,7 +101,7 @@ export default function Navbar() {
                               <Link
                                 href={child.href}
                                 className={cn(
-                                  "flex items-center justify-between px-5 py-2.5 text-[14px] font-medium text-clay transition-colors hover:text-ink",
+                                  "flex items-center justify-between px-5 py-2.5 text-[15px] font-medium text-clay transition-colors hover:text-ink",
                                   isActive(child.href) && "text-ink",
                                 )}>
                                 {child.label}
@@ -130,7 +130,7 @@ export default function Navbar() {
                 phones never showed a quote CTA. */}
             <Link
               href="/contact"
-              className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-brand px-4 text-[12px] font-bold tracking-[0.12em] whitespace-nowrap text-paper uppercase transition-colors duration-500 hover:bg-brand-deep sm:px-6 sm:text-[13px] sm:tracking-[0.14em]">
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-brand px-4 text-eyebrow font-bold tracking-[0.12em] whitespace-nowrap text-paper uppercase transition-colors duration-500 hover:bg-brand-deep sm:px-6 sm:text-[14px] sm:tracking-[0.14em]">
               Get a quote
             </Link>
             <button
@@ -139,7 +139,7 @@ export default function Navbar() {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
-              className="flex h-10 items-center gap-3 text-[12px] font-semibold tracking-[0.16em] text-ink uppercase lg:hidden">
+              className="flex h-10 items-center gap-3 text-eyebrow font-semibold tracking-[0.16em] text-ink uppercase lg:hidden">
               <span className="hidden sm:inline">{menuOpen ? "Close" : "Menu"}</span>
               <span className="relative block h-3 w-7">
                 <span
@@ -199,7 +199,7 @@ export default function Navbar() {
               className="mt-10">
               <Link
                 href="/contact"
-                className="flex w-full items-center justify-center rounded-full bg-brand px-6 py-4 text-[13px] font-semibold tracking-[0.16em] text-paper uppercase">
+                className="flex w-full items-center justify-center rounded-full bg-brand px-6 py-4 text-[14px] font-semibold tracking-[0.16em] text-paper uppercase">
                 Get a quote
               </Link>
             </motion.div>

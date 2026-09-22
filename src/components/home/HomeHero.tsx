@@ -51,7 +51,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
   return (
     <section ref={sectionRef} className="flex min-h-svh flex-col pt-28 pb-6 md:pt-32 md:pb-8 [@media(max-height:760px)]:pt-24">
       <div className="site-container grid w-full grid-cols-12 items-start gap-x-6 gap-y-6">
-        <h1 className="col-span-12 text-[clamp(2.25rem,min(5.2vw,10svh),5.5rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase lg:col-span-9">
+        <h1 className="col-span-12 text-display leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase lg:col-span-9">
           <MaskLine play={ready} delay={0.15}>
             {data.title}
           </MaskLine>
@@ -64,10 +64,10 @@ export default function HomeHero({ data }: { data: HeroData }) {
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : undefined}
           transition={{ duration: 1, delay: 0.7, ease: EASE_SOFT }}>
-          <p className="text-[12px] font-semibold tracking-[0.18em] text-ink uppercase">
+          <p className="text-eyebrow font-semibold tracking-[0.18em] text-ink uppercase">
             {data.subtitle}
           </p>
-          <p className="mt-2 text-[12px] font-medium tracking-[0.18em] text-clay uppercase">
+          <p className="mt-2 text-eyebrow font-medium tracking-[0.18em] text-clay uppercase">
             {data.badge}
           </p>
         </motion.div>
@@ -123,7 +123,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
         animate={ready ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 1, delay: 1.1, ease: EASE_SOFT }}>
         <div className="col-span-6 flex items-center gap-4 pt-1 md:col-span-3">
-          <span className="text-[12px] font-medium tracking-[0.16em] text-clay tabular-nums">
+          <span className="text-eyebrow font-medium tracking-[0.16em] text-clay tabular-nums">
             <span className="text-ink">{pad(index + 1)}</span> / {pad(slides.length)}
           </span>
           <span className="relative h-0.5 w-20 overflow-hidden rounded-full bg-ink/15 md:w-32">
@@ -151,7 +151,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.5, ease: EASE_SOFT }}>
             <div className="col-span-12 md:col-span-6">
-              <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
+              <p className="text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">
                 {slide.subtitle}
               </p>
               <p className="mt-2 text-xl leading-tight tracking-[-0.02em] text-ink uppercase md:text-2xl">
@@ -160,7 +160,7 @@ export default function HomeHero({ data }: { data: HeroData }) {
             </div>
             <div className="col-span-12 md:col-span-6">
               {slide.description && (
-                <p className="hidden text-base leading-[1.7] text-clay md:block [@media(max-height:760px)]:hidden">
+                <p className="hidden text-body leading-[1.7] text-clay md:block [@media(max-height:760px)]:hidden">
                   {slide.description}
                 </p>
               )}

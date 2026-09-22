@@ -55,14 +55,14 @@ export default function CategoryIndex({ categories, intro }: CategoryIndexProps)
               href={`/services?category=${category.id}`}
               className="group grid grid-cols-12 gap-x-6 gap-y-4 border-t border-ink/10 py-10 md:py-14">
               <Reveal className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-6 lg:col-start-4">
-                <h3 className="text-[clamp(1.875rem,4.4vw,4.375rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase transition-colors duration-500 group-hover:text-clay">
+                <h3 className="text-heading leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase transition-colors duration-500 group-hover:text-clay">
                   ({category.label})
                 </h3>
-                <p className="mt-6 max-w-xl text-base leading-[1.7] text-clay">
+                <p className="mt-6 max-w-xl text-body leading-[1.7] text-clay">
                   {category.services.map((s) => s.title).join(" · ")}
                 </p>
               </Reveal>
-              <span className="col-span-3 hidden items-start justify-end pt-5 text-[12px] font-semibold tracking-[0.16em] text-ink uppercase lg:flex">
+              <span className="col-span-3 hidden items-start justify-end pt-5 text-eyebrow font-semibold tracking-[0.16em] text-ink uppercase lg:flex">
                 View services <span aria-hidden className="ml-2">↗</span>
               </span>
             </Link>

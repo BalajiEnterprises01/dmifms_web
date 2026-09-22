@@ -92,11 +92,11 @@ function StackCard({ card, index, total, progress }: StackCardProps) {
         className="relative h-full origin-top overflow-hidden bg-paper shadow-[0_-40px_60px_-50px] shadow-night/30">
         <div className="grid h-full grid-cols-12 gap-x-6 gap-y-8 border-t border-ink/15 pt-8 md:pt-10">
           <div className={cn("col-span-12 flex flex-col md:col-span-6", imageFirst && "md:order-last md:pl-6")}>
-            <h3 className="max-w-[18ch] text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.05] font-normal tracking-[-0.03em] text-ink uppercase">
+            <h3 className="max-w-[18ch] text-statement leading-[1.05] font-normal tracking-[-0.03em] text-ink uppercase">
               {card.heading}
             </h3>
             {card.lead && (
-              <p className="mt-8 max-w-md text-base leading-[1.7] text-clay md:mt-10">{card.lead}</p>
+              <p className="mt-8 max-w-md text-body leading-[1.7] text-clay md:mt-10">{card.lead}</p>
             )}
             {card.points.length > 0 && (
               <ul className="mt-8 grid max-w-xl grid-cols-1 gap-x-6 sm:grid-cols-2">

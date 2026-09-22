@@ -30,7 +30,7 @@ export default function ProcessSection({ steps, href }: ProcessSectionProps) {
 
       <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-10 md:mt-16">
         <div className="col-span-12 self-start lg:sticky lg:top-32 lg:col-span-5">
-          <h3 className="text-[clamp(1.875rem,4.4vw,4.375rem)] leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase">
+          <h3 className="text-heading leading-[0.95] font-normal tracking-[-0.04em] text-ink uppercase">
             <MaskLine>How We Deliver.</MaskLine>
             <MaskLine delay={0.08}>Flawless Execution.</MaskLine>
           </h3>
@@ -41,14 +41,14 @@ export default function ProcessSection({ steps, href }: ProcessSectionProps) {
           {active.map((step) => (
             <li key={step.id}>
               <Reveal className="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-11">
-                <p className="col-span-12 pt-1 text-[12px] font-semibold tracking-[0.16em] text-clay uppercase tabular-nums sm:col-span-3 md:pt-3">
+                <p className="col-span-12 pt-1 text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase tabular-nums sm:col-span-3 md:pt-3">
                   Step {step.step}
                 </p>
                 <div className="col-span-12 sm:col-span-9">
-                  <h4 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-[1.875rem]">
+                  <h4 className="text-2xl leading-[1.08] font-normal tracking-[-0.025em] text-ink uppercase md:text-row">
                     ({step.title})
                   </h4>
-                  <p className="mt-4 max-w-md text-base leading-[1.7] text-clay">{step.description}</p>
+                  <p className="mt-4 max-w-md text-body leading-[1.7] text-clay">{step.description}</p>
                 </div>
               </Reveal>
               <Rule />

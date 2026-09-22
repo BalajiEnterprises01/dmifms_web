@@ -7,9 +7,9 @@ interface ServicePagerProps {
   next: Service;
 }
 
-const LABEL = "text-[12px] font-semibold tracking-[0.16em] text-clay uppercase";
+const LABEL = "text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase";
 const TITLE =
-  "text-2xl leading-[1.08] font-normal tracking-[-0.025em] break-words text-ink uppercase transition-colors duration-500 group-hover:text-clay md:text-[1.875rem]";
+  "text-2xl leading-[1.08] font-normal tracking-[-0.025em] break-words text-ink uppercase transition-colors duration-500 group-hover:text-clay md:text-row";
 
 /** Previous / next service across the whole catalogue. */
 export default function ServicePager({ prev, next }: ServicePagerProps) {

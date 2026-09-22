@@ -39,11 +39,11 @@ export default function StaffingPage() {
       <section className="site-container py-20 md:py-32">
         <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <Reveal className="col-span-12 md:col-span-3">
-            <h2 className="text-base font-semibold text-ink">At a glance</h2>
+            <h2 className="text-lg font-semibold text-ink">At a glance</h2>
           </Reveal>
           <div className="col-span-12 md:col-span-9">
             <Reveal delay={0.08}>
-              <blockquote className="max-w-5xl text-[clamp(1.625rem,3.3vw,3.25rem)] leading-[1.1] tracking-[-0.03em] text-ink">
+              <blockquote className="max-w-5xl text-heading-sm leading-[1.1] tracking-[-0.03em] text-ink">
                 “{data.hero.highlight}”
               </blockquote>
             </Reveal>
@@ -79,19 +79,19 @@ export default function StaffingPage() {
           <Reveal
             delay={0.12}
             className="col-span-12 self-start bg-night p-8 text-paper md:p-10 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9">
-            <p className="text-[12px] font-semibold tracking-[0.16em] text-gold-soft uppercase">
+            <p className="text-eyebrow font-semibold tracking-[0.16em] text-gold-soft uppercase">
               Get started
             </p>
-            <h3 className="mt-6 text-[clamp(1.875rem,3vw,2.75rem)] leading-[0.98] font-normal tracking-[-0.035em] text-paper uppercase">
+            <h3 className="mt-6 text-heading-sm leading-[0.98] font-normal tracking-[-0.035em] text-paper uppercase">
               Need the right people?
             </h3>
-            <p className="mt-6 max-w-md text-base leading-[1.7] text-paper/70">
+            <p className="mt-6 max-w-md text-body leading-[1.7] text-paper/70">
               Tell us your staffing requirement and we&apos;ll build a customized workforce
               solution for your facility.
             </p>
             <Link
               href="/contact"
-              className="mt-10 inline-flex rounded-full bg-paper px-6 py-3 text-[12px] font-semibold tracking-[0.16em] text-ink uppercase transition-colors duration-500 hover:bg-sand">
+              className="mt-10 inline-flex rounded-full bg-paper px-6 py-3 text-eyebrow font-semibold tracking-[0.16em] text-ink uppercase transition-colors duration-500 hover:bg-sand">
               Discuss your needs
             </Link>
           </Reveal>

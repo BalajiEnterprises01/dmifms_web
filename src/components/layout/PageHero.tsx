@@ -102,7 +102,7 @@ export default function PageHero({
           {breadcrumbs && breadcrumbs.length > 0 && (
             <Reveal y={12} className="mb-6 md:mb-8 [@media(max-height:760px)]:mb-4">
               <nav aria-label="Breadcrumb">
-                <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">
+                <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">
                   <li>
                     <Link href="/" className="-my-3 inline-block py-3 transition-colors duration-500 hover:text-ink">
                       Home
@@ -130,7 +130,7 @@ export default function PageHero({
           )}
 
           <div className="grid grid-cols-12 items-start gap-x-6 gap-y-6">
-            <h1 className="col-span-12 text-[clamp(2.25rem,min(5.2vw,10svh),5.5rem)] leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase lg:col-span-9">
+            <h1 className="col-span-12 text-display leading-[0.95] font-normal tracking-[-0.04em] break-words text-ink uppercase lg:col-span-9">
               <MaskLine delay={0.05}>{title}</MaskLine>
               {titleAccent && <MaskLine delay={0.15}>{titleAccent}</MaskLine>}
             </h1>
@@ -138,7 +138,7 @@ export default function PageHero({
               <Reveal
                 delay={0.35}
                 className="col-span-12 lg:col-span-3 lg:justify-self-end lg:pt-3 lg:text-right">
-                <p className="text-[12px] font-semibold tracking-[0.16em] text-clay uppercase">{badge}</p>
+                <p className="text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">{badge}</p>
               </Reveal>
             )}
           </div>
@@ -148,7 +148,7 @@ export default function PageHero({
               <Reveal
                 delay={0.45}
                 className="col-span-12 md:col-span-8 md:col-start-4 lg:col-span-5 lg:col-start-4">
-                <p className="max-w-xl text-base leading-[1.7] text-clay">{description}</p>
+                <p className="max-w-xl text-body leading-[1.7] text-clay">{description}</p>
               </Reveal>
             </div>
           )}
@@ -178,7 +178,7 @@ export default function PageHero({
               <li key={stat.label}>
                 <Reveal delay={i * 0.08}>
                   <StatFigure value={stat.value} suffix={stat.suffix} />
-                  <p className="mt-4 text-[14px] leading-snug text-clay">{stat.label}</p>
+                  <p className="mt-4 text-[15px] leading-snug text-clay">{stat.label}</p>
                 </Reveal>
               </li>
             ))}

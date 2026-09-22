@@ -86,10 +86,10 @@ export default function IndustriesSlider({ industries, intro }: IndustriesSlider
                   />
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-[13px] font-semibold tracking-[0.12em] text-ink uppercase">
+                  <h3 className="text-[14px] font-semibold tracking-[0.12em] text-ink uppercase">
                     {industry.name}
                   </h3>
-                  <p className="mt-1.5 text-[14px] leading-snug text-clay">
+                  <p className="mt-1.5 text-[15px] leading-snug text-clay">
                     {industry.services.join(" · ")}
                   </p>
                 </div>
