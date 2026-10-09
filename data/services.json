@@ -385,7 +385,7 @@
     "description": "Office chair servicing that replaces worn gas lifts, castors and mechanisms and re-covers tired upholstery, extending the life of your existing furniture.",
     "shortDescription": "Servicing, repair and refurbishing of office chairs.",
     "icon": "wrench",
-    "image": "",
+    "image": "/images/services/chair-refurbishing.jpg",
     "features": [
       "Gas lift & castor replacement",
       "Mechanism repair",
@@ -490,7 +490,7 @@
     "description": "Surface preparation, priming and painting for interiors and exteriors, scheduled around your operations and finished with proper site protection and clean-up.",
     "shortDescription": "Interior and exterior painting with minimal disruption.",
     "icon": "paintbrush",
-    "image": "",
+    "image": "/images/services/painting-works.jpg",
     "features": [
       "Interior & exterior painting",
       "Surface preparation",
@@ -511,7 +511,7 @@
     "description": "Installation, moves and repair of modular workstations and office furniture, including reconfiguring layouts as teams grow or move floors.",
     "shortDescription": "Workstation installation, reconfiguration and repair.",
     "icon": "layout-grid",
-    "image": "",
+    "image": "/images/services/workstation-installation.jpg",
     "features": [
       "Workstation installation",
       "Layout reconfiguration",
