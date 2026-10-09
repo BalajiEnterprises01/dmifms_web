@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "facility management",
     "integrated facility management",
     "housekeeping services",
-    "staffing solutions",
+    "manpower services",
     "waste management",
     "DM23 IFMS",
     "Bangalore facility management",
@@ -74,7 +74,7 @@ const jsonLd = {
   "@type": "Organization",
   name: "DM23 IFMS Pvt Ltd",
   url: "https://dm23ifms.com",
-  logo: "https://dm23ifms.com/images/logo/dm23_logo.png",
+  logo: "https://dm23ifms.com/images/logo/dm23_mark.png",
   description:
     "India's fast-growing integrated facility management company delivering consistent quality through trained people and robust processes.",
   address: {

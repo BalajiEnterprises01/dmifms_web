@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { readJSON } from "@/lib/jsonCMS";
+import { getSections } from "@/lib/services";
 import type { ContactData, Service } from "@/types";
 import PageHero from "@/components/layout/PageHero";
 import CTASection from "@/components/sections/CTASection";
@@ -17,7 +18,7 @@ interface Props {
 
 export async function generateStaticParams() {
   const services = readJSON<Service[]>("services");
-  return services.filter((s) => s.status).map((s) => ({ slug: s.slug }));
+  return services.filter((s) => s.status && s.detail).map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -42,21 +43,21 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
   const { slug } = await params;
   const { category } = await searchParams;
   const services = readJSON<Service[]>("services");
-  const service = services.find((s) => s.slug === slug && s.status);
+  const service = services.find((s) => s.slug === slug && s.status && s.detail);
 
   if (!service) notFound();
 
   const contact = readJSON<ContactData>("contact");
+  // Only services with their own page: the rest have nowhere to link to.
   const related = services
-    .filter((s) => s.category === service.category && s.id !== service.id && s.status)
+    .filter((s) => s.category === service.category && s.id !== service.id && s.status && s.detail)
     .slice(0, 3);
-  const backHref =
-    category && ["facility", "operational", "business"].includes(category)
-      ? `/services?category=${category}`
-      : `/services?category=${service.category}`;
+  const section = getSections().find((s) => s.id === service.category);
+  const backHref = category && section ? `/solutions/${section.slug}` : `/services?category=${service.category}`;
 
-  // Previous / next across the whole catalogue, wrapping at the ends.
-  const ordered = services.filter((s) => s.status).sort((a, b) => a.order - b.order);
+  // Previous / next across the services that have their own page, wrapping
+  // at the ends. Listing-only services have nowhere to link to.
+  const ordered = services.filter((s) => s.status && s.detail).sort((a, b) => a.order - b.order);
   const position = ordered.findIndex((s) => s.id === service.id);
   const prev = ordered[(position - 1 + ordered.length) % ordered.length];
   const next = ordered[(position + 1) % ordered.length];
@@ -76,7 +77,7 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
           label="Service Overview"
           aside={
             <Link href={backHref} className="link-wipe">
-              <span aria-hidden>←</span> Back to All Services
+              <span aria-hidden>←</span> Back to {section?.label ?? "all services"}
             </Link>
           }>
           {service.description}
@@ -141,7 +142,7 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
         </div>
       </section>
 
-      <RelatedServices services={related} exploreHref={backHref} />
+      {related.length > 0 && <RelatedServices services={related} exploreHref={backHref} />}
 
       {ordered.length > 1 && <ServicePager prev={prev} next={next} />}
 

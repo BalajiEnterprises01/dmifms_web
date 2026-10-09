@@ -37,6 +37,7 @@ export async function sendLeadToSheet(lead: ContactLead): Promise<void> {
     body: JSON.stringify({
       id: lead.id,
       date: new Date(lead.createdAt).toLocaleString("en-IN"),
+      type: asSheetText(lead.enquiryType ?? "service"),
       name: asSheetText(lead.name),
       company: asSheetText(lead.company),
       email: asSheetText(lead.email),

@@ -4,18 +4,7 @@
     "title": "Integrated Facility",
     "titleAccent": "Management.",
     "description": "Specialized services across three core categories, designed to adapt, scale, and maintain the foundation of your business operations.",
-    "stats": [
-      {
-        "value": "13+",
-        "label": "Specialized Services"
-      },
-      {
-        "value": "03",
-        "label": "Core Categories"
-      }
-    ],
-    "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2670&auto=format&fit=crop",
-    "secondaryImage": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
+    "image": "/images/sections/services-hero.jpg"
   },
   "status": true
 }

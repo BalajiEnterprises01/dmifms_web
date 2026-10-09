@@ -24,13 +24,7 @@ const navItems = [
   { label: "Services", href: "/admin/services", icon: Building2 },
   { label: "Industries", href: "/admin/industries", icon: GitBranch },
   { label: "Process", href: "/admin/process", icon: ChevronRight },
-  { label: "Staffing", href: "/admin/staffing", icon: Building2 },
   { label: "Waste Mgmt", href: "/admin/waste", icon: Building2 },
-  {
-    label: "Add. Services",
-    href: "/admin/additional-services",
-    icon: Building2,
-  },
   { label: "Why Choose Us", href: "/admin/why-choose-us", icon: CheckCircle },
   { label: "About Us", href: "/admin/about", icon: Info },
   { label: "Contact Info", href: "/admin/contact", icon: Phone },

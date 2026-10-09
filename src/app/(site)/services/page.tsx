@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { readJSON } from "@/lib/jsonCMS";
-import type { Service, ServicesPageData } from "@/types";
+import { getSections, getServices } from "@/lib/services";
+import type { ServicesPageData } from "@/types";
 import PageHero from "@/components/layout/PageHero";
 import CTASection from "@/components/sections/CTASection";
 import ServicesIndex from "@/components/services/ServicesIndex";
@@ -13,9 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ServicesPage() {
   const { hero } = readJSON<ServicesPageData>("services-page");
-  const services = readJSON<Service[]>("services")
-    .filter((s) => s.status)
-    .sort((a, b) => a.order - b.order);
+  const services = getServices();
+  const sections = getSections();
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function ServicesPage() {
 
       {/* The filter reads ?category= on the client (useSearchParams). */}
       <Suspense fallback={null}>
-        <ServicesIndex services={services} />
+        <ServicesIndex services={services} sections={sections} />
       </Suspense>
 
       <CTASection />

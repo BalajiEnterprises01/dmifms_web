@@ -8,16 +8,23 @@ const SMTP_PORT = Number(process.env.SMTP_PORT ?? 587);
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 
-// Pre-trimmed wide crop of the logo (300x78). The source logos are 500x500 squares,
-// which render as a tall block in an email header.
+// Wide DM23 mark on white (300x74), shown at half size. A square logo would
+// render as a tall block in an email header.
 const LOGO_PATH = path.join(
   process.cwd(),
   "public",
   "images",
   "logo",
-  "email_logo.png",
+  "dm23_mark_email.png",
 );
 const LOGO_CID = "dm23logo";
+
+/** "Job application" / "General enquiry" / "New enquiry", for subjects and headings. */
+function enquiryLabel(lead: ContactLead): string {
+  if (lead.enquiryType === "job") return "Job application";
+  if (lead.enquiryType === "other") return "General enquiry";
+  return "New enquiry";
+}
 
 const NAVY = "#0A192F";
 const BLUE = "#2563EB";
@@ -54,8 +61,9 @@ function buildHtml(lead: ContactLead, hasLogo: boolean): string {
   });
 
   const rows: [string, string][] = [
+    ["Enquiry", escapeHtml(enquiryLabel(lead))],
     ["Name", escapeHtml(lead.name)],
-    ["Company", escapeHtml(lead.company)],
+    ["Company", escapeHtml(lead.company || "-")],
     [
       "Email",
       `<a href="mailto:${escapeHtml(lead.email)}" style="color:${BLUE};text-decoration:none;">${escapeHtml(lead.email)}</a>`,
@@ -78,7 +86,7 @@ function buildHtml(lead: ContactLead, hasLogo: boolean): string {
     .join("");
 
   const logoBlock = hasLogo
-    ? `<img src="cid:${LOGO_CID}" width="150" height="39" alt="DM23 IFMS" style="display:block;border:0;outline:none;width:150px;height:39px;" />`
+    ? `<img src="cid:${LOGO_CID}" width="150" height="37" alt="DM23" style="display:block;border:0;outline:none;width:150px;height:37px;" />`
     : `<div style="font:800 20px/1 Arial,Helvetica,sans-serif;color:#ffffff;letter-spacing:1px;">DM23 IFMS</div>`;
 
   return `<!DOCTYPE html>
@@ -125,7 +133,7 @@ function buildHtml(lead: ContactLead, hasLogo: boolean): string {
                 ${escapeHtml(lead.service)}
               </div>
               <h1 style="margin:0 0 6px;font:800 24px/1.3 Arial,Helvetica,sans-serif;color:${NAVY};">
-                New enquiry from ${escapeHtml(lead.name)}
+                ${escapeHtml(enquiryLabel(lead))} from ${escapeHtml(lead.name)}
               </h1>
               <p style="margin:0;font:400 14px/1.5 Arial,Helvetica,sans-serif;color:#64748b;">
                 Submitted via the DM23 IFMS website contact form.
@@ -210,13 +218,13 @@ export async function sendLeadEmail(lead: ContactLead): Promise<void> {
   const hasLogo = fs.existsSync(LOGO_PATH);
 
   const text = [
-    `New enquiry from the DM23 IFMS website`,
+    `New ${enquiryLabel(lead).toLowerCase()} from the DM23 IFMS website`,
     ``,
     `Name:     ${lead.name}`,
     `Company:  ${lead.company}`,
     `Email:    ${lead.email}`,
     `Phone:    ${lead.phone}`,
-    `Service:  ${lead.service}`,
+    `Subject:  ${lead.service}`,
     `Received: ${new Date(lead.createdAt).toLocaleString("en-IN")}`,
     ``,
     `Message:`,
@@ -227,7 +235,7 @@ export async function sendLeadEmail(lead: ContactLead): Promise<void> {
     from: `"DM23 IFMS Website" <${SMTP_USER}>`,
     to: getRecipient(),
     replyTo: `"${lead.name}" <${lead.email}>`,
-    subject: `New enquiry: ${lead.service} from ${lead.company}`,
+    subject: `${enquiryLabel(lead)}: ${lead.service}${lead.company ? ` from ${lead.company}` : ""}`,
     text,
     html: buildHtml(lead, hasLogo),
     attachments: hasLogo

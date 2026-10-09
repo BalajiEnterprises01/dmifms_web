@@ -13,7 +13,7 @@ const IntroContext = createContext(true);
 export const useIntroDone = () => useContext(IntroContext);
 
 /** 800px WebP copy of the logo (63KB): the full PNG is far too heavy for a loader. */
-const LOADER_LOGO = "/images/logo/dm23_logo_loader.webp";
+const LOADER_LOGO = "/images/logo/dm23_mark_loader.webp";
 
 const FORMATION_MS = 2800;
 const EXIT_MS = 700;
@@ -69,7 +69,7 @@ function LogoFormation({ play }: { play: boolean }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative aspect-[1343/420] w-64 sm:w-80 md:w-[26rem]">
+      <div className="relative aspect-[900/223] w-64 sm:w-80 md:w-[26rem]">
         {/* Fragments: each shows its own cell of the logo image. */}
         <motion.div
           className="absolute inset-0"
@@ -102,7 +102,7 @@ function LogoFormation({ play }: { play: boolean }) {
           initial={{ opacity: 0 }}
           animate={play ? { opacity: 1 } : undefined}
           transition={{ delay: 1.6, duration: 0.35 }}>
-          <Image src="/images/logo/dm23_logo.png" alt="" fill sizes="26rem" priority />
+          <Image src="/images/logo/dm23_mark.png" alt="" fill sizes="26rem" priority />
         </motion.div>
 
         {/* Gold shine, clipped to the logo's silhouette. */}

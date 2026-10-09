@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readJSON, writeJSON } from "@/lib/jsonCMS";
 import { isAdminAuthenticated } from "@/lib/auth";
 
-const ALLOWED_SECTIONS = ["hero", "about", "vision-mission", "quality", "staffing", "waste", "production", "additional-services", "contact", "industries", "process", "why-choose-us", "services-page", "industries-page", "process-page"];
+const ALLOWED_SECTIONS = ["hero", "about", "vision-mission", "quality", "waste", "production", "sections", "contact", "industries", "process", "why-choose-us", "services-page", "industries-page", "process-page"];
 
 interface RouteParams {
   params: Promise<{ section: string }>;

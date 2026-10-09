@@ -10,22 +10,35 @@ export const primaryNav: NavLink[] = [
     label: "Solutions",
     href: "#",
     children: [
-      { label: "Staffing Solutions", href: "/staffing" },
-      { label: "Waste Management", href: "/waste-management" },
-      { label: "Additional Services", href: "/additional-services" },
+      { label: "Soft Services", href: "/solutions/soft-services" },
+      { label: "Man Power Services", href: "/solutions/man-power" },
+      { label: "Specialized Services", href: "/solutions/specialized-services" },
+      { label: "Repair & Maintenance", href: "/solutions/repair-maintenance" },
     ],
   },
 ];
 
-/** Flat sitemap used by the mobile menu and the footer. */
+/** Pages column in the footer: the service sections sit in their own column. */
+export const companyLinks: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Process", href: "/process" },
+  { label: "Contact", href: "/contact" },
+];
+
+/** Flat sitemap used by the mobile menu. */
 export const siteLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Industries", href: "/industries" },
   { label: "About Us", href: "/about" },
   { label: "Our Process", href: "/process" },
-  { label: "Staffing Solutions", href: "/staffing" },
+  { label: "Soft Services", href: "/solutions/soft-services" },
+  { label: "Man Power Services", href: "/solutions/man-power" },
+  { label: "Specialized Services", href: "/solutions/specialized-services" },
+  { label: "Repair & Maintenance", href: "/solutions/repair-maintenance" },
   { label: "Waste Management", href: "/waste-management" },
-  { label: "Additional Services", href: "/additional-services" },
   { label: "Contact", href: "/contact" },
 ];

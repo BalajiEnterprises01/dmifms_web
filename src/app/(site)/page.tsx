@@ -1,4 +1,5 @@
 import { readJSON } from "@/lib/jsonCMS";
+import { getSections } from "@/lib/services";
 import type {
   AboutData,
   ContactData,
@@ -43,13 +44,13 @@ export default function HomePage() {
   const testimonials = readJSON<Testimonial[]>("testimonials");
   const contact = readJSON<ContactData>("contact");
 
-  // Group services by category, keeping first-seen category order.
-  const categories = services.reduce<CategoryGroup[]>((groups, service) => {
-    const group = groups.find((g) => g.id === service.category);
-    if (group) group.services.push(service);
-    else groups.push({ id: service.category, label: service.categoryLabel, services: [service] });
-    return groups;
-  }, []);
+  // One row per section, in the order the sections are defined.
+  const categories: CategoryGroup[] = getSections().map((section) => ({
+    id: section.id,
+    slug: section.slug,
+    label: section.label,
+    services: services.filter((s) => s.category === section.id),
+  }));
 
   const foundation: FoundationCard[] = [
     {

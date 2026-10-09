@@ -7,9 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import EditServiceModal from "@/components/admin/EditServiceModal";
 
 const categoryColors: Record<string, string> = {
-  facility: "bg-blue-100 text-blue-700",
-  operational: "bg-sky-100 text-sky-700",
-  business: "bg-emerald-100 text-emerald-700",
+  soft: "bg-blue-100 text-blue-700",
+  manpower: "bg-sky-100 text-sky-700",
+  specialized: "bg-emerald-100 text-emerald-700",
+  repair: "bg-amber-100 text-amber-700",
 };
 
 export default function AdminServicesPage() {

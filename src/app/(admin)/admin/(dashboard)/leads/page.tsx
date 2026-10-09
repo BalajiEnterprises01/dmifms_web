@@ -90,6 +90,20 @@ export default function LeadsPage() {
                   <p className="text-sm text-slate-500">{lead.company}</p>
                 </div>
                 <div className="flex items-center gap-2">
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                      lead.enquiryType === "job"
+                        ? "bg-emerald-50 text-emerald-700"
+                        : lead.enquiryType === "other"
+                          ? "bg-slate-100 text-slate-600"
+                          : "bg-amber-50 text-amber-700"
+                    }`}>
+                    {lead.enquiryType === "job"
+                      ? "Job application"
+                      : lead.enquiryType === "other"
+                        ? "General"
+                        : "Service enquiry"}
+                  </span>
                   <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
                     {lead.service}
                   </span>

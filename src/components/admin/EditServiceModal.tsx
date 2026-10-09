@@ -11,9 +11,10 @@ interface EditServiceModalProps {
 }
 
 const categories: { value: ServiceCategory; label: string }[] = [
-  { value: "facility", label: "Facility Services" },
-  { value: "operational", label: "Operational Services" },
-  { value: "business", label: "Business Services" },
+  { value: "soft", label: "Soft Services" },
+  { value: "manpower", label: "Man Power Services" },
+  { value: "specialized", label: "Specialized Services" },
+  { value: "repair", label: "Repair & Maintenance Services" },
 ];
 
 export default function EditServiceModal({ service, onClose, onSave }: EditServiceModalProps) {
@@ -22,8 +23,8 @@ export default function EditServiceModal({ service, onClose, onSave }: EditServi
   const [form, setForm] = useState({
     title: service?.title ?? "",
     slug: service?.slug ?? "",
-    category: service?.category ?? "facility" as ServiceCategory,
-    categoryLabel: service?.categoryLabel ?? "Facility Services",
+    category: service?.category ?? "soft" as ServiceCategory,
+    categoryLabel: service?.categoryLabel ?? "Soft Services",
     shortDescription: service?.shortDescription ?? "",
     description: service?.description ?? "",
     icon: service?.icon ?? "sparkles",
@@ -37,11 +38,9 @@ export default function EditServiceModal({ service, onClose, onSave }: EditServi
     setForm((f) => ({ ...f, [key]: value }));
 
   const handleCategoryChange = (cat: ServiceCategory) => {
-    const labelMap: Record<ServiceCategory, string> = {
-      facility: "Facility Services",
-      operational: "Operational Services",
-      business: "Business Services",
-    };
+    const labelMap: Record<ServiceCategory, string> = Object.fromEntries(
+      categories.map((c) => [c.value, c.label]),
+    ) as Record<ServiceCategory, string>;
     setForm((f) => ({ ...f, category: cat, categoryLabel: labelMap[cat] }));
   };
 

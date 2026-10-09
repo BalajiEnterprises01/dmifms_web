@@ -2,17 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { readJSON } from "@/lib/jsonCMS";
 import { ensureAbsoluteUrl } from "@/lib/utils";
-import { siteLinks } from "@/lib/site-nav";
+import { companyLinks } from "@/lib/site-nav";
 import FooterWordmark from "@/components/layout/FooterWordmark";
-import type { ContactData, HeroData, Service } from "@/types";
+import { getSections } from "@/lib/services";
+import type { ContactData, HeroData } from "@/types";
 
 export default function Footer() {
   const contact = readJSON<ContactData>("contact");
   const hero = readJSON<HeroData>("hero");
-  // Read from the CMS so the footer never drifts from the services list.
-  const services = readJSON<Service[]>("services")
-    .filter((s) => s.status)
-    .sort((a, b) => a.order - b.order);
+  // Read from the CMS so the footer never drifts from the service sections.
+  const sections = getSections();
 
   // Only show social profiles that have been set in admin > Contact.
   const externalLinks = [
@@ -37,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-night text-paper">
       <div className="mx-auto max-w-screen-2xl px-5 pt-12 md:px-12 md:pt-16">
-        {/* Brand row: an all-white version of the logo (dm23_logo_white.png)
+        {/* Brand row: a light version of the mark (dm23_mark_white.png)
             sits directly on the navy. */}
         <div className="flex flex-col gap-6 border-b border-paper/10 pb-10 md:flex-row md:items-center md:justify-between md:pb-12">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-10">
@@ -46,10 +45,10 @@ export default function Footer() {
               aria-label="DM23 IFMS home"
               className="inline-flex w-fit transition-opacity hover:opacity-80">
               <Image
-                src="/images/logo/dm23_logo_white.png"
-                alt="DM23 IFMS Pvt Ltd"
-                width={1343}
-                height={420}
+                src="/images/logo/dm23_mark_white.png"
+                alt="DM23"
+                width={900}
+                height={223}
                 className="h-14 w-auto md:h-16"
               />
             </Link>
@@ -61,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
           <Link href="/contact" className="btn-light w-full sm:w-fit">
-            Get a quote <span aria-hidden>↗</span>
+            Contact us <span aria-hidden>↗</span>
           </Link>
         </div>
 
@@ -92,7 +91,7 @@ export default function Footer() {
           <nav aria-label="Footer" className="lg:col-span-3">
             <p className="text-[14px] font-semibold tracking-[0.16em] text-gold uppercase">Company</p>
             <ul className="mt-5 flex flex-col gap-3">
-              {siteLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -106,15 +105,22 @@ export default function Footer() {
           <nav aria-label="Services" className="col-span-2 lg:col-span-5">
             <p className="text-[14px] font-semibold tracking-[0.16em] text-gold uppercase">Services</p>
             <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
-              {services.map((service) => (
-                <li key={service.id}>
+              {sections.map((section) => (
+                <li key={section.id}>
                   <Link
-                    href={`/services/${service.slug}`}
+                    href={`/solutions/${section.slug}`}
                     className="text-base text-paper/70 transition-colors hover:text-paper">
-                    {service.title}
+                    {section.label}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/waste-management"
+                  className="text-base text-paper/70 transition-colors hover:text-paper">
+                  Waste Management
+                </Link>
+              </li>
             </ul>
           </nav>
           <ul className="col-start-2 row-start-1 flex flex-col items-end gap-3 text-right lg:col-span-4 lg:col-start-9">

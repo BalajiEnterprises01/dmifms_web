@@ -10,8 +10,10 @@ import {
 import type { ContactLead } from "@/types";
 
 const schema = z.object({
+  enquiryType: z.enum(["service", "job", "other"]).default("service"),
   name: z.string().min(2).max(100),
-  company: z.string().min(2).max(120),
+  // Job seekers and general enquiries need not name an organisation.
+  company: z.string().max(120).optional().default(""),
   email: z.string().email().max(160),
   phone: z.string().min(10).max(20),
   service: z.string().min(1).max(80),

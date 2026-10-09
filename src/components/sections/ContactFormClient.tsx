@@ -8,16 +8,68 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 // Mirrors the server schema in api/contact/route.ts.
-const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  company: z.string().min(2, "Company name required"),
-  email: z.string().email("Enter a valid email"),
-  phone: z.string().min(10, "Enter a valid phone number"),
-  service: z.string().min(1, "Please select a service"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+const schema = z
+  .object({
+    enquiryType: z.enum(["service", "job", "other"]),
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    company: z.string().max(120),
+    email: z.string().email("Enter a valid email"),
+    phone: z.string().min(10, "Enter a valid phone number"),
+    service: z.string().min(1, "Please choose an option"),
+    message: z.string().min(10, "Message must be at least 10 characters"),
+  })
+  // Only a service enquiry has to name an organisation.
+  .superRefine((data, ctx) => {
+    if (data.enquiryType === "service" && data.company.trim().length < 2) {
+      ctx.addIssue({ code: "custom", path: ["company"], message: "Company name required" });
+    }
+  });
 
 type FormData = z.infer<typeof schema>;
+
+const ENQUIRY_TYPES = [
+  { value: "service", label: "I need facility services" },
+  { value: "job", label: "I'm applying for a job" },
+  { value: "other", label: "Something else" },
+] as const;
+
+/** Field labels and placeholders change with who is writing in. */
+const COPY = {
+  service: {
+    company: "I represent",
+    companyPlaceholder: "Company or site name",
+    service: "I'm looking for",
+    servicePlaceholder: "Select a service",
+    details: "Details",
+    detailsPlaceholder: "Site type, size, location and timelines",
+    submit: "Send request",
+    sent: "Request sent.",
+    sentBody: "Thank you for reaching out. Our team will get back to you within 24 business hours.",
+  },
+  job: {
+    company: "I currently work at",
+    companyPlaceholder: "Employer (leave blank if none)",
+    service: "I'd like to work in",
+    servicePlaceholder: "Select an area",
+    details: "About me",
+    detailsPlaceholder: "Your experience, location and notice period",
+    submit: "Send application",
+    sent: "Application sent.",
+    sentBody:
+      "Thank you for your interest in working with DM23 IFMS. Our team reviews every application and will contact you if there is a suitable opening.",
+  },
+  other: {
+    company: "I represent",
+    companyPlaceholder: "Company or organisation (optional)",
+    service: "This is about",
+    servicePlaceholder: "Select a topic",
+    details: "Details",
+    detailsPlaceholder: "How can we help?",
+    submit: "Send message",
+    sent: "Message sent.",
+    sentBody: "Thank you for reaching out. Our team will get back to you within 24 business hours.",
+  },
+} as const;
 
 const fieldClass = (invalid: boolean) =>
   cn(
@@ -67,9 +119,16 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     reset,
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { enquiryType: "service", company: "" },
+  });
+
+  const enquiryType = watch("enquiryType") ?? "service";
+  const copy = COPY[enquiryType];
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
@@ -82,7 +141,7 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
       });
       if (!res.ok) throw new Error("Request failed");
       setSubmitted(true);
-      reset();
+      reset({ enquiryType, company: "" });
     } catch {
       setSubmitError(
         "Sorry, we could not send your message. Please try again or email us directly.",
@@ -106,11 +165,9 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
         animate={{ opacity: 1, y: 0 }}
         className="border-t border-ink/10 py-12 md:py-16">
         <p className="text-heading leading-[0.95] tracking-[-0.04em] text-ink uppercase">
-          Message sent.
+          {copy.sent}
         </p>
-        <p className="mt-6 max-w-md text-body leading-[1.7] text-clay">
-          Thank you for reaching out. Our team will get back to you within 24 business hours.
-        </p>
+        <p className="mt-6 max-w-md text-body leading-[1.7] text-clay">{copy.sentBody}</p>
         <button type="button" onClick={() => setSubmitted(false)} className="link-wipe mt-8">
           Send another message <span aria-hidden>↗</span>
         </button>
@@ -120,15 +177,40 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="border-t border-ink/10 pt-6">
+      <fieldset className="pb-4 md:pb-6">
+        <legend className="text-eyebrow font-semibold tracking-[0.16em] text-clay uppercase">
+          I am writing because
+        </legend>
+        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3">
+          {ENQUIRY_TYPES.map((option) => (
+            <label key={option.value} className="inline-flex cursor-pointer items-center gap-3">
+              <input
+                type="radio"
+                value={option.value}
+                {...register("enquiryType")}
+                className="peer sr-only"
+              />
+              <span
+                aria-hidden
+                className="size-3.5 shrink-0 rounded-full border border-ink/30 transition-colors duration-300 peer-checked:border-brand peer-checked:bg-brand peer-focus-visible:ring-2 peer-focus-visible:ring-brand/40 peer-focus-visible:ring-offset-2"
+              />
+              <span className="text-base text-clay transition-colors duration-300 peer-checked:font-semibold peer-checked:text-ink">
+                {option.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
       <Line label="Hello, my name is" htmlFor="name" error={errors.name?.message}>
         <input {...register("name")} {...a11y("name")} autoComplete="name" placeholder="First & last name" className={fieldClass(!!errors.name)} />
       </Line>
 
-      <Line label="I represent" htmlFor="company" error={errors.company?.message}>
-        <input {...register("company")} {...a11y("company")} autoComplete="organization" placeholder="Company or site name" className={fieldClass(!!errors.company)} />
+      <Line label={copy.company} htmlFor="company" error={errors.company?.message}>
+        <input {...register("company")} {...a11y("company")} autoComplete="organization" placeholder={copy.companyPlaceholder} className={fieldClass(!!errors.company)} />
       </Line>
 
-      <Line label="I'm looking for" htmlFor="service" error={errors.service?.message}>
+      <Line label={copy.service} htmlFor="service" error={errors.service?.message}>
         <div className="relative">
           <select
             {...register("service")}
@@ -136,7 +218,7 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
             defaultValue=""
             className={cn(fieldClass(!!errors.service), "cursor-pointer appearance-none pr-8")}>
             <option value="" disabled>
-              Select a service
+              {copy.servicePlaceholder}
             </option>
             {serviceOptions.map((opt) => (
               <option key={opt} value={opt}>
@@ -160,12 +242,12 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
       </div>
 
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:gap-10">
-        <Line label="Details" htmlFor="message" error={errors.message?.message} className="flex-1">
+        <Line label={copy.details} htmlFor="message" error={errors.message?.message} className="flex-1">
           <textarea
             {...register("message")}
             {...a11y("message")}
             rows={2}
-            placeholder="Site type, size, location and timelines"
+            placeholder={copy.detailsPlaceholder}
             className={cn(fieldClass(!!errors.message), "resize-none")}
           />
         </Line>
@@ -176,7 +258,7 @@ export default function ContactFormClient({ serviceOptions }: ContactFormClientP
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
           className="flex size-32 shrink-0 items-center justify-center self-end rounded-full bg-brand p-4 text-center text-[14px] leading-tight font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep disabled:opacity-60 md:mb-4 md:size-36">
-          {loading ? "Sending…" : "Send request"}
+          {loading ? "Sending…" : copy.submit}
         </motion.button>
       </div>
 

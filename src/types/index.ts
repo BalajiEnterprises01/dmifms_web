@@ -83,7 +83,26 @@ export interface VisionMissionData {
 }
 
 // ─── Services ───────────────────────────────────────────────────────────────
-export type ServiceCategory = "facility" | "operational" | "business";
+export type ServiceCategory = "soft" | "manpower" | "specialized" | "repair";
+
+/** One of the four service sections, with the copy for its own page. */
+export interface ServiceSection {
+  id: ServiceCategory;
+  slug: string;
+  label: string;
+  badge: string;
+  title: string;
+  titleAccent: string;
+  description: string;
+  image: string;
+  highlight: string;
+  points: string[];
+}
+
+export interface SectionsData {
+  sections: ServiceSection[];
+  status: boolean;
+}
 
 export interface ServicesPageData {
   hero: {
@@ -91,9 +110,7 @@ export interface ServicesPageData {
     title: string;
     titleAccent: string;
     description: string;
-    stats: { value: string; label: string }[];
     image: string;
-    secondaryImage: string;
   };
   status: boolean;
 }
@@ -109,6 +126,10 @@ export interface Service {
   icon: string;
   image: string;
   features: string[];
+  /** Has its own /services/<slug> page. Others are listed on their section page. */
+  detail: boolean;
+  /** Overrides the link target (waste management keeps its own page). */
+  href?: string;
   status: boolean;
   order: number;
 }
@@ -326,8 +347,13 @@ export interface AnimationProps {
 }
 
 // ─── Leads (contact form submissions) ───────────────────────────────────────
+/** Who is writing in: a customer, a job seeker, or anything else. */
+export type EnquiryType = "service" | "job" | "other";
+
 export interface ContactLead {
   id: string;
+  /** Absent on leads captured before the enquiry type existed. */
+  enquiryType?: EnquiryType;
   name: string;
   company: string;
   email: string;

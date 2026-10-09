@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
-import type { Service, ServiceCategory } from "@/types";
+import { AnimatePresence, motion } from "framer-motion";
+import type { Service, ServiceCategory, ServiceSection } from "@/types";
+import { serviceHref } from "@/lib/service-links";
 import SectionIntro from "@/components/common/SectionIntro";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE_SOFT } from "@/lib/animations";
@@ -21,29 +21,25 @@ interface FilterOption {
 interface ServicesIndexProps {
   /** Active services, already sorted. */
   services: Service[];
+  /** The four sections, in display order: drives the filter and the links. */
+  sections: ServiceSection[];
 }
 
 /**
  * Category filter over an editorial list of services. The filter lives in
  * `?category=` so deep links (homepage, footer) keep working; switching
- * rewrites the URL in place without a navigation or history entry. On
- * hover-capable pointers the row's photo trails the cursor; touch devices
- * get a small thumbnail on each row instead.
+ * rewrites the URL in place without a navigation or history entry. Each
+ * row carries its own thumbnail.
  */
-export default function ServicesIndex({ services }: ServicesIndexProps) {
+export default function ServicesIndex({ services, sections }: ServicesIndexProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // "All" first, then categories in first-seen order.
-  const options = services.reduce<FilterOption[]>(
-    (list, service) => {
-      if (!list.some((o) => o.id === service.category)) {
-        list.push({ id: service.category, label: service.categoryLabel });
-      }
-      return list;
-    },
-    [{ id: "all", label: "All Services" }],
-  );
+  // "All" first, then the four sections in their own order.
+  const options: FilterOption[] = [
+    { id: "all", label: "All Services" },
+    ...sections.map((s) => ({ id: s.id, label: s.label })),
+  ];
 
   const requested = searchParams.get("category");
   const active: Filter = options.find((o) => o.id === requested)?.id ?? "all";
@@ -56,27 +52,6 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
     else params.set("category", id);
     const query = params.toString();
     window.history.replaceState(null, "", query ? `${pathname}?${query}` : pathname);
-  };
-
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState<string | null>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const followX = useSpring(x, { stiffness: 160, damping: 22, mass: 0.5 });
-  const followY = useSpring(y, { stiffness: 160, damping: 22, mass: 0.5 });
-
-  const track = (e: React.PointerEvent<HTMLDivElement>) => {
-    const rect = wrapRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set(e.clientX - rect.left);
-    y.set(e.clientY - rect.top);
-  };
-
-  // Start the preview under the cursor instead of springing in from a corner.
-  const enter = (e: React.PointerEvent<HTMLDivElement>) => {
-    track(e);
-    followX.jump(x.get());
-    followY.jump(y.get());
   };
 
   return (
@@ -120,12 +95,7 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
         {`${visible.length} ${visible.length === 1 ? "service" : "services"} shown`}
       </p>
 
-      <div
-        ref={wrapRef}
-        onPointerEnter={enter}
-        onPointerMove={track}
-        onPointerLeave={() => setHovered(null)}
-        className="relative mt-12 md:mt-16">
+      <div className="relative mt-12 md:mt-16">
         <AnimatePresence mode="wait" initial={false}>
           <motion.ul
             key={active}
@@ -136,9 +106,9 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
             transition={{ duration: 0.35, ease: EASE_SOFT }}
             className="border-b border-ink/10">
             {visible.map((service, i) => (
-              <li key={service.id} onPointerEnter={() => setHovered(service.id)}>
+              <li key={service.id}>
                 <Link
-                  href={`/services/${service.slug}?category=${service.category}`}
+                  href={`${serviceHref(service, sections)}?category=${service.category}`}
                   className="group block border-t border-ink/10">
                   <Reveal
                     delay={Math.min(i, 5) * 0.06}
@@ -157,15 +127,17 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
                           {service.title}
                         </h3>
                       </div>
-                      <div className="relative aspect-[4/3] w-20 shrink-0 overflow-hidden bg-sand max-[359px]:hidden sm:w-32 pointer-fine:hidden">
-                        <Image
-                          src={service.image}
-                          alt=""
-                          fill
-                          sizes="128px"
-                          className="object-cover"
-                        />
-                      </div>
+                      {service.image && (
+                        <div className="relative aspect-[4/3] w-20 shrink-0 overflow-hidden bg-sand max-[359px]:hidden sm:w-32">
+                          <Image
+                            src={service.image}
+                            alt=""
+                            fill
+                            sizes="128px"
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <p
@@ -190,25 +162,6 @@ export default function ServicesIndex({ services }: ServicesIndexProps) {
             ))}
           </motion.ul>
         </AnimatePresence>
-
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute top-0 left-0 z-10 hidden aspect-[4/3] w-[clamp(240px,22vw,360px)] overflow-hidden bg-sand pointer-fine:block"
-          style={{ x: followX, y: followY, translateX: "-50%", translateY: "-50%" }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={hovered ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.5, ease: EASE_SOFT }}>
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className={cn(
-                "absolute inset-0 transition-opacity duration-500",
-                hovered === service.id ? "opacity-100" : "opacity-0",
-              )}>
-              <Image src={service.image} alt="" fill sizes="360px" className="object-cover" />
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

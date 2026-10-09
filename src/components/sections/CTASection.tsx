@@ -23,7 +23,7 @@ export default function CTASection() {
           <Link
             href="/contact"
             className="flex size-32 flex-col items-center justify-center gap-1 rounded-full bg-brand text-center text-[14px] font-bold tracking-[0.14em] text-paper uppercase transition-colors duration-500 hover:bg-brand-deep md:size-36">
-            Get a quote
+            Contact us
             <span aria-hidden>↗</span>
           </Link>
         </Reveal>

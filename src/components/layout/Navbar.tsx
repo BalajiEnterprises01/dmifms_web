@@ -57,13 +57,13 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: EASE_LUXE }}>
         <div className="mx-auto grid h-20 max-w-screen-2xl grid-cols-[1fr_auto] items-center gap-x-4 px-5 md:h-24 md:px-12 lg:grid-cols-[1fr_auto_1fr]">
           <Link href="/" aria-label="DM23 IFMS home" className="group justify-self-start">
-            {/* Client logo (2026-09-21), taken from the transparent artwork in
-                their brochure and cropped tight. */}
+            {/* DM23 mark (2026-10-09), cropped from the transparent artwork
+                on the last page of the client's brochure. */}
             <Image
-              src="/images/logo/dm23_logo.png"
-              alt="DM23 IFMS Pvt Ltd"
-              width={1343}
-              height={420}
+              src="/images/logo/dm23_mark.png"
+              alt="DM23"
+              width={900}
+              height={223}
               priority
               className="h-10 w-auto transition-transform duration-500 ease-soft group-hover:scale-[1.03] min-[360px]:h-12 md:h-15"
             />
@@ -127,11 +127,11 @@ export default function Navbar() {
 
           <div className="flex items-center justify-self-end gap-4 md:gap-5">
             {/* Visible at every width: the old header hid this below md, so
-                phones never showed a quote CTA. */}
+                phones never showed a contact CTA. */}
             <Link
               href="/contact"
               className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-brand px-4 text-eyebrow font-bold tracking-[0.12em] whitespace-nowrap text-paper uppercase transition-colors duration-500 hover:bg-brand-deep sm:px-6 sm:text-[14px] sm:tracking-[0.14em]">
-              Get a quote
+              Contact us
             </Link>
             <button
               type="button"
@@ -200,7 +200,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 className="flex w-full items-center justify-center rounded-full bg-brand px-6 py-4 text-[14px] font-semibold tracking-[0.16em] text-paper uppercase">
-                Get a quote
+                Contact us
               </Link>
             </motion.div>
           </motion.div>
