@@ -9,7 +9,7 @@ import EditServiceModal from "@/components/admin/EditServiceModal";
 const categoryColors: Record<string, string> = {
   soft: "bg-blue-100 text-blue-700",
   manpower: "bg-sky-100 text-sky-700",
-  specialized: "bg-emerald-100 text-emerald-700",
+  specialised: "bg-emerald-100 text-emerald-700",
   repair: "bg-amber-100 text-amber-700",
 };
 

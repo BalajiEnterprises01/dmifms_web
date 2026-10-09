@@ -114,13 +114,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/waste-management"
-                  className="text-base text-paper/70 transition-colors hover:text-paper">
-                  Waste Management
-                </Link>
-              </li>
             </ul>
           </nav>
           <ul className="col-start-2 row-start-1 flex flex-col items-end gap-3 text-right lg:col-span-4 lg:col-start-9">

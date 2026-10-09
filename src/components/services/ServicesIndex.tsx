@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Service, ServiceCategory, ServiceSection } from "@/types";
-import { serviceHref } from "@/lib/service-links";
 import SectionIntro from "@/components/common/SectionIntro";
 import { Reveal } from "@/components/motion/Reveal";
 import { EASE_SOFT } from "@/lib/animations";
@@ -108,7 +107,7 @@ export default function ServicesIndex({ services, sections }: ServicesIndexProps
             {visible.map((service, i) => (
               <li key={service.id}>
                 <Link
-                  href={`${serviceHref(service, sections)}?category=${service.category}`}
+                  href={`/services/${service.slug}`}
                   className="group block border-t border-ink/10">
                   <Reveal
                     delay={Math.min(i, 5) * 0.06}

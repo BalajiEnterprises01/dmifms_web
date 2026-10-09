@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readJSON, writeJSON } from "@/lib/jsonCMS";
 import { isAdminAuthenticated } from "@/lib/auth";
+import { revalidateSite } from "@/lib/revalidate";
 import { Service } from "@/types";
 
 export async function GET() {
@@ -25,5 +26,6 @@ export async function POST(request: NextRequest) {
 
   services.push(newService);
   writeJSON("services", services);
+  revalidateSite();
   return NextResponse.json(newService, { status: 201 });
 }

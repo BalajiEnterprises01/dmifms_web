@@ -20,7 +20,6 @@
       "Surface care (wood, carpet, glass)",
       "SOP-driven operations"
     ],
-    "detail": true,
     "status": true,
     "order": 1
   },
@@ -42,7 +41,6 @@
       "Booking management",
       "Quality audits"
     ],
-    "detail": true,
     "status": true,
     "order": 2
   },
@@ -64,7 +62,6 @@
       "Safe approved chemicals",
       "Regular audits"
     ],
-    "detail": true,
     "status": true,
     "order": 3
   },
@@ -89,7 +86,6 @@
       "Hygiene compliance",
       "Vendor coordination"
     ],
-    "detail": true,
     "status": true,
     "order": 4
   },
@@ -111,7 +107,6 @@
       "Irrigation management",
       "Pest & disease control"
     ],
-    "detail": true,
     "status": true,
     "order": 5
   },
@@ -133,7 +128,6 @@
       "Courier & mail handling",
       "Trained & groomed staff"
     ],
-    "detail": true,
     "status": true,
     "order": 6
   },
@@ -157,32 +151,8 @@
       "Safety certified teams",
       "Scheduled programs"
     ],
-    "detail": true,
     "status": true,
     "order": 7
-  },
-  {
-    "id": "waste-management",
-    "title": "Waste Management",
-    "slug": "waste-management",
-    "category": "soft",
-    "categoryLabel": "Soft Services",
-    "description": "Eco-friendly waste collection, segregation, and recycling programs that reduce your environmental footprint, built on source segregation, organic composting, and tech-driven SOPs.",
-    "shortDescription": "Eco-friendly waste collection, segregation, and recycling programs.",
-    "icon": "recycle",
-    "image": "/images/services/waste-management-hd.jpg",
-    "features": [
-      "Source segregation (wet/dry)",
-      "Organic composting",
-      "Authorized vendor transfer",
-      "EHS compliance",
-      "Standardized SOPs",
-      "MIS tracking"
-    ],
-    "detail": false,
-    "href": "/waste-management",
-    "status": true,
-    "order": 8
   },
   {
     "id": "factory-production-manpower",
@@ -201,9 +171,8 @@
       "Shift-based deployment",
       "Attendance & MIS tracking"
     ],
-    "detail": false,
     "status": true,
-    "order": 9
+    "order": 8
   },
   {
     "id": "warehousing-supply-chain-manpower",
@@ -222,9 +191,8 @@
       "Peak-season scaling",
       "Background-verified staff"
     ],
-    "detail": false,
     "status": true,
-    "order": 10
+    "order": 9
   },
   {
     "id": "corporate-office-manpower",
@@ -243,9 +211,8 @@
       "Document and mailroom handling",
       "Groomed, trained staff"
     ],
-    "detail": false,
     "status": true,
-    "order": 11
+    "order": 10
   },
   {
     "id": "contract-staffing",
@@ -267,9 +234,8 @@
       "Statutory compliance (PF/ESI)",
       "Replacement guarantee"
     ],
-    "detail": true,
     "status": true,
-    "order": 12
+    "order": 11
   },
   {
     "id": "marble-polishing",
@@ -288,9 +254,8 @@
       "Sealing & protection",
       "Periodic maintenance plans"
     ],
-    "detail": false,
     "status": true,
-    "order": 13
+    "order": 12
   },
   {
     "id": "deep-cleaning",
@@ -309,9 +274,8 @@
       "Machine scrubbing",
       "Restroom & kitchen sanitization"
     ],
-    "detail": false,
     "status": true,
-    "order": 14
+    "order": 13
   },
   {
     "id": "upholstery-shampooing",
@@ -330,9 +294,8 @@
       "Stain & odour treatment",
       "Fabric-safe chemicals"
     ],
-    "detail": false,
     "status": true,
-    "order": 15
+    "order": 14
   },
   {
     "id": "high-roof-cleaning",
@@ -351,9 +314,8 @@
       "Harnessed, height-trained teams",
       "Out-of-hours scheduling"
     ],
-    "detail": false,
     "status": true,
-    "order": 16
+    "order": 15
   },
   {
     "id": "indoor-plant-rentals",
@@ -372,9 +334,8 @@
       "Planter selection",
       "Seasonal refresh"
     ],
-    "detail": false,
     "status": true,
-    "order": 17
+    "order": 16
   },
   {
     "id": "chair-refurbishing",
@@ -393,9 +354,8 @@
       "Deep cleaning",
       "On-site servicing"
     ],
-    "detail": false,
     "status": true,
-    "order": 18
+    "order": 17
   },
   {
     "id": "electrical-works",
@@ -414,9 +374,8 @@
       "Preventive maintenance",
       "Emergency response"
     ],
-    "detail": false,
     "status": true,
-    "order": 19
+    "order": 18
   },
   {
     "id": "plumbing-works",
@@ -435,9 +394,8 @@
       "Pipeline works",
       "Fixture replacement"
     ],
-    "detail": false,
     "status": true,
-    "order": 20
+    "order": 19
   },
   {
     "id": "carpentry-works",
@@ -456,9 +414,8 @@
       "Custom joinery",
       "Site measurement"
     ],
-    "detail": false,
     "status": true,
-    "order": 21
+    "order": 20
   },
   {
     "id": "civil-works",
@@ -477,9 +434,8 @@
       "Structural repair",
       "Site supervision"
     ],
-    "detail": false,
     "status": true,
-    "order": 22
+    "order": 21
   },
   {
     "id": "painting-works",
@@ -498,9 +454,8 @@
       "Out-of-hours scheduling",
       "Site protection & clean-up"
     ],
-    "detail": false,
     "status": true,
-    "order": 23
+    "order": 22
   },
   {
     "id": "workstation-installation",
@@ -519,9 +474,8 @@
       "Panel & partition repair",
       "Cable management"
     ],
-    "detail": false,
     "status": true,
-    "order": 24
+    "order": 23
   },
   {
     "id": "hvac-maintenance",
@@ -540,9 +494,8 @@
       "Breakdown repair",
       "AMC management"
     ],
-    "detail": false,
     "status": true,
-    "order": 25
+    "order": 24
   },
   {
     "id": "renovation-interiors",
@@ -561,9 +514,8 @@
       "Single-point coordination",
       "Handover & snagging"
     ],
-    "detail": false,
     "status": true,
-    "order": 26
+    "order": 25
   },
   {
     "id": "metal-aluminium-fabrication",
@@ -582,9 +534,8 @@
       "On-site welding",
       "Finishing & coating"
     ],
-    "detail": false,
     "status": true,
-    "order": 27
+    "order": 26
   },
   {
     "id": "signage-display-boards",
@@ -603,9 +554,8 @@
       "Design & fabrication",
       "Installation & maintenance"
     ],
-    "detail": false,
     "status": true,
-    "order": 28
+    "order": 27
   },
   {
     "id": "chiller-maintenance",
@@ -624,8 +574,7 @@
       "Water treatment coordination",
       "AMC management"
     ],
-    "detail": false,
     "status": true,
-    "order": 29
+    "order": 28
   }
 ]

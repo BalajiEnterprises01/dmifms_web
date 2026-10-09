@@ -28,7 +28,8 @@ const nextConfig: NextConfig = {
       { source: "/services/mechanical-electrical", destination: "/solutions/repair-maintenance", permanent: true },
       { source: "/services/office-assistance", destination: "/solutions/manpower", permanent: true },
       { source: "/services/payroll-management", destination: "/solutions/manpower", permanent: true },
-      { source: "/services/waste-management", destination: "/waste-management", permanent: true },
+      { source: "/services/waste-management", destination: "/services", permanent: true },
+      { source: "/waste-management", destination: "/services", permanent: true },
     ];
   },
 };

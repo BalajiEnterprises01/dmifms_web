@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getSection, getSections, serviceHref, servicesInSection } from "@/lib/services";
+import { getSection, getSections, servicesInSection } from "@/lib/services";
 import PageHero from "@/components/layout/PageHero";
 import CTASection from "@/components/sections/CTASection";
 import SectionIntro from "@/components/common/SectionIntro";
@@ -29,7 +29,6 @@ export default async function SectionPage({ params }: Props) {
   const data = getSection(section);
   if (!data) notFound();
 
-  const sections = getSections();
   const services = servicesInSection(data.id);
 
   return (
@@ -77,10 +76,9 @@ export default async function SectionPage({ params }: Props) {
         <div className="mt-12 md:mt-16">
           <Rule />
           <ul>
-            {services.map((service, i) => {
-              const href = serviceHref(service, sections);
-              const linked = service.detail || !!service.href;
-              const Row = (
+            {services.map((service, i) => (
+              <li key={service.id}>
+                <Link href={`/services/${service.slug}`} className="group block">
                 <Reveal
                   delay={Math.min(i, 5) * 0.05}
                   className="grid grid-cols-12 items-start gap-x-6 gap-y-4 py-8 md:py-10">
@@ -102,29 +100,16 @@ export default async function SectionPage({ params }: Props) {
                   <p className="col-span-12 max-w-md text-body leading-[1.7] text-clay sm:col-span-5">
                     {service.shortDescription}
                   </p>
-                  {linked && (
-                    <span
-                      aria-hidden
-                      className="col-span-12 hidden justify-end text-xl leading-none text-ink transition-transform duration-500 ease-soft group-hover:translate-x-1 group-hover:-translate-y-1 md:col-span-1 md:flex">
-                      ↗
-                    </span>
-                  )}
+                  <span
+                    aria-hidden
+                    className="col-span-12 hidden justify-end text-xl leading-none text-ink transition-transform duration-500 ease-soft group-hover:translate-x-1 group-hover:-translate-y-1 md:col-span-1 md:flex">
+                    ↗
+                  </span>
                 </Reveal>
-              );
-
-              return (
-                <li key={service.id}>
-                  {linked ? (
-                    <Link href={href} className="group block">
-                      {Row}
-                    </Link>
-                  ) : (
-                    <div className="group block">{Row}</div>
-                  )}
-                  <Rule />
-                </li>
-              );
-            })}
+                </Link>
+                <Rule />
+              </li>
+            ))}
           </ul>
         </div>
 

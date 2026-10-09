@@ -83,7 +83,7 @@ export interface VisionMissionData {
 }
 
 // ─── Services ───────────────────────────────────────────────────────────────
-export type ServiceCategory = "soft" | "manpower" | "specialized" | "repair";
+export type ServiceCategory = "soft" | "manpower" | "specialised" | "repair";
 
 /** One of the four service sections, with the copy for its own page. */
 export interface ServiceSection {
@@ -126,10 +126,6 @@ export interface Service {
   icon: string;
   image: string;
   features: string[];
-  /** Has its own /services/<slug> page. Others are listed on their section page. */
-  detail: boolean;
-  /** Overrides the link target (waste management keeps its own page). */
-  href?: string;
   status: boolean;
   order: number;
 }
@@ -222,37 +218,6 @@ export interface StaffingData {
 }
 
 // ─── Waste Management ───────────────────────────────────────────────────────
-export interface WasteLever {
-  id: string | number;
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
-export interface WasteExcellenceFactor {
-  id: string | number;
-  title: string;
-  description: string;
-  icon: string;
-}
-
-export interface WasteData {
-  hero: {
-    badge: string;
-    title: string;
-    titleAccent: string;
-    description: string;
-    stats: { value: string; label: string }[];
-  };
-  badge: string;
-  title: string;
-  description: string;
-  levers: WasteLever[];
-  excellence_factors: WasteExcellenceFactor[];
-  status: boolean;
-}
-
 // ─── Production ─────────────────────────────────────────────────────────────
 export interface ProductionService {
   id: number;

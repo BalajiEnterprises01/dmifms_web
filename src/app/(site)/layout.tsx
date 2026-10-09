@@ -3,7 +3,12 @@ import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import { IntroProvider } from "@/components/motion/IntroLoader";
 
-export const dynamic = "force-dynamic";
+/**
+ * Pages are prerendered and served from cache, so they load fast. Admin
+ * saves call revalidatePath, so edits still appear immediately; the hourly
+ * window is only a backstop if a write happens outside the API.
+ */
+export const revalidate = 3600;
 
 export default function SiteLayout({
   children,

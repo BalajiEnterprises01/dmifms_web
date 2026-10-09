@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readJSON, writeJSON } from "@/lib/jsonCMS";
 import { isAdminAuthenticated } from "@/lib/auth";
+import { revalidateSite } from "@/lib/revalidate";
 
-const ALLOWED_SECTIONS = ["hero", "about", "vision-mission", "quality", "waste", "production", "sections", "contact", "industries", "process", "why-choose-us", "services-page", "industries-page", "process-page"];
+const ALLOWED_SECTIONS = ["hero", "about", "vision-mission", "quality", "production", "sections", "contact", "industries", "process", "why-choose-us", "services-page", "industries-page", "process-page"];
 
 interface RouteParams {
   params: Promise<{ section: string }>;
@@ -32,6 +33,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
     const body = await request.json();
     writeJSON(section, body);
+    revalidateSite();
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Failed to update" }, { status: 500 });

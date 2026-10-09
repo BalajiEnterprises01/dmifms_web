@@ -22,12 +22,12 @@
       "cta_href": "/services"
     },
     {
-      "image": "/images/services/waste-management-hd.jpg",
-      "title": "Sustainable Waste Management",
-      "subtitle": "Cleaner sites, greener footprint",
-      "description": "Source segregation, organic composting, and tech-driven SOPs that turn waste handling into measurable sustainability outcomes.",
-      "cta_label": "Waste Management",
-      "cta_href": "/services/waste-management"
+      "image": "/images/sections/repair-maintenance.jpg",
+      "title": "Building spaces for a better tomorrow",
+      "subtitle": "Repairs & Maintenance",
+      "description": "Civil, electrical, plumbing, carpentry and HVAC works under one contract, from preventive upkeep to emergency repairs.",
+      "cta_label": "Repair & Maintenance",
+      "cta_href": "/solutions/repair-maintenance"
     }
   ],
   "cta_primary": {

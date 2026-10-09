@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     "integrated facility management",
     "housekeeping services",
     "manpower services",
-    "waste management",
     "DM23 IFMS",
     "Bangalore facility management",
     "TFM",

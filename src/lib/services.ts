@@ -1,7 +1,6 @@
 import { readJSON } from "@/lib/jsonCMS";
 import type { SectionsData, Service, ServiceCategory, ServiceSection } from "@/types";
 
-export { serviceHref } from "@/lib/service-links";
 
 /** Active services, in display order. */
 export function getServices(): Service[] {

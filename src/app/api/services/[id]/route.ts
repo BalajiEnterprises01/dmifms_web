@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readJSON, writeJSON } from "@/lib/jsonCMS";
 import { isAdminAuthenticated } from "@/lib/auth";
+import { revalidateSite } from "@/lib/revalidate";
 import { Service } from "@/types";
 
 interface RouteParams {
@@ -19,6 +20,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
   services[idx] = { ...services[idx], ...body };
   writeJSON("services", services);
+  revalidateSite();
   return NextResponse.json(services[idx]);
 }
 
@@ -33,6 +35,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
   services[idx].status = !services[idx].status;
   writeJSON("services", services);
+  revalidateSite();
   return NextResponse.json({ id, status: services[idx].status });
 }
 
@@ -47,5 +50,6 @@ export async function DELETE(_req: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
   writeJSON("services", filtered);
+  revalidateSite();
   return NextResponse.json({ success: true });
 }

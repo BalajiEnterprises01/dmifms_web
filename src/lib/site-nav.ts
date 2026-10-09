@@ -39,6 +39,5 @@ export const siteLinks: NavLink[] = [
   { label: "Manpower Services", href: "/solutions/manpower" },
   { label: "Specialised Services", href: "/solutions/specialised-services" },
   { label: "Repair & Maintenance", href: "/solutions/repair-maintenance" },
-  { label: "Waste Management", href: "/waste-management" },
   { label: "Contact", href: "/contact" },
 ];

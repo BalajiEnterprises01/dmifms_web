@@ -8,17 +8,17 @@ import PageHero from "@/components/layout/PageHero";
 import CTASection from "@/components/sections/CTASection";
 import SectionIntro from "@/components/common/SectionIntro";
 import { MaskLine, Reveal } from "@/components/motion/Reveal";
+import ImageReveal from "@/components/motion/ImageReveal";
 import RelatedServices from "@/components/services/RelatedServices";
 import ServicePager from "@/components/services/ServicePager";
 
 interface Props {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ category?: string }>;
 }
 
 export async function generateStaticParams() {
   const services = readJSON<Service[]>("services");
-  return services.filter((s) => s.status && s.detail).map((s) => ({ slug: s.slug }));
+  return services.filter((s) => s.status).map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -39,25 +39,22 @@ const WHY_DM23 = [
   { title: "Pan-India Reach", desc: "Serving sites across India" },
 ];
 
-export default async function ServiceDetailPage({ params, searchParams }: Props) {
+export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const { category } = await searchParams;
   const services = readJSON<Service[]>("services");
-  const service = services.find((s) => s.slug === slug && s.status && s.detail);
+  const service = services.find((s) => s.slug === slug && s.status);
 
   if (!service) notFound();
 
   const contact = readJSON<ContactData>("contact");
-  // Only services with their own page: the rest have nowhere to link to.
   const related = services
-    .filter((s) => s.category === service.category && s.id !== service.id && s.status && s.detail)
+    .filter((s) => s.category === service.category && s.id !== service.id && s.status)
     .slice(0, 3);
   const section = getSections().find((s) => s.id === service.category);
-  const backHref = category && section ? `/solutions/${section.slug}` : `/services?category=${service.category}`;
+  const backHref = section ? `/solutions/${section.slug}` : "/services";
 
-  // Previous / next across the services that have their own page, wrapping
-  // at the ends. Listing-only services have nowhere to link to.
-  const ordered = services.filter((s) => s.status && s.detail).sort((a, b) => a.order - b.order);
+  // Previous / next across the catalogue, wrapping at the ends.
+  const ordered = services.filter((s) => s.status).sort((a, b) => a.order - b.order);
   const position = ordered.findIndex((s) => s.id === service.id);
   const prev = ordered[(position - 1 + ordered.length) % ordered.length];
   const next = ordered[(position + 1) % ordered.length];
@@ -69,7 +66,8 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
         title={service.title}
         description={service.shortDescription}
         breadcrumbs={[{ label: "Services", href: backHref }, { label: service.title }]}
-        bgImage={service.image}
+        bgImage={section?.image ?? service.image}
+        imageAlt={section?.label ?? service.title}
       />
 
       <section className="site-container py-20 md:py-32">
@@ -82,6 +80,20 @@ export default async function ServiceDetailPage({ params, searchParams }: Props)
           }>
           {service.description}
         </SectionIntro>
+
+        {service.image && (
+          <div className="mt-12 grid grid-cols-12 md:mt-16">
+            {/* Kept to two thirds: the service photos are not wide enough to
+                fill the page without going soft. */}
+            <ImageReveal
+              src={service.image}
+              alt={service.title}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="col-span-12 aspect-[16/9] w-full bg-sand lg:col-span-8"
+              imageClassName="object-[50%_40%]"
+            />
+          </div>
+        )}
 
         <div className="mt-16 grid grid-cols-12 gap-x-6 gap-y-16 md:mt-24">
           <div className="col-span-12 lg:col-span-8">
