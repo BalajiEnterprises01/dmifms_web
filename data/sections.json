@@ -19,13 +19,13 @@
     },
     {
       "id": "manpower",
-      "slug": "man-power",
-      "label": "Man Power Services",
-      "badge": "Man Power Services",
+      "slug": "manpower",
+      "label": "Manpower Services",
+      "badge": "Manpower Services",
       "title": "Right people.",
       "titleAccent": "Right place. Right time.",
       "description": "Skilled and unskilled manpower for factories, warehouses, supply chains and corporate offices, with payroll and statutory compliance handled end to end.",
-      "image": "/images/sections/man-power.jpg",
+      "image": "/images/sections/manpower.jpg",
       "highlight": "Trained, vetted and committed staff, assigned exclusively to your facility.",
       "points": [
         "Background verification and structured onboarding",
@@ -35,14 +35,14 @@
       ]
     },
     {
-      "id": "specialized",
-      "slug": "specialized-services",
-      "label": "Specialized Services",
-      "badge": "Specialized Services",
+      "id": "specialised",
+      "slug": "specialised-services",
+      "label": "Specialised Services",
+      "badge": "Specialised Services",
       "title": "Intensive care",
       "titleAccent": "for demanding spaces.",
       "description": "Periodic deep cleaning and restoration work that goes beyond daily housekeeping, carried out with professional machines and trained operators.",
-      "image": "/images/sections/specialized-services.jpg",
+      "image": "/images/sections/specialised-services.jpg",
       "highlight": "Deep cleaning, floor restoration and upholstery care that bring a space back to its original condition.",
       "points": [
         "Professional machines and approved chemicals",

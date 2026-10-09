@@ -12,8 +12,8 @@ interface EditServiceModalProps {
 
 const categories: { value: ServiceCategory; label: string }[] = [
   { value: "soft", label: "Soft Services" },
-  { value: "manpower", label: "Man Power Services" },
-  { value: "specialized", label: "Specialized Services" },
+  { value: "manpower", label: "Manpower Services" },
+  { value: "specialized", label: "Specialised Services" },
   { value: "repair", label: "Repair & Maintenance Services" },
 ];
 
