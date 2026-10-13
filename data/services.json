@@ -21,7 +21,8 @@
       "SOP-driven operations"
     ],
     "status": true,
-    "order": 1
+    "order": 1,
+    "imageWidth": 590
   },
   {
     "id": "guest-house-management",
@@ -42,7 +43,8 @@
       "Quality audits"
     ],
     "status": true,
-    "order": 2
+    "order": 2,
+    "imageWidth": 2400
   },
   {
     "id": "pest-control",
@@ -63,7 +65,8 @@
       "Regular audits"
     ],
     "status": true,
-    "order": 3
+    "order": 3,
+    "imageWidth": 500
   },
   {
     "id": "pantry-management",
@@ -87,7 +90,8 @@
       "Vendor coordination"
     ],
     "status": true,
-    "order": 4
+    "order": 4,
+    "imageWidth": 637
   },
   {
     "id": "garden-maintenance",
@@ -108,7 +112,8 @@
       "Pest & disease control"
     ],
     "status": true,
-    "order": 5
+    "order": 5,
+    "imageWidth": 2400
   },
   {
     "id": "help-desk",
@@ -129,7 +134,8 @@
       "Trained & groomed staff"
     ],
     "status": true,
-    "order": 6
+    "order": 6,
+    "imageWidth": 2400
   },
   {
     "id": "facade-cleaning",
@@ -152,7 +158,8 @@
       "Scheduled programs"
     ],
     "status": true,
-    "order": 7
+    "order": 7,
+    "imageWidth": 2400
   },
   {
     "id": "factory-production-manpower",
@@ -172,7 +179,8 @@
       "Attendance & MIS tracking"
     ],
     "status": true,
-    "order": 8
+    "order": 8,
+    "imageWidth": 370
   },
   {
     "id": "warehousing-supply-chain-manpower",
@@ -192,7 +200,8 @@
       "Background-verified staff"
     ],
     "status": true,
-    "order": 9
+    "order": 9,
+    "imageWidth": 285
   },
   {
     "id": "corporate-office-manpower",
@@ -212,7 +221,8 @@
       "Groomed, trained staff"
     ],
     "status": true,
-    "order": 10
+    "order": 10,
+    "imageWidth": 540
   },
   {
     "id": "contract-staffing",
@@ -235,7 +245,8 @@
       "Replacement guarantee"
     ],
     "status": true,
-    "order": 11
+    "order": 11,
+    "imageWidth": 720
   },
   {
     "id": "marble-polishing",
@@ -255,7 +266,8 @@
       "Periodic maintenance plans"
     ],
     "status": true,
-    "order": 12
+    "order": 12,
+    "imageWidth": 565
   },
   {
     "id": "deep-cleaning",
@@ -275,7 +287,8 @@
       "Restroom & kitchen sanitization"
     ],
     "status": true,
-    "order": 13
+    "order": 13,
+    "imageWidth": 600
   },
   {
     "id": "upholstery-shampooing",
@@ -295,7 +308,8 @@
       "Fabric-safe chemicals"
     ],
     "status": true,
-    "order": 14
+    "order": 14,
+    "imageWidth": 565
   },
   {
     "id": "high-roof-cleaning",
@@ -315,7 +329,8 @@
       "Out-of-hours scheduling"
     ],
     "status": true,
-    "order": 15
+    "order": 15,
+    "imageWidth": 667
   },
   {
     "id": "indoor-plant-rentals",
@@ -335,7 +350,8 @@
       "Seasonal refresh"
     ],
     "status": true,
-    "order": 16
+    "order": 16,
+    "imageWidth": 820
   },
   {
     "id": "chair-refurbishing",
@@ -355,7 +371,8 @@
       "On-site servicing"
     ],
     "status": true,
-    "order": 17
+    "order": 17,
+    "imageWidth": 377
   },
   {
     "id": "electrical-works",
@@ -375,7 +392,8 @@
       "Emergency response"
     ],
     "status": true,
-    "order": 18
+    "order": 18,
+    "imageWidth": 720
   },
   {
     "id": "plumbing-works",
@@ -395,7 +413,8 @@
       "Fixture replacement"
     ],
     "status": true,
-    "order": 19
+    "order": 19,
+    "imageWidth": 720
   },
   {
     "id": "carpentry-works",
@@ -415,7 +434,8 @@
       "Site measurement"
     ],
     "status": true,
-    "order": 20
+    "order": 20,
+    "imageWidth": 255
   },
   {
     "id": "civil-works",
@@ -435,7 +455,8 @@
       "Site supervision"
     ],
     "status": true,
-    "order": 21
+    "order": 21,
+    "imageWidth": 380
   },
   {
     "id": "painting-works",
@@ -455,7 +476,8 @@
       "Site protection & clean-up"
     ],
     "status": true,
-    "order": 22
+    "order": 22,
+    "imageWidth": 434
   },
   {
     "id": "workstation-installation",
@@ -475,7 +497,8 @@
       "Cable management"
     ],
     "status": true,
-    "order": 23
+    "order": 23,
+    "imageWidth": 900
   },
   {
     "id": "hvac-maintenance",
@@ -495,7 +518,8 @@
       "AMC management"
     ],
     "status": true,
-    "order": 24
+    "order": 24,
+    "imageWidth": 720
   },
   {
     "id": "renovation-interiors",
@@ -515,7 +539,8 @@
       "Handover & snagging"
     ],
     "status": true,
-    "order": 25
+    "order": 25,
+    "imageWidth": 720
   },
   {
     "id": "metal-aluminium-fabrication",
@@ -535,7 +560,8 @@
       "Finishing & coating"
     ],
     "status": true,
-    "order": 26
+    "order": 26,
+    "imageWidth": 720
   },
   {
     "id": "signage-display-boards",
@@ -555,7 +581,8 @@
       "Installation & maintenance"
     ],
     "status": true,
-    "order": 27
+    "order": 27,
+    "imageWidth": 720
   },
   {
     "id": "chiller-maintenance",
@@ -575,6 +602,7 @@
       "AMC management"
     ],
     "status": true,
-    "order": 28
+    "order": 28,
+    "imageWidth": 720
   }
 ]

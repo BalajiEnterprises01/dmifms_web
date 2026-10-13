@@ -2,13 +2,9 @@ import type { NavLink } from "@/types";
 
 /** Header navigation for the public site. */
 export const primaryNav: NavLink[] = [
-  { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
-  { label: "About", href: "/about" },
-  { label: "Process", href: "/process" },
   {
-    label: "Solutions",
-    href: "#",
+    label: "Services",
+    href: "/services",
     children: [
       { label: "Soft Services", href: "/solutions/soft-services" },
       { label: "Manpower Services", href: "/solutions/manpower" },
@@ -16,6 +12,9 @@ export const primaryNav: NavLink[] = [
       { label: "Repair & Maintenance", href: "/solutions/repair-maintenance" },
     ],
   },
+  { label: "Industries", href: "/industries" },
+  { label: "About", href: "/about" },
+  { label: "Process", href: "/process" },
 ];
 
 /** Pages column in the footer: the service sections sit in their own column. */

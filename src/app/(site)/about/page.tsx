@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { readJSON } from "@/lib/jsonCMS";
-import type { AboutData, QualityData, VisionMissionData } from "@/types";
+import type { AboutData, VisionMissionData } from "@/types";
 import PageHero from "@/components/layout/PageHero";
 import AboutSection from "@/components/sections/AboutSection";
 import VisionMissionSection from "@/components/sections/VisionMissionSection";
-import QualitySection from "@/components/sections/QualitySection";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const aboutData = readJSON<AboutData>("about");
   const vmData = readJSON<VisionMissionData>("vision-mission");
-  const qualityData = readJSON<QualityData>("quality");
   const { hero } = aboutData;
 
   return (
@@ -32,7 +30,6 @@ export default function AboutPage() {
       />
       <AboutSection data={aboutData} />
       <VisionMissionSection data={vmData} />
-      <QualitySection data={qualityData} />
     </>
   );
 }

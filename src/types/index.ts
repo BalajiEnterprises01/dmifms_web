@@ -125,6 +125,8 @@ export interface Service {
   shortDescription: string;
   icon: string;
   image: string;
+  /** Real pixel width of `image`, so pages never scale it up. */
+  imageWidth?: number;
   features: string[];
   status: boolean;
   order: number;
