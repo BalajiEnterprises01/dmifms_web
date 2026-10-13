@@ -90,7 +90,10 @@ export default function HomePage() {
     <>
       <HomeHero data={hero} />
       <WhySection intro={about.title} items={differentiators} />
-      <ServicesShowcase services={services} intro={servicesPage.hero.description} />
+      <ServicesShowcase
+        services={services.filter((s) => (s.imageWidth ?? 0) >= 700)}
+        intro={servicesPage.hero.description}
+      />
       <CategoryIndex categories={categories} intro={about.description} />
       <IndustriesSlider industries={industries} intro={industriesPage.hero.description} />
       <FoundationStack intro={hero.description} cards={foundation} />

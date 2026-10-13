@@ -76,17 +76,22 @@ export default function Navbar() {
                   key={link.label}
                   className="relative"
                   onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}>
-                  <button
-                    type="button"
+                  onMouseLeave={() => setDropdownOpen(false)}
+                  onFocus={() => setDropdownOpen(true)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget)) setDropdownOpen(false);
+                  }}>
+                  {/* The parent is a real link: Services is a page of its own. */}
+                  <Link
+                    href={link.href}
                     aria-expanded={dropdownOpen}
-                    onClick={() => setDropdownOpen((v) => !v)}
                     className={cn(
-                      "nav-link py-3",
-                      link.children.some((c) => isActive(c.href)) && "nav-link-active",
+                      "nav-link inline-block py-3",
+                      (isActive(link.href) || link.children.some((c) => isActive(c.href))) &&
+                        "nav-link-active",
                     )}>
                     {link.label}
-                  </button>
+                  </Link>
                   <AnimatePresence>
                     {dropdownOpen && (
                       <motion.div

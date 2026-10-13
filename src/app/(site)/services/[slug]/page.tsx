@@ -82,14 +82,12 @@ export default async function ServiceDetailPage({ params }: Props) {
         </SectionIntro>
 
         {service.image && (
-          <div className="mt-12 grid grid-cols-12 md:mt-16">
-            {/* Kept to two thirds: the service photos are not wide enough to
-                fill the page without going soft. */}
+          <div className="mt-12 md:mt-16" style={{ maxWidth: service.imageWidth }}>
             <ImageReveal
               src={service.image}
               alt={service.title}
               sizes="(min-width: 1024px) 60vw, 100vw"
-              className="col-span-12 aspect-[16/9] w-full bg-sand lg:col-span-8"
+              className="aspect-[16/9] w-full bg-sand"
               imageClassName="object-[50%_40%]"
             />
           </div>
