@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { readJSON } from "@/lib/jsonCMS";
 import type { ProcessPageData, ProcessStep } from "@/types";
 import PageHero from "@/components/layout/PageHero";
+import ProcessJourney from "@/components/sections/ProcessJourney";
 import ProcessSection from "@/components/sections/ProcessSection";
 import CTASection from "@/components/sections/CTASection";
 
@@ -16,7 +17,7 @@ const FALLBACK_IMAGE =
 
 export default function ProcessPage() {
   const steps = readJSON<ProcessStep[]>("process");
-  const { hero } = readJSON<ProcessPageData>("process-page");
+  const { hero, journey } = readJSON<ProcessPageData>("process-page");
 
   return (
     <>
@@ -30,6 +31,7 @@ export default function ProcessPage() {
         imageAlt="Process and Engineering"
         stats={hero.stats}
       />
+      {journey && <ProcessJourney data={journey} />}
       <ProcessSection steps={steps} />
       <CTASection />
     </>

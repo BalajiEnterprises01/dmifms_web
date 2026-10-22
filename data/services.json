@@ -22,7 +22,7 @@
     ],
     "status": true,
     "order": 1,
-    "imageWidth": 590
+    "imageWidth": 1200
   },
   {
     "id": "guest-house-management",
@@ -267,7 +267,7 @@
     ],
     "status": true,
     "order": 12,
-    "imageWidth": 565
+    "imageWidth": 1200
   },
   {
     "id": "deep-cleaning",

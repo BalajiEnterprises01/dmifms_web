@@ -157,6 +157,13 @@ export interface Industry {
 }
 
 // ─── Process ────────────────────────────────────────────────────────────────
+/** The four-stage engagement journey drawn on the process page. */
+export interface ProcessJourneyData {
+  label: string;
+  stages: { id: string; title: string; lead: string; points: string[] }[];
+  outcomes: { id: string; title: string; caption: string }[];
+}
+
 export interface ProcessPageData {
   hero: {
     badge: string;
@@ -166,6 +173,7 @@ export interface ProcessPageData {
     image: string;
     stats: { value: string; label: string }[];
   };
+  journey?: ProcessJourneyData;
   status: boolean;
 }
 
@@ -281,6 +289,10 @@ export interface ContactData {
   address: string;
   email: string;
   phone: string;
+  /** Office landline. */
+  landline?: string;
+  /** Repair & maintenance mobile. */
+  phoneRm?: string;
   map_embed: string;
   social: {
     linkedin: string;

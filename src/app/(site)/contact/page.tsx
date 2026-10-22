@@ -50,6 +50,12 @@ export default function ContactPage() {
       value: data.phone,
       href: `tel:${data.phone.replace(/\s+/g, "")}`,
     },
+    ...(data.landline
+      ? [{ label: "Landline", value: data.landline, href: `tel:${data.landline.replace(/[\s-]/g, "")}` }]
+      : []),
+    ...(data.phoneRm
+      ? [{ label: "Repair & Maintenance", value: data.phoneRm, href: `tel:${data.phoneRm.replace(/\s+/g, "")}` }]
+      : []),
     { label: "Email", value: data.email, href: `mailto:${data.email}` },
   ];
 
