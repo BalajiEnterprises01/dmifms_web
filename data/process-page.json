@@ -4,7 +4,7 @@
     "title": "Precision in",
     "titleAccent": "Every Step.",
     "description": "A proven eight-step transition methodology ensuring smooth deployment, absolute compliance, and long-term stabilization at every client site.",
-    "image": "https://images.unsplash.com/photo-1503945438517-f65904a52ce6?q=80&w=2670&auto=format&fit=crop",
+    "image": "/images/sections/manpower.jpg",
     "stats": [
       {
         "value": "08",
@@ -20,5 +20,76 @@
       }
     ]
   },
-  "status": true
+  "status": true,
+  "journey": {
+    "label": "From transition to final operations",
+    "stages": [
+      {
+        "id": "transition",
+        "title": "Transition",
+        "lead": "Understanding your needs, planning the right solution, ensuring a smooth handover.",
+        "points": [
+          "Site assessment",
+          "Workforce planning",
+          "Process alignment",
+          "Seamless transition"
+        ]
+      },
+      {
+        "id": "deployments",
+        "title": "Deployments",
+        "lead": "Right people, right roles, right time.",
+        "points": [
+          "Skilled & trained workforce",
+          "Role-based deployment",
+          "Induction & orientation",
+          "Equipment & resources ready"
+        ]
+      },
+      {
+        "id": "compliances",
+        "title": "Compliances",
+        "lead": "Meeting standards, building trust.",
+        "points": [
+          "Statutory & labour compliance",
+          "Safety & risk management",
+          "Quality assurance",
+          "Audits & reporting"
+        ]
+      },
+      {
+        "id": "operations",
+        "title": "Final Operations",
+        "lead": "Consistent performance, lasting value.",
+        "points": [
+          "Day-to-day operations",
+          "Performance monitoring",
+          "Continuous improvement",
+          "Your success, our delivery"
+        ]
+      }
+    ],
+    "outcomes": [
+      {
+        "id": "people",
+        "title": "People",
+        "caption": "The right talent"
+      },
+      {
+        "id": "process",
+        "title": "Process",
+        "caption": "The right systems"
+      },
+      {
+        "id": "performance",
+        "title": "Performance",
+        "caption": "The right standards"
+      },
+      {
+        "id": "excellence",
+        "title": "Excellence",
+        "caption": "The right outcome"
+      }
+    ]
+  }
 }

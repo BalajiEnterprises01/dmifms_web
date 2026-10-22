@@ -13,8 +13,6 @@ out/
 *.tsbuildinfo
 
 # Env files (NEVER commit real env files)
-.env
-.env.*
 !.env.example
 
 # Secrets & keys
@@ -54,7 +52,6 @@ Thumbs.db
 *.swo
 
 # IDE
-.vscode/settings.json
 .idea/
 *.iml
 
@@ -80,3 +77,4 @@ CLAUDE.md
 .claudeignore
 Makefile
 SECURITY.md
+config.bat

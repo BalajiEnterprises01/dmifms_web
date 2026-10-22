@@ -29,6 +29,12 @@ export default function Footer() {
       value: contact.phone,
       href: `tel:${contact.phone.replace(/\s+/g, "")}`,
     },
+    ...(contact.landline
+      ? [{ label: "Landline", value: contact.landline, href: `tel:${contact.landline.replace(/[\s-]/g, "")}` }]
+      : []),
+    ...(contact.phoneRm
+      ? [{ label: "Repair & Maintenance", value: contact.phoneRm, href: `tel:${contact.phoneRm.replace(/\s+/g, "")}` }]
+      : []),
     { label: "Email", value: contact.email, href: `mailto:${contact.email}` },
     { label: "Company", value: "DM23 IFMS Pvt Ltd" },
   ];
